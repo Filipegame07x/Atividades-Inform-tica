@@ -30,11 +30,11 @@ export function Home({ onSelectActivity }: HomeProps) {
     <div className="animate-fade-in text-center mt-10">
       {/* Hero Section */}
       <div className="flex justify-center mb-6">
-        <div className="hero-icon" style={{ padding: '0.5rem', background: 'rgba(15, 23, 42, 0.4)', border: '1px solid var(--border-glow)' }}>
+        <div className="home-logo-container">
           <img 
             src="/iepop.png" 
             alt="IEPOP Logo" 
-            style={{ width: '48px', height: '48px', objectFit: 'contain' }} 
+            className="home-logo-img"
           />
         </div>
       </div>
