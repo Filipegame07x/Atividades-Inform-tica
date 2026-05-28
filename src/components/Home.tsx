@@ -1,4 +1,4 @@
-import { BookOpen, FileText, MonitorPlay, Globe, ShieldAlert } from 'lucide-react';
+import { FileText, MonitorPlay, Globe, ShieldAlert } from 'lucide-react';
 import { activities } from '../data/activities';
 
 interface HomeProps {
@@ -30,8 +30,12 @@ export function Home({ onSelectActivity }: HomeProps) {
     <div className="animate-fade-in text-center mt-10">
       {/* Hero Section */}
       <div className="flex justify-center mb-6">
-        <div className="hero-icon">
-          <BookOpen size={48} color="white" />
+        <div className="hero-icon" style={{ padding: '0.5rem', background: 'rgba(15, 23, 42, 0.4)', border: '1px solid var(--border-glow)' }}>
+          <img 
+            src="/iepop.png" 
+            alt="IEPOP Logo" 
+            style={{ width: '48px', height: '48px', objectFit: 'contain' }} 
+          />
         </div>
       </div>
       <h1 className="hero-title mb-3">Atividades Online de Informática</h1>
