@@ -1,16 +1,17 @@
 import { useRef } from 'react';
-import { objectiveQuestions, discursiveQuestions } from '../data/word-quiz';
 import type { ActivityResult } from './Activity';
+import type { ActivityData } from '../data/activities';
 import { Download, ArrowLeft } from 'lucide-react';
 // @ts-ignore
 import html2pdf from 'html2pdf.js';
 
 interface ResultProps {
+  activity: ActivityData;
   result: ActivityResult;
   onReset: () => void;
 }
 
-export function Result({ result, onReset }: ResultProps) {
+export function Result({ activity, result, onReset }: ResultProps) {
   const reportRef = useRef<HTMLDivElement>(null);
 
   const handleDownloadPdf = () => {
@@ -20,7 +21,7 @@ export function Result({ result, onReset }: ResultProps) {
     // We temporarily show it to print if it was hidden, but in our case it's in the DOM
     const opt: any = {
       margin:       10,
-      filename:     `Relatorio_Word_${result.studentInfo.nome.replace(/\s+/g, '_')}.pdf`,
+      filename:     `Relatorio_${activity.id}_${result.studentInfo.nome.replace(/\s+/g, '_')}.pdf`,
       image:        { type: 'jpeg', quality: 0.98 },
       html2canvas:  { scale: 2 },
       jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
@@ -43,12 +44,12 @@ export function Result({ result, onReset }: ResultProps) {
       {/* The visible summary */}
       <div style={{ backgroundColor: 'var(--bg-secondary)', padding: '2rem', borderRadius: 'var(--radius-lg)', textAlign: 'center', marginBottom: '2rem' }}>
         <h2 className="text-3xl font-bold mb-2">Resultado da Avaliação</h2>
-        <p className="text-xl text-muted mb-6">Módulo: Microsoft Word</p>
+        <p className="text-xl text-muted mb-6">Módulo: {activity.title}</p>
         
         <div className="flex justify-center gap-8 mb-6">
           <div style={{ padding: '1.5rem', backgroundColor: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)', minWidth: '150px' }}>
             <p className="text-muted mb-1">Acertos</p>
-            <p className="text-4xl font-bold text-accent-primary">{result.correctCount} / {objectiveQuestions.length}</p>
+            <p className="text-4xl font-bold text-accent-primary">{result.correctCount} / {activity.objectiveQuestions.length}</p>
           </div>
           <div style={{ padding: '1.5rem', backgroundColor: 'var(--bg-tertiary)', borderRadius: 'var(--radius-md)', minWidth: '150px' }}>
             <p className="text-muted mb-1">Nota</p>
@@ -63,7 +64,7 @@ export function Result({ result, onReset }: ResultProps) {
       {/* The Report (This will be converted to PDF) */}
       <div style={{ backgroundColor: '#fff', color: '#000', padding: '2rem', borderRadius: 'var(--radius-md)' }} ref={reportRef}>
         <div style={{ borderBottom: '2px solid #ccc', paddingBottom: '1rem', marginBottom: '2rem' }}>
-          <h1 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '10px' }}>Relatório de Atividade: Microsoft Word</h1>
+          <h1 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '10px' }}>Relatório de Atividade: {activity.title}</h1>
           <p><strong>Nome:</strong> {result.studentInfo.nome}</p>
           <p><strong>Data:</strong> {result.studentInfo.data}</p>
           <p><strong>Turma:</strong> {result.studentInfo.turma}</p>
@@ -73,7 +74,7 @@ export function Result({ result, onReset }: ResultProps) {
         </div>
 
         <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '1rem' }}>Questões de Múltipla Escolha</h3>
-        {objectiveQuestions.map((q, i) => {
+        {activity.objectiveQuestions.map((q, i) => {
           const studentAnswer = result.objectiveAnswers[q.id];
           const isCorrect = studentAnswer === q.correctOptionId;
           const selectedOption = q.options.find(o => o.id === studentAnswer);
@@ -98,7 +99,7 @@ export function Result({ result, onReset }: ResultProps) {
         })}
 
         <h3 style={{ fontSize: '20px', fontWeight: 'bold', margin: '2rem 0 1rem' }}>Questões Escritas</h3>
-        {discursiveQuestions.map((q) => (
+        {activity.discursiveQuestions.map((q) => (
           <div key={q.id} style={{ marginBottom: '1.5rem' }}>
             <p style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>{q.id}. {q.question}</p>
             <div style={{ padding: '1rem', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '4px', minHeight: '80px' }}>

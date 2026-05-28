@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { objectiveQuestions, discursiveQuestions } from '../data/word-quiz';
 import { CheckCircle } from 'lucide-react';
+import type { ActivityData } from '../data/activities';
 
 export interface StudentInfo {
   nome: string;
@@ -17,10 +17,11 @@ export interface ActivityResult {
 }
 
 interface ActivityProps {
+  activity: ActivityData;
   onComplete: (result: ActivityResult) => void;
 }
 
-export function Activity({ onComplete }: ActivityProps) {
+export function Activity({ activity, onComplete }: ActivityProps) {
   const [studentInfo, setStudentInfo] = useState<StudentInfo>({ nome: '', data: '', turma: '' });
   const [objectiveAnswers, setObjectiveAnswers] = useState<Record<number, string>>({});
   const [discursiveAnswers, setDiscursiveAnswers] = useState<Record<number, string>>({});
@@ -36,14 +37,14 @@ export function Activity({ onComplete }: ActivityProps) {
 
     // Calcular nota
     let correctCount = 0;
-    objectiveQuestions.forEach(q => {
+    activity.objectiveQuestions.forEach(q => {
       if (objectiveAnswers[q.id] === q.correctOptionId) {
         correctCount++;
       }
     });
 
-    // Nota de 0 a 10 baseada nas 12 questões (cada uma vale ~0.833)
-    const score = (correctCount / objectiveQuestions.length) * 10;
+    // Nota de 0 a 10 baseada na quantidade de questões objetivas
+    const score = (correctCount / activity.objectiveQuestions.length) * 10;
 
     onComplete({
       studentInfo,
@@ -57,7 +58,7 @@ export function Activity({ onComplete }: ActivityProps) {
   return (
     <div className="animate-fade-in mt-6">
       <div style={{ backgroundColor: 'var(--bg-secondary)', padding: '2rem', borderRadius: 'var(--radius-lg)', marginBottom: '2rem' }}>
-        <h2 className="text-3xl font-bold mb-6 text-center text-accent-primary">Atividade sobre Microsoft Word</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center text-accent-primary">Atividade: {activity.title}</h2>
         
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
           <div style={{ gridColumn: '1 / -1' }}>
@@ -98,7 +99,7 @@ export function Activity({ onComplete }: ActivityProps) {
             Questões de múltipla escolha
           </h3>
           
-          {objectiveQuestions.map((q, index) => (
+          {activity.objectiveQuestions.map((q, index) => (
             <div key={q.id} style={{ backgroundColor: 'var(--bg-secondary)', padding: '1.5rem', borderRadius: 'var(--radius-md)', marginBottom: '1.5rem' }}>
               <p className="font-bold text-xl mb-4">{index + 1}. {q.question}</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -140,7 +141,7 @@ export function Activity({ onComplete }: ActivityProps) {
             Questões escritas
           </h3>
           
-          {discursiveQuestions.map(q => (
+          {activity.discursiveQuestions.map(q => (
             <div key={q.id} style={{ backgroundColor: 'var(--bg-secondary)', padding: '1.5rem', borderRadius: 'var(--radius-md)', marginBottom: '1.5rem' }}>
               <p className="font-bold text-xl mb-4">{q.id}. {q.question}</p>
               <textarea 

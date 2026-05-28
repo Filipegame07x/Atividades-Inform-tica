@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { Lock, ArrowLeft } from 'lucide-react';
+import type { ActivityData } from '../data/activities';
 
 interface PasswordGateProps {
+  activity: ActivityData;
   onSuccess: () => void;
   onBack: () => void;
 }
 
-export function PasswordGate({ onSuccess, onBack }: PasswordGateProps) {
+export function PasswordGate({ activity, onSuccess, onBack }: PasswordGateProps) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'IEPOPWORD1') {
+    if (password === activity.password) {
       onSuccess();
     } else {
       setError('Senha incorreta. Tente novamente.');
@@ -44,9 +46,9 @@ export function PasswordGate({ onSuccess, onBack }: PasswordGateProps) {
           </div>
         </div>
         
-        <h2 className="text-2xl font-bold mb-2">Acesso Restrito</h2>
+        <h2 className="text-2xl font-bold mb-2">Acesso Restrito: {activity.title}</h2>
         <p className="text-muted mb-8">
-          Digite a senha fornecida pelo professor para acessar a atividade de Microsoft Word.
+          Digite a senha fornecida pelo professor para acessar esta atividade.
         </p>
 
         <form onSubmit={handleSubmit}>
