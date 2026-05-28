@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SplashScreen } from './components/SplashScreen';
 import { Home } from './components/Home';
 import { PasswordGate } from './components/PasswordGate';
 import { Activity } from './components/Activity';
@@ -9,6 +10,7 @@ import { activities } from './data/activities';
 type AppState = 'HOME' | 'PASSWORD_GATE' | 'ACTIVITY' | 'RESULT';
 
 function App() {
+  const [showSplash, setShowSplash] = useState(true);
   const [appState, setAppState] = useState<AppState>('HOME');
   const [selectedActivityId, setSelectedActivityId] = useState<string | null>(null);
   const [activityResult, setActivityResult] = useState<ActivityResult | null>(null);
@@ -34,6 +36,10 @@ function App() {
     setActivityResult(null);
     setAppState('HOME');
   };
+
+  if (showSplash) {
+    return <SplashScreen onComplete={() => setShowSplash(false)} />;
+  }
 
   return (
     <div className="container">
