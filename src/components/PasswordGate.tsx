@@ -11,6 +11,7 @@ interface PasswordGateProps {
 export function PasswordGate({ activity, onSuccess, onBack }: PasswordGateProps) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [shake, setShake] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,41 +19,34 @@ export function PasswordGate({ activity, onSuccess, onBack }: PasswordGateProps)
       onSuccess();
     } else {
       setError('Senha incorreta. Tente novamente.');
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
     }
   };
 
   return (
-    <div className="animate-fade-in mt-8">
-      <button 
-        onClick={onBack}
-        className="btn btn-secondary mb-6"
-        style={{ padding: '0.5rem 1rem' }}
-      >
+    <div className="animate-fade-in mt-10">
+      <button onClick={onBack} className="btn btn-secondary mb-8">
         <ArrowLeft size={18} /> Voltar
       </button>
 
-      <div style={{
-        backgroundColor: 'var(--bg-secondary)',
-        borderRadius: 'var(--radius-lg)',
-        padding: '3rem 2rem',
-        border: '1px solid var(--border-color)',
-        maxWidth: '500px',
-        margin: '0 auto',
-        textAlign: 'center'
-      }}>
+      <div 
+        className="password-card"
+        style={shake ? { animation: 'shake 0.4s ease-in-out' } : undefined}
+      >
         <div className="flex justify-center mb-6">
-          <div style={{ backgroundColor: 'rgba(59, 130, 246, 0.1)', padding: '1rem', borderRadius: '50%' }}>
-            <Lock size={40} color="var(--accent-primary)" />
+          <div className="lock-icon">
+            <Lock size={36} color="var(--accent-primary)" />
           </div>
         </div>
         
-        <h2 className="text-2xl font-bold mb-2">Acesso Restrito: {activity.title}</h2>
+        <h2 className="text-2xl font-bold tracking-tight mb-2">{activity.title}</h2>
         <p className="text-muted mb-8">
           Digite a senha fornecida pelo professor para acessar esta atividade.
         </p>
 
         <form onSubmit={handleSubmit}>
-          <div className="mb-4 text-left">
+          <div className="mb-4">
             <input 
               type="password" 
               placeholder="Digite a senha..." 
@@ -61,22 +55,32 @@ export function PasswordGate({ activity, onSuccess, onBack }: PasswordGateProps)
                 setPassword(e.target.value);
                 setError('');
               }}
-              style={{ textAlign: 'center', fontSize: '1.25rem', padding: '1rem' }}
+              style={{ textAlign: 'center', fontSize: '1.125rem', padding: '1rem' }}
               autoFocus
             />
           </div>
           
           {error && (
-            <div className="text-error mb-4 animate-fade-in">
+            <div className="text-error mb-4 animate-fade-in text-sm font-medium">
               {error}
             </div>
           )}
 
-          <button type="submit" className="btn btn-primary w-full" style={{ width: '100%', padding: '1rem' }}>
+          <button type="submit" className="btn btn-primary w-full" style={{ padding: '1rem' }}>
             Acessar Atividade
           </button>
         </form>
       </div>
+
+      <style>{`
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          20% { transform: translateX(-8px); }
+          40% { transform: translateX(8px); }
+          60% { transform: translateX(-4px); }
+          80% { transform: translateX(4px); }
+        }
+      `}</style>
     </div>
   );
 }

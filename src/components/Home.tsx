@@ -16,72 +16,47 @@ export function Home({ onSelectActivity }: HomeProps) {
     }
   };
 
-  const getIconBg = (type: string) => {
+  const getIconBadgeClass = (type: string) => {
     switch(type) {
-      case 'word': return 'rgba(59, 130, 246, 0.1)';
-      case 'powerpoint': return 'rgba(245, 158, 11, 0.1)';
-      case 'chrome': return 'rgba(16, 185, 129, 0.1)';
-      case 'antivirus': return 'rgba(239, 68, 68, 0.1)';
-      default: return 'rgba(59, 130, 246, 0.1)';
+      case 'word': return 'icon-badge icon-badge-blue';
+      case 'powerpoint': return 'icon-badge icon-badge-amber';
+      case 'chrome': return 'icon-badge icon-badge-green';
+      case 'antivirus': return 'icon-badge icon-badge-red';
+      default: return 'icon-badge icon-badge-blue';
     }
   };
 
   return (
-    <div className="animate-fade-in text-center mt-8">
+    <div className="animate-fade-in text-center mt-10">
+      {/* Hero Section */}
       <div className="flex justify-center mb-6">
-        <div style={{ background: 'var(--accent-primary)', padding: '1rem', borderRadius: '50%' }}>
+        <div className="hero-icon">
           <BookOpen size={48} color="white" />
         </div>
       </div>
-      <h1 className="text-4xl font-bold mb-4">Atividades Online de Informática</h1>
-      <p className="text-xl text-muted mb-8">
+      <h1 className="hero-title mb-3">Atividades Online de Informática</h1>
+      <p className="hero-subtitle mb-10">
         Bem-vindo! Selecione uma atividade abaixo para começar o seu teste.
       </p>
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: '1.5rem',
-        maxWidth: '1000px',
-        margin: '0 auto',
-        paddingBottom: '2rem'
-      }}>
+      {/* Activity Cards Grid */}
+      <div className="activities-grid stagger-children">
         {activities.map((activity) => (
           <div 
             key={activity.id}
+            className="activity-card"
             onClick={() => onSelectActivity(activity.id)}
-            style={{
-              backgroundColor: 'var(--bg-secondary)',
-              borderRadius: 'var(--radius-lg)',
-              padding: '2rem',
-              border: '1px solid var(--border-color)',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              textAlign: 'left',
-              display: 'flex',
-              flexDirection: 'column'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'var(--accent-primary)';
-              e.currentTarget.style.transform = 'translateY(-4px)';
-              e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'var(--border-color)';
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
           >
             <div className="flex items-center gap-4 mb-4">
-              <div style={{ backgroundColor: getIconBg(activity.iconType), padding: '0.75rem', borderRadius: 'var(--radius-md)' }}>
+              <div className={getIconBadgeClass(activity.iconType)}>
                 {getIcon(activity.iconType)}
               </div>
-              <h2 className="text-2xl font-bold">{activity.title}</h2>
+              <h2 className="text-xl font-bold tracking-tight">{activity.title}</h2>
             </div>
-            <p className="text-muted mb-6" style={{ flexGrow: 1 }}>
+            <p className="text-muted text-sm mb-6 flex-grow">
               {activity.description}
             </p>
-            <button className="btn btn-primary w-full" style={{ width: '100%' }}>
+            <button className="btn btn-primary w-full">
               Acessar Atividade
             </button>
           </div>
