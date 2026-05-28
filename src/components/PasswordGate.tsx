@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Lock, ArrowLeft } from 'lucide-react';
+import { Lock, ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import type { ActivityData } from '../data/activities';
 
 interface PasswordGateProps {
@@ -10,6 +10,7 @@ interface PasswordGateProps {
 
 export function PasswordGate({ activity, onSuccess, onBack }: PasswordGateProps) {
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [shake, setShake] = useState(false);
 
@@ -46,18 +47,41 @@ export function PasswordGate({ activity, onSuccess, onBack }: PasswordGateProps)
         </p>
 
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
+          <div className="mb-4" style={{ position: 'relative' }}>
             <input 
-              type="password" 
+              type={showPassword ? "text" : "password"} 
               placeholder="Digite a senha..." 
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
                 setError('');
               }}
-              style={{ textAlign: 'center', fontSize: '1.125rem', padding: '1rem' }}
+              style={{ textAlign: 'center', fontSize: '1.125rem', padding: '1rem 3.5rem 1rem 1.25rem' }}
               autoFocus
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                position: 'absolute',
+                right: '1rem',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'none',
+                border: 'none',
+                color: 'var(--text-muted)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '0.25rem',
+                borderRadius: '4px',
+                transition: 'color 0.2s',
+                cursor: 'pointer'
+              }}
+              title={showPassword ? "Ocultar senha" : "Mostrar senha"}
+            >
+              {showPassword ? <EyeOff size={20} color="var(--accent-primary)" /> : <Eye size={20} />}
+            </button>
           </div>
           
           {error && (

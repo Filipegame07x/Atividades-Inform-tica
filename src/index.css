@@ -911,29 +911,31 @@ input[type="radio"] {
 }
 
 .splash-logo-inner {
-  width: 88px;
-  height: 88px;
-  background: var(--gradient-primary);
-  border-radius: 24px;
+  width: 130px;
+  height: 130px;
+  background: #ffffff;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   z-index: 2;
   box-shadow: 0 0 40px rgba(var(--accent-primary-rgb), 0.3);
+  border: 3px solid var(--accent-primary);
+  overflow: hidden;
 }
 
 .splash-logo-ring {
   position: absolute;
-  inset: -8px;
-  border-radius: 30px;
+  inset: -10px;
+  border-radius: 50%;
   border: 2px solid rgba(var(--accent-primary-rgb), 0.2);
   animation: splashRing 2s ease-in-out infinite;
 }
 
 @keyframes splashRing {
   0%, 100% { transform: scale(1); opacity: 0.3; }
-  50% { transform: scale(1.1); opacity: 0.1; }
+  50% { transform: scale(1.15); opacity: 0.1; }
 }
 
 /* Text */
@@ -1031,8 +1033,8 @@ input[type="radio"] {
 @media (max-width: 640px) {
   .splash-title-accent { font-size: 2rem; }
   .splash-title-line { font-size: 1rem; }
-  .splash-logo-inner { width: 72px; height: 72px; border-radius: 20px; }
-  .splash-logo-ring { inset: -6px; border-radius: 24px; }
+  .splash-logo-inner { width: 96px; height: 96px; border-radius: 50%; }
+  .splash-logo-ring { inset: -8px; border-radius: 50%; }
 }
 
 /* ===================================================================
