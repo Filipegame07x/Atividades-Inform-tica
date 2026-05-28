@@ -78,6 +78,13 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           </div>
         </div>
       </div>
+
+      {/* Brand attribution */}
+      <div className={`splash-attribution ${phase >= 1 ? 'splash-attribution-visible' : ''}`}>
+        Desenvolvido por
+        <img src="/logo_nivano.jpg" alt="Nivano Studio Logo" className="splash-attribution-logo" />
+        <span>Nivano Studio</span>
+      </div>
     </div>
   );
 }

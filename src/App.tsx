@@ -42,33 +42,48 @@ function App() {
   }
 
   return (
-    <div className="container">
-      {appState === 'HOME' && (
-        <Home onSelectActivity={handleSelectActivity} />
-      )}
-      
-      {appState === 'PASSWORD_GATE' && selectedActivity && (
-        <PasswordGate 
-          activity={selectedActivity}
-          onSuccess={handlePasswordSuccess} 
-          onBack={handleReset} 
-        />
-      )}
-      
-      {appState === 'ACTIVITY' && selectedActivity && (
-        <Activity 
-          activity={selectedActivity}
-          onComplete={handleActivityComplete} 
-        />
-      )}
-      
-      {appState === 'RESULT' && activityResult && selectedActivity && (
-        <Result 
-          activity={selectedActivity}
-          result={activityResult} 
-          onReset={handleReset} 
-        />
-      )}
+    <div className="container" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <div style={{ flex: 1 }}>
+        {appState === 'HOME' && (
+          <Home onSelectActivity={handleSelectActivity} />
+        )}
+        
+        {appState === 'PASSWORD_GATE' && selectedActivity && (
+          <PasswordGate 
+            activity={selectedActivity}
+            onSuccess={handlePasswordSuccess} 
+            onBack={handleReset} 
+          />
+        )}
+        
+        {appState === 'ACTIVITY' && selectedActivity && (
+          <Activity 
+            activity={selectedActivity}
+            onComplete={handleActivityComplete} 
+          />
+        )}
+        
+        {appState === 'RESULT' && activityResult && selectedActivity && (
+          <Result 
+            activity={selectedActivity}
+            result={activityResult} 
+            onReset={handleReset} 
+          />
+        )}
+      </div>
+
+      <footer className="footer">
+        <span>Desenvolvido por</span>
+        <a 
+          href="https://www.instagram.com/nivanostudio/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="footer-link"
+        >
+          <img src="/logo_nivano.jpg" alt="Nivano Studio Logo" className="footer-logo" />
+          Nivano Studio
+        </a>
+      </footer>
     </div>
   );
 }
