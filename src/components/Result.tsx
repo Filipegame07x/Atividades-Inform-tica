@@ -46,19 +46,23 @@ export function Result({ activity, result, onReset }: ResultProps) {
         <h2 className="heading-gradient text-3xl font-extrabold mb-2 tracking-tight">Resultado da Avaliação</h2>
         <p className="text-lg text-muted mb-8">Módulo: {activity.title}</p>
         
-        <div className="flex justify-center gap-6 mb-8 flex-wrap flex-col-mobile gap-4-mobile">
+        <div className="flex justify-center gap-6 mb-6 flex-wrap flex-col-mobile gap-4-mobile">
           <div className="stat-card">
-            <p className="stat-label">Acertos</p>
+            <p className="stat-label">Múltipla Escolha</p>
             <p className="stat-value stat-value-cyan">{result.correctCount} / {activity.objectiveQuestions.length}</p>
           </div>
           <div className="stat-card">
-            <p className="stat-label">Nota</p>
+            <p className="stat-label">Escritas</p>
+            <p className="stat-value stat-value-cyan">{result.discursiveCount} / {activity.discursiveQuestions.length}</p>
+          </div>
+          <div className="stat-card">
+            <p className="stat-label">Nota Final</p>
             <p className={`stat-value ${result.score >= 6 ? 'text-success' : 'text-error'}`}>
               {result.score.toFixed(1)}
             </p>
           </div>
         </div>
-        <p className="text-muted text-sm">As questões escritas devem ser avaliadas pelo professor. A nota acima refere-se apenas às questões de múltipla escolha.</p>
+        <p className="text-muted text-sm">Total de acertos: {result.totalCorrect} / {result.totalQuestions} questões. As questões escritas recebem ponto se respondidas.</p>
       </div>
 
       {/* PDF Report (white background for printing) */}
@@ -69,7 +73,8 @@ export function Result({ activity, result, onReset }: ResultProps) {
           <p style={{ color: '#334155' }}><strong>Data:</strong> {result.studentInfo.data}</p>
           <p style={{ color: '#334155' }}><strong>Turma:</strong> {result.studentInfo.turma}</p>
           <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '8px' }}>
-            <p style={{ margin: 0, fontSize: '16px', color: '#166534' }}><strong>Nota Múltipla Escolha:</strong> {result.score.toFixed(1)} / 10.0 ({result.correctCount} acertos)</p>
+            <p style={{ margin: 0, fontSize: '16px', color: '#166534' }}><strong>Nota Final:</strong> {result.score.toFixed(1)} / 10.0</p>
+            <p style={{ margin: '4px 0 0', fontSize: '14px', color: '#166534' }}>Múltipla escolha: {result.correctCount}/{activity.objectiveQuestions.length} • Escritas: {result.discursiveCount}/{activity.discursiveQuestions.length} • Total: {result.totalCorrect}/{result.totalQuestions}</p>
           </div>
         </div>
 

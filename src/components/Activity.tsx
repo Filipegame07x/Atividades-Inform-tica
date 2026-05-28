@@ -14,6 +14,9 @@ export interface ActivityResult {
   discursiveAnswers: Record<number, string>;
   score: number;
   correctCount: number;
+  discursiveCount: number;
+  totalQuestions: number;
+  totalCorrect: number;
 }
 
 interface ActivityProps {
@@ -35,6 +38,7 @@ export function Activity({ activity, onComplete }: ActivityProps) {
       return;
     }
 
+    // Corrigir objetivas
     let correctCount = 0;
     activity.objectiveQuestions.forEach(q => {
       if (objectiveAnswers[q.id] === q.correctOptionId) {
@@ -42,14 +46,28 @@ export function Activity({ activity, onComplete }: ActivityProps) {
       }
     });
 
-    const score = (correctCount / activity.objectiveQuestions.length) * 10;
+    // Corrigir discursivas — se escreveu algo, ganha o ponto
+    let discursiveCount = 0;
+    activity.discursiveQuestions.forEach(q => {
+      if (discursiveAnswers[q.id] && discursiveAnswers[q.id].trim() !== '') {
+        discursiveCount++;
+      }
+    });
+
+    // Nota total: todas as 16 questões valem igualmente
+    const totalQuestions = activity.objectiveQuestions.length + activity.discursiveQuestions.length;
+    const totalCorrect = correctCount + discursiveCount;
+    const score = (totalCorrect / totalQuestions) * 10;
 
     onComplete({
       studentInfo,
       objectiveAnswers,
       discursiveAnswers,
       score,
-      correctCount
+      correctCount,
+      discursiveCount,
+      totalQuestions,
+      totalCorrect
     });
   };
 
