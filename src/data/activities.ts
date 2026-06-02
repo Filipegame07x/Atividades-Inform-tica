@@ -33,7 +33,7 @@ export const activities: ActivityData[] = [
     id: 'word-1',
     title: 'Microsoft Word - Nível 1',
     description: 'Teste seus conhecimentos básicos sobre o Microsoft Word. O que é, para que serve e suas principais funções.',
-    password: 'IEPOPWORD1',
+    password: 'IEPOP',
     iconType: 'word',
     objectiveQuestions: [
       { id: 1, question: "O que é o Word?", options: [ { id: "a", text: "Um programa para editar vídeos" }, { id: "b", text: "Um programa para criar e editar textos" }, { id: "c", text: "Um programa para ouvir músicas" }, { id: "d", text: "Um programa para desenhar mapas" } ], correctOptionId: "b" },
@@ -60,7 +60,7 @@ export const activities: ActivityData[] = [
     id: 'word-2',
     title: 'Microsoft Word - Nível 2',
     description: 'Teste seus conhecimentos intermediários no Word. Formatação avançada de parágrafos, margens, cabeçalhos, rodapés e atalhos de teclado.',
-    password: 'IEPOPWORD2',
+    password: 'IEPOP',
     iconType: 'word',
     objectiveQuestions: [
       { id: 1, question: "Qual atalho de teclado é usado para copiar um texto selecionado?", options: [ { id: "a", text: "Ctrl + X" }, { id: "b", text: "Ctrl + C" }, { id: "c", text: "Ctrl + V" }, { id: "d", text: "Ctrl + Z" } ], correctOptionId: "b" },
@@ -87,7 +87,7 @@ export const activities: ActivityData[] = [
     id: 'word-3',
     title: 'Microsoft Word - Nível 3',
     description: 'Teste seus conhecimentos avançados no Word. Modelos (templates), mala direta, SmartArt, exportação em PDF, controle de alterações e senhas.',
-    password: 'IEPOPWORD3',
+    password: 'IEPOP',
     iconType: 'word',
     objectiveQuestions: [
       { id: 1, question: "O que são os \"Modelos\" (Templates) prontos do Microsoft Word?", options: [ { id: "a", text: "Versões antigas do programa" }, { id: "b", text: "Documentos pré-formatados para criar currículos, cartas ou relatórios" }, { id: "c", text: "Desenhos geométricos para colorir" }, { id: "d", text: "Extensões de arquivos de imagem" } ], correctOptionId: "b" },
@@ -118,7 +118,7 @@ export const activities: ActivityData[] = [
     id: 'powerpoint-1',
     title: 'Microsoft PowerPoint - Nível 1',
     description: 'Teste seus conhecimentos básicos sobre o PowerPoint. Aprenda sobre slides, apresentações e como salvar arquivos.',
-    password: 'IEPOPPOWER1',
+    password: 'IEPOP',
     iconType: 'powerpoint',
     objectiveQuestions: [
       { id: 1, question: "O que é o PowerPoint?", options: [ { id: "a", text: "Um programa para criar apresentações de slides" }, { id: "b", text: "Um programa para apagar vírus" }, { id: "c", text: "Um navegador de internet" }, { id: "d", text: "Um editor de fotos profissional" } ], correctOptionId: "a" },
@@ -145,7 +145,7 @@ export const activities: ActivityData[] = [
     id: 'powerpoint-2',
     title: 'Microsoft PowerPoint - Nível 2',
     description: 'Teste seus conhecimentos intermediários no PowerPoint. Transições e animações de objetos, formatos de slide, inserção de áudio/vídeos e hiperlinks.',
-    password: 'IEPOPPOWER2',
+    password: 'IEPOP',
     iconType: 'powerpoint',
     objectiveQuestions: [
       { id: 1, question: "Onde podemos alterar o tamanho ou a proporção dos slides (como Standard 4:3 ou Widescreen 16:9)?", options: [ { id: "a", text: "Guia Design > Tamanho do Slide" }, { id: "b", text: "Guia Transições > Duração" }, { id: "c", text: "Guia Inserir > Tabela" }, { id: "d", text: "Guia Arquivo > Imprimir" } ], correctOptionId: "a" },
@@ -172,7 +172,7 @@ export const activities: ActivityData[] = [
     id: 'powerpoint-3',
     title: 'Microsoft PowerPoint - Nível 3',
     description: 'Teste seus conhecimentos avançados no PowerPoint. Slide Mestre, anotações do orador, exportação em vídeo, gatilhos de animação e modos de exibição.',
-    password: 'IEPOPPOWER3',
+    password: 'IEPOP',
     iconType: 'powerpoint',
     objectiveQuestions: [
       { id: 1, question: "O que é o \"Slide Mestre\" no PowerPoint?", options: [ { id: "a", text: "O primeiro slide criado na apresentação" }, { id: "b", text: "Um slide modelo que define o padrão visual (fontes, cores, logos) para todos os outros slides" }, { id: "c", text: "O slide final com os agradecimentos" }, { id: "d", text: "O computador do professor que controla os outros" } ], correctOptionId: "b" },
@@ -203,7 +203,7 @@ export const activities: ActivityData[] = [
     id: 'chrome-1',
     title: 'Google Chrome - Nível 1',
     description: 'Teste seus conhecimentos básicos sobre navegação na internet usando o Google Chrome.',
-    password: 'IEPOPCHROME1',
+    password: 'IEPOP',
     iconType: 'chrome',
     objectiveQuestions: [
       { id: 1, question: "O que é o Google Chrome?", options: [ { id: "a", text: "Um navegador de internet" }, { id: "b", text: "Um antivírus" }, { id: "c", text: "Um programa de apresentação" }, { id: "d", text: "Um editor de textos" } ], correctOptionId: "a" },
@@ -230,7 +230,7 @@ export const activities: ActivityData[] = [
     id: 'chrome-2',
     title: 'Google Chrome - Nível 2',
     description: 'Teste seus conhecimentos intermediários no Chrome. Navegação anônima, gerenciamento de downloads, favoritos, extensões e atalhos úteis.',
-    password: 'IEPOPCHROME2',
+    password: 'IEPOP',
     iconType: 'chrome',
     objectiveQuestions: [
       { id: 1, question: "Para que serve a \"Navegação Anônima\" (ou Janela Anônima) no Google Chrome?", options: [ { id: "a", text: "Para acessar a internet sem precisar de internet" }, { id: "b", text: "Para navegar sem salvar histórico, cookies ou dados de formulários no computador" }, { id: "c", text: "Para esconder o computador fisicamente de outras pessoas" }, { id: "d", text: "Para baixar arquivos de graça sem pagar" } ], correctOptionId: "b" },
@@ -257,7 +257,7 @@ export const activities: ActivityData[] = [
     id: 'chrome-3',
     title: 'Google Chrome - Nível 3',
     description: 'Teste seus conhecimentos avançados no Chrome. Cookies, cache do navegador, perfis de usuário, sincronização em nuvem e ferramentas do desenvolvedor (F12).',
-    password: 'IEPOPCHROME3',
+    password: 'IEPOP',
     iconType: 'chrome',
     objectiveQuestions: [
       { id: 1, question: "O que são os \"Cookies\" armazenados pelo Google Chrome?", options: [ { id: "a", text: "Vírus que roubam fotos do computador" }, { id: "b", text: "Arquivos criados pelos sites para salvar informações da sua visita e preferências" }, { id: "c", text: "Jogos escondidos no navegador" }, { id: "d", text: "Programas que estendem a tela do computador" } ], correctOptionId: "b" },
@@ -288,7 +288,7 @@ export const activities: ActivityData[] = [
     id: 'antivirus-1',
     title: 'Antivírus Malwarebytes - Nível 1',
     description: 'Teste seus conhecimentos básicos sobre segurança digital e uso do antivírus Malwarebytes.',
-    password: 'IEPOPMALWARE1',
+    password: 'IEPOP',
     iconType: 'antivirus',
     objectiveQuestions: [
       { id: 1, question: "O que é o Malwarebytes?", options: [ { id: "a", text: "Um programa de segurança contra ameaças digitais" }, { id: "b", text: "Um programa para criar slides" }, { id: "c", text: "Um navegador de internet" }, { id: "d", text: "Um editor de textos" } ], correctOptionId: "a" },
@@ -315,7 +315,7 @@ export const activities: ActivityData[] = [
     id: 'antivirus-2',
     title: 'Antivírus Malwarebytes - Nível 2',
     description: 'Teste seus conhecimentos intermediários sobre segurança digital. Phishing, cavalos de troia, ransomware, uso de pendrives infectados, quarentena e firewalls.',
-    password: 'IEPOPALWARE2',
+    password: 'IEPOP',
     iconType: 'antivirus',
     objectiveQuestions: [
       { id: 1, question: "O que faz a proteção em tempo real de um antivírus como o Malwarebytes Premium?", options: [ { id: "a", text: "Faz varreduras apenas quando você liga o computador" }, { id: "b", text: "Bloqueia vírus e malwares ativamente no momento em que tentam entrar no computador" }, { id: "c", text: "Limpa a poeira física das peças do computador" }, { id: "d", text: "Aumenta a velocidade dos jogos automaticamente" } ], correctOptionId: "b" },
@@ -342,7 +342,7 @@ export const activities: ActivityData[] = [
     id: 'antivirus-3',
     title: 'Antivírus Malwarebytes - Nível 3',
     description: 'Teste seus conhecimentos avançados de segurança digital. Engenharia social, falsos positivos, exploits de dia zero, verificação heurística e keyloggers.',
-    password: 'IEPOPMALWARE3',
+    password: 'IEPOP',
     iconType: 'antivirus',
     objectiveQuestions: [
       { id: 1, question: "O que é um \"Falso Positivo\" no contexto de um antivírus?", options: [ { id: "a", text: "Um vírus real que o antivírus finge que não existe" }, { id: "b", text: "Um arquivo legítimo e seguro que o antivírus identifica incorretamente como uma ameaça" }, { id: "c", text: "O resultado de uma verificação rápida" }, { id: "d", text: "Um vírus que foi removido com sucesso" } ], correctOptionId: "b" },
