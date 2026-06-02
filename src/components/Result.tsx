@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import type { ActivityResult } from './Activity';
 import type { ActivityData } from '../data/activities';
 import { Download, ArrowLeft } from 'lucide-react';
-// @ts-ignore
 import html2pdf from 'html2pdf.js';
 
 interface ResultProps {
@@ -18,12 +17,12 @@ export function Result({ activity, result, onReset }: ResultProps) {
     const element = reportRef.current;
     if (!element) return;
 
-    const opt: any = {
+    const opt = {
       margin:       10,
       filename:     `Relatorio_${activity.id}_${result.studentInfo.nome.replace(/\s+/g, '_')}.pdf`,
-      image:        { type: 'jpeg', quality: 0.98 },
+      image:        { type: 'jpeg' as const, quality: 0.98 },
       html2canvas:  { scale: 2 },
-      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      jsPDF:        { unit: 'mm' as const, format: 'a4' as const, orientation: 'portrait' as const }
     };
 
     html2pdf().set(opt).from(element).save();
