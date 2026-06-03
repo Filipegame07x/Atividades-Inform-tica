@@ -15,6 +15,16 @@ export function PracticeTyping({ typingText, onBack }: PracticeTypingProps) {
   const [helpMessage, setHelpMessage] = useState('');
   const [isFinished, setIsFinished] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const [strictMode, setStrictMode] = useState(true);
+
+  const getFirstErrorChar = () => {
+    for (let i = 0; i < inputValue.length; i++) {
+      if (inputValue[i] !== typingText.text[i]) {
+        return typingText.text[i];
+      }
+    }
+    return '';
+  };
   
   // Timer States
   const [startTime, setStartTime] = useState<number | null>(null);
@@ -149,32 +159,72 @@ export function PracticeTyping({ typingText, onBack }: PracticeTypingProps) {
       setStartTime(Date.now());
     }
 
-    // Check if the input is a correct prefix of the target text
-    if (value === targetText.slice(0, value.length)) {
-      // Correct!
-      setInputValue(value);
-      setCurrentIndex(value.length);
-      setHasError(false);
-      setHelpMessage('');
+    if (strictMode) {
+      // Check if the input is a correct prefix of the target text
+      if (value === targetText.slice(0, value.length)) {
+        // Correct!
+        setInputValue(value);
+        setCurrentIndex(value.length);
+        setHasError(false);
+        setHelpMessage('');
 
-      // Check if finished
-      if (value.length === targetText.length) {
-        setIsFinished(true);
-        if (timerRef.current) clearInterval(timerRef.current);
+        // Check if finished
+        if (value.length === targetText.length) {
+          setIsFinished(true);
+          if (timerRef.current) clearInterval(timerRef.current);
+        }
+      } else {
+        // Incorrect stroke!
+        setErrorsCount(prev => prev + 1);
+        setHasError(true);
+
+        // Display the tutorial tip for the expected character
+        const expectedChar = targetText[currentIndex];
+        setHelpMessage(getHelpMessage(expectedChar));
+
+        // Do NOT advance typing. Keep the input text locked at the correct prefix.
+        // Reset the textarea value to the correct prefix immediately.
+        e.target.value = targetText.slice(0, currentIndex);
       }
     } else {
-      // Incorrect stroke!
-      setErrorsCount(prev => prev + 1);
-      setHasError(true);
+      // Free Mode: allow typing anything
+      if (value.length <= targetText.length) {
+        // Only count error if typing a new character (length increased)
+        if (value.length > inputValue.length) {
+          const lastTypedChar = value[value.length - 1];
+          const expectedChar = targetText[value.length - 1];
+          if (lastTypedChar !== expectedChar) {
+            setErrorsCount(prev => prev + 1);
+          }
+        }
 
-      // Display the tutorial tip for the expected character
-      const expectedChar = targetText[currentIndex];
-      setHelpMessage(getHelpMessage(expectedChar));
+        setInputValue(value);
+        setCurrentIndex(value.length);
 
-      // Do NOT advance typing. Keep the input text locked at the correct prefix.
-      // (This prevents kids from typing garbage forward and enforces correcting)
-      // Reset the textarea value to the correct prefix immediately.
-      e.target.value = targetText.slice(0, currentIndex);
+        // Check if there is any error in the current input
+        let firstErrorIdx = -1;
+        for (let i = 0; i < value.length; i++) {
+          if (value[i] !== targetText[i]) {
+            firstErrorIdx = i;
+            break;
+          }
+        }
+
+        if (firstErrorIdx !== -1) {
+          setHasError(true);
+          const expectedChar = targetText[firstErrorIdx];
+          setHelpMessage(getHelpMessage(expectedChar));
+        } else {
+          setHasError(false);
+          setHelpMessage('');
+        }
+
+        // Check if finished
+        if (value.length === targetText.length) {
+          setIsFinished(true);
+          if (timerRef.current) clearInterval(timerRef.current);
+        }
+      }
     }
   };
 
@@ -276,12 +326,44 @@ export function PracticeTyping({ typingText, onBack }: PracticeTypingProps) {
     <div className="animate-fade-in mt-10">
       {/* Header bar */}
       <div className="flex justify-between items-center mb-8 flex-wrap gap-4">
-        <button onClick={onBack} className="btn btn-secondary">
-          <ArrowLeft size={18} /> Escolher Outro Texto
-        </button>
-        <button onClick={handleReset} className="btn btn-secondary">
-          <RotateCcw size={18} /> Reiniciar Atividade
-        </button>
+        <div className="flex gap-3 flex-wrap">
+          <button onClick={onBack} className="btn btn-secondary">
+            <ArrowLeft size={18} /> Escolher Outro Texto
+          </button>
+          <button onClick={handleReset} className="btn btn-secondary">
+            <RotateCcw size={18} /> Reiniciar Atividade
+          </button>
+        </div>
+
+        {/* Toggle Mode Option */}
+        <div className="flex items-center gap-3 glass-card-static" style={{ padding: '0.5rem 1rem', borderRadius: 'var(--radius-md)' }}>
+          <label className="flex items-center gap-2 cursor-pointer" style={{ margin: 0, display: 'flex', alignItems: 'center', userSelect: 'none' }}>
+            <input 
+              type="checkbox" 
+              checked={strictMode} 
+              onChange={(e) => {
+                setStrictMode(e.target.checked);
+                // Reset clean state
+                setCurrentIndex(0);
+                setErrorsCount(0);
+                setHasError(false);
+                setHelpMessage('');
+                setIsFinished(false);
+                setInputValue('');
+                setStartTime(null);
+                setElapsedTime(0);
+                if (timerRef.current) clearInterval(timerRef.current);
+                setTimeout(() => {
+                  if (inputRef.current) inputRef.current.focus();
+                }, 100);
+              }}
+              style={{ width: '16px', height: '16px', cursor: 'pointer', accentColor: 'var(--accent-primary)' }}
+            />
+            <span className="text-sm font-semibold text-secondary">
+              Bloquear Erros ao Digitar (Modo Clássico)
+            </span>
+          </label>
+        </div>
       </div>
 
       <div className="typing-layout-grid">
@@ -347,11 +429,17 @@ export function PracticeTyping({ typingText, onBack }: PracticeTypingProps) {
             <div className="typing-text-display">
               {textChars.map((char, index) => {
                 let charClass = "char-pending";
-                if (index < currentIndex) {
-                  charClass = "char-correct";
-                } else if (index === currentIndex) {
-                  charClass = hasError ? "char-incorrect" : "char-current";
+                
+                if (index < inputValue.length) {
+                  if (strictMode || inputValue[index] === typingText.text[index]) {
+                    charClass = "char-correct";
+                  } else {
+                    charClass = "char-incorrect";
+                  }
+                } else if (index === inputValue.length) {
+                  charClass = (strictMode && hasError) ? "char-incorrect" : "char-current";
                 }
+                
                 return (
                   <span key={index} className={charClass}>
                     {char === ' ' ? ' ' : char}
@@ -417,14 +505,16 @@ export function PracticeTyping({ typingText, onBack }: PracticeTypingProps) {
                   <p className="text-base font-medium text-secondary mb-3">
                     Você digitou uma tecla incorreta para o caractere{' '}
                     <strong className="text-error font-bold text-lg bg-red-opacity px-2 py-0.5 rounded">
-                      {typingText.text[currentIndex] === ' ' ? 'Espaço' : typingText.text[currentIndex]}
+                      {(strictMode ? typingText.text[currentIndex] : getFirstErrorChar()) === ' ' ? 'Espaço' : (strictMode ? typingText.text[currentIndex] : getFirstErrorChar())}
                     </strong>.
                   </p>
                   <div className="tutorial-tip-box mb-4">
                     {helpMessage}
                   </div>
                   <p className="text-xs text-muted">
-                    Corrija digitando a tecla indicada acima para continuar avançando no texto.
+                    {strictMode 
+                      ? "Corrija digitando a tecla indicada acima para continuar avançando no texto."
+                      : "Você pode apagar (Backspace) e corrigir o erro para melhorar sua precisão!"}
                   </p>
                 </div>
               ) : (
@@ -467,28 +557,28 @@ export function PracticeTyping({ typingText, onBack }: PracticeTypingProps) {
 
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="stat-card" style={{ minWidth: 'auto', padding: '1rem' }}>
-                <span className="stat-label">Tempo Total</span>
-                <span className="stat-value text-accent" style={{ fontSize: '1.75rem' }}>
+                <p className="stat-label">Tempo Total</p>
+                <p className="stat-value text-accent" style={{ fontSize: '1.75rem' }}>
                   {formatTime(elapsedTime)}
-                </span>
+                </p>
               </div>
               <div className="stat-card" style={{ minWidth: 'auto', padding: '1rem' }}>
-                <span className="stat-label">Precisão</span>
-                <span className="stat-value text-success" style={{ fontSize: '1.75rem' }}>
+                <p className="stat-label">Precisão</p>
+                <p className="stat-value text-success" style={{ fontSize: '1.75rem' }}>
                   {getAccuracy()}%
-                </span>
+                </p>
               </div>
               <div className="stat-card" style={{ minWidth: 'auto', padding: '1rem' }}>
-                <span className="stat-label">Erros Cometidos</span>
-                <span className={`stat-value ${errorsCount > 0 ? 'text-error' : 'text-success'}`} style={{ fontSize: '1.75rem' }}>
+                <p className="stat-label">Erros Cometidos</p>
+                <p className={`stat-value ${errorsCount > 0 ? 'text-error' : 'text-success'}`} style={{ fontSize: '1.75rem' }}>
                   {errorsCount}
-                </span>
+                </p>
               </div>
               <div className="stat-card" style={{ minWidth: 'auto', padding: '1rem' }}>
-                <span className="stat-label">Tema Praticado</span>
-                <span className="stat-value text-secondary" style={{ fontSize: '1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+                <p className="stat-label">Tema Praticado</p>
+                <p className="stat-value text-secondary" style={{ fontSize: '1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
                   {typingText.theme}
-                </span>
+                </p>
               </div>
             </div>
 
