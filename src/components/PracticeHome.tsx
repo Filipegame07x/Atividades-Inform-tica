@@ -1,6 +1,6 @@
 import { FileText, Award, Keyboard, BookOpen } from 'lucide-react';
 import { typingTexts } from '../data/typingTexts';
-import type { TypingText } from '../data/typingTexts';
+import type { TypingText, TypingTextCategory } from '../data/typingTexts';
 
 interface PracticeHomeProps {
   onSelectText: (text: TypingText) => void;
@@ -25,7 +25,7 @@ export function PracticeHome({ onSelectText }: PracticeHomeProps) {
     }
   };
 
-  const renderLevelGroup = (title: string, desc: string, texts: TypingText[], levelClass: string) => {
+  const renderLevelGroup = (title: string, desc: string, texts: TypingTextCategory[], levelClass: string) => {
     return (
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-3">
@@ -39,7 +39,15 @@ export function PracticeHome({ onSelectText }: PracticeHomeProps) {
             <div 
               key={item.id} 
               className="practice-item-card"
-              onClick={() => onSelectText(item)}
+              onClick={() => {
+                const randomText = item.texts[Math.floor(Math.random() * item.texts.length)];
+                onSelectText({
+                  id: item.id,
+                  theme: item.theme,
+                  level: item.level as 1 | 2 | 3,
+                  text: randomText
+                });
+              }}
             >
               <div className="flex justify-between items-center w-full">
                 <div className="flex items-center gap-3">
@@ -49,7 +57,7 @@ export function PracticeHome({ onSelectText }: PracticeHomeProps) {
                       Tema: {item.theme}
                     </h4>
                     <p className="text-muted text-xs practice-preview-text">
-                      {item.text.slice(0, 75)}...
+                      {item.texts[0].slice(0, 75)}...
                     </p>
                   </div>
                 </div>

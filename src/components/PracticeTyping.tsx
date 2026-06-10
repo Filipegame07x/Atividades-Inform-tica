@@ -160,6 +160,12 @@ export function PracticeTyping({ typingText, onBack }: PracticeTypingProps) {
     }
 
     if (strictMode) {
+      // Prevent backspace from erasing correctly typed characters
+      if (value.length < inputValue.length) {
+        e.target.value = inputValue;
+        return;
+      }
+
       // Check if the input is a correct prefix of the target text
       if (value === targetText.slice(0, value.length)) {
         // Correct!
