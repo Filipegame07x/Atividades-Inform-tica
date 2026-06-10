@@ -50,6 +50,10 @@ export function PracticeTyping({ typingText, onBack }: PracticeTypingProps) {
       return "Pressione a barra de espaço (a tecla longa no centro inferior do teclado).";
     }
     
+    if (char === '\n') {
+      return "Pressione a tecla Enter para pular para a próxima linha (parágrafo).";
+    }
+    
     // Accents & special vowels
     if (char === 'ã') return "Para digitar ã, pressione a tecla ~ (Til) e depois a letra a.";
     if (char === 'Ã') return "Para digitar Ã, pressione a tecla ~ (Til), segure Shift e pressione a letra a.";
@@ -448,7 +452,7 @@ export function PracticeTyping({ typingText, onBack }: PracticeTypingProps) {
                 
                 return (
                   <span key={index} className={charClass}>
-                    {char === ' ' ? ' ' : char}
+                    {char === ' ' ? ' ' : char === '\n' ? '↵\n' : char}
                   </span>
                 );
               })}
