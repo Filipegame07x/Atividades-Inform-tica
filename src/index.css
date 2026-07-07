@@ -419,6 +419,21 @@ input[type="radio"] {
   border: 1px solid rgba(var(--accent-error-rgb), 0.15);
 }
 
+.icon-badge-purple {
+  background: rgba(var(--accent-secondary-rgb), 0.12);
+  border: 1px solid rgba(var(--accent-secondary-rgb), 0.15);
+}
+
+.icon-badge-indigo {
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+.icon-badge-teal {
+  background: rgba(20, 184, 166, 0.12);
+  border: 1px solid rgba(20, 184, 166, 0.15);
+}
+
 /* ===================================================================
    9. QUIZ OPTION (multiple choice)
    =================================================================== */
@@ -1557,5 +1572,199 @@ input[type="radio"] {
 @keyframes pulse-glow-success {
   0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.15); }
   50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.3); }
+}
+
+/* ===================================================================
+   12. SHORTCUT CHALLENGE GAME (DESAFIO DE ATALHOS)
+   =================================================================== */
+.shortcut-game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+.shortcut-card {
+  width: 100%;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.shortcut-target-box {
+  background: rgba(10, 15, 30, 0.7);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin: 1.5rem 0;
+  text-align: center;
+  position: relative;
+}
+
+.shortcut-question-text {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.shortcut-key-display-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  min-height: 56px;
+}
+
+.shortcut-key-bubble {
+  background: rgba(15, 23, 42, 0.9);
+  border: 2px solid var(--text-muted);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-family: monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 4px 0 var(--border-color);
+  min-width: 60px;
+  text-align: center;
+  transition: all 150ms ease;
+}
+
+.shortcut-key-bubble.pressed {
+  background: rgba(var(--accent-primary-rgb), 0.2);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 15px rgba(var(--accent-primary-rgb), 0.4), 0 0 0 var(--border-color);
+  transform: translateY(4px);
+}
+
+.shortcut-key-bubble.success {
+  background: rgba(var(--accent-success-rgb), 0.2);
+  border-color: var(--accent-success);
+  box-shadow: 0 0 15px rgba(var(--accent-success-rgb), 0.4), 0 0 0 var(--border-color);
+  transform: translateY(4px);
+}
+
+.shortcut-key-bubble.error {
+  background: rgba(var(--accent-error-rgb), 0.2);
+  border-color: var(--accent-error);
+  box-shadow: 0 0 15px rgba(var(--accent-error-rgb), 0.4), 0 0 0 var(--border-color);
+  transform: translateY(4px);
+}
+
+/* Teclado Virtual */
+.virtual-keyboard {
+  background: rgba(10, 15, 30, 0.85);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  width: 100%;
+  box-shadow: var(--shadow-lg), inset 0 0 20px rgba(0, 0, 0, 0.6);
+  user-select: none;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.keyboard-row:last-child {
+  margin-bottom: 0;
+}
+
+.keycap {
+  background: #1e293b;
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 4px solid #0f172a;
+  border-radius: 6px;
+  padding: 0.75rem 0.5rem;
+  min-width: 44px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: all 100ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.keycap:hover {
+  background: #334155;
+  color: var(--text-primary);
+}
+
+.keycap:active {
+  border-bottom-width: 1px;
+  transform: translateY(3px);
+}
+
+/* Key cap states for active press */
+.keycap.active {
+  background: rgba(var(--accent-primary-rgb), 0.25) !important;
+  color: var(--accent-primary) !important;
+  border-color: var(--accent-primary) !important;
+  border-bottom-color: rgba(var(--accent-primary-rgb), 0.4) !important;
+  box-shadow: 0 0 10px rgba(var(--accent-primary-rgb), 0.25);
+  border-bottom-width: 1px;
+  transform: translateY(3px);
+}
+
+.keycap.success-key {
+  background: rgba(var(--accent-success-rgb), 0.3) !important;
+  color: var(--accent-success) !important;
+  border-color: var(--accent-success) !important;
+  border-bottom-color: rgba(var(--accent-success-rgb), 0.5) !important;
+  box-shadow: 0 0 15px rgba(var(--accent-success-rgb), 0.4);
+  border-bottom-width: 1px;
+  transform: translateY(3px);
+}
+
+.keycap.error-key {
+  background: rgba(var(--accent-error-rgb), 0.3) !important;
+  color: var(--accent-error) !important;
+  border-color: var(--accent-error) !important;
+  border-bottom-color: rgba(var(--accent-error-rgb), 0.5) !important;
+  box-shadow: 0 0 15px rgba(var(--accent-error-rgb), 0.4);
+  border-bottom-width: 1px;
+  transform: translateY(3px);
+}
+
+/* Special sizing keys */
+.keycap-backspace { min-width: 80px; }
+.keycap-tab { min-width: 65px; }
+.keycap-caps { min-width: 75px; }
+.keycap-enter { min-width: 85px; }
+.keycap-shift { min-width: 100px; }
+.keycap-ctrl { min-width: 70px; }
+.keycap-win { min-width: 60px; }
+.keycap-alt { min-width: 60px; }
+.keycap-space { min-width: 280px; }
+
+/* Responsive adjustments for virtual keyboard */
+@media (max-width: 768px) {
+  .virtual-keyboard {
+    padding: 0.75rem;
+  }
+  .keycap {
+    min-width: 28px;
+    padding: 0.5rem 0.25rem;
+    font-size: 0.7rem;
+    border-bottom-width: 2px;
+  }
+  .keycap-space { min-width: 140px; }
+  .keycap-shift { min-width: 50px; }
+  .keycap-backspace { min-width: 45px; }
+  .keycap-enter { min-width: 50px; }
+  .keycap-ctrl { min-width: 35px; }
+  .keycap-tab, .keycap-caps, .keycap-win, .keycap-alt { min-width: 30px; }
 }
 

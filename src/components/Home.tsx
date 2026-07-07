@@ -1,4 +1,4 @@
-import { FileText, MonitorPlay, Globe, ShieldAlert } from 'lucide-react';
+import { FileText, MonitorPlay, Globe, ShieldAlert, Palette, Laptop, Brain } from 'lucide-react';
 
 interface HomeProps {
   onSelectActivity: (id: string) => void;
@@ -37,6 +37,30 @@ export function Home({ onSelectActivity }: HomeProps) {
       iconType: 'antivirus',
       badgeClass: 'icon-badge icon-badge-red',
       glowColor: 'rgba(244, 63, 94, 0.3)'
+    },
+    {
+      id: 'canva',
+      title: 'Canva',
+      description: 'Aprenda a criar designs incríveis: cartazes, apresentações, logotipos, edições de imagens, uploads e muito mais.',
+      iconType: 'canva',
+      badgeClass: 'icon-badge icon-badge-purple',
+      glowColor: 'rgba(139, 92, 246, 0.3)'
+    },
+    {
+      id: 'systems',
+      title: 'Windows vs Linux',
+      description: 'Compreenda as diferenças de cada sistema operacional, quando utilizar cada um, prós e contras de cada ambiente.',
+      iconType: 'systems',
+      badgeClass: 'icon-badge icon-badge-indigo',
+      glowColor: 'rgba(99, 102, 241, 0.3)'
+    },
+    {
+      id: 'ai',
+      title: 'ChatGPT e IAs',
+      description: 'Entenda como funcionam as Inteligências Artificiais conversacionais, prompts de comando, Gemini e Claude.',
+      iconType: 'ai',
+      badgeClass: 'icon-badge icon-badge-teal',
+      glowColor: 'rgba(20, 184, 166, 0.3)'
     }
   ];
 
@@ -46,6 +70,9 @@ export function Home({ onSelectActivity }: HomeProps) {
       case 'powerpoint': return <MonitorPlay size={24} color="var(--accent-warning)" />;
       case 'chrome': return <Globe size={24} color="var(--accent-success)" />;
       case 'antivirus': return <ShieldAlert size={24} color="var(--accent-error)" />;
+      case 'canva': return <Palette size={24} color="var(--accent-secondary)" />;
+      case 'systems': return <Laptop size={24} color="#6366f1" />;
+      case 'ai': return <Brain size={24} color="#14b8a6" />;
       default: return <FileText size={24} color="var(--accent-primary)" />;
     }
   };

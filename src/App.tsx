@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BookOpen, Keyboard } from 'lucide-react';
+import { BookOpen, Keyboard, Zap } from 'lucide-react';
 import { SplashScreen } from './components/SplashScreen';
 import { Home } from './components/Home';
 import { PasswordGate } from './components/PasswordGate';
@@ -10,9 +10,10 @@ import { activities } from './data/activities';
 import { PracticeHome } from './components/PracticeHome';
 import { PracticeTyping } from './components/PracticeTyping';
 import type { TypingText } from './data/typingTexts';
+import { ShortcutChallenge } from './components/ShortcutChallenge';
 
 type AppState = 'HOME' | 'PASSWORD_GATE' | 'ACTIVITY' | 'RESULT';
-type ActiveTab = 'ACTIVITIES' | 'PRACTICE';
+type ActiveTab = 'ACTIVITIES' | 'PRACTICE' | 'SHORTCUTS';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -74,13 +75,21 @@ function App() {
                     >
                       <Keyboard size={16} /> Atividades para Praticar
                     </button>
+                    <button 
+                      className={`nav-tab-btn ${activeTab === 'SHORTCUTS' ? 'active' : ''}`}
+                      onClick={() => setActiveTab('SHORTCUTS')}
+                    >
+                      <Zap size={16} /> Desafio de Atalhos
+                    </button>
                   </div>
                 </div>
 
                 {activeTab === 'ACTIVITIES' ? (
                   <Home onSelectActivity={handleSelectActivity} />
-                ) : (
+                ) : activeTab === 'PRACTICE' ? (
                   <PracticeHome onSelectText={setSelectedPracticeText} />
+                ) : (
+                  <ShortcutChallenge onBack={() => setActiveTab('ACTIVITIES')} />
                 )}
               </>
             )}
