@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { shortcutCategories } from '../data/shortcuts';
 import type { ShortcutQuestion } from '../data/shortcuts';
-import { Award, RefreshCw, Zap, ArrowLeft, Trophy, Keyboard, CheckCircle, Play, Eye, Heart } from 'lucide-react';
+import { RefreshCw, Zap, ArrowLeft, Trophy, Keyboard, Play, Heart } from 'lucide-react';
 
 interface ShortcutChallengeProps {
   onBack: () => void;
@@ -21,10 +21,8 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
   const [feedback, setFeedback] = useState<'NONE' | 'SUCCESS' | 'ERROR' | 'OUT_OF_ATTEMPTS'>('NONE');
   const [attemptsLeft, setAttemptsLeft] = useState(3);
   
-  // Timing
-  const [startTime, setStartTime] = useState<number | null>(null);
   const [elapsedTime, setElapsedTime] = useState(0); // in seconds
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<any>(null);
 
   // Active category data
   const activeCategory = shortcutCategories.find(c => c.id === selectedCategoryId);
@@ -33,7 +31,6 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
   // Start the timer when quiz starts
   useEffect(() => {
     if (gameState === 'PLAYING') {
-      setStartTime(Date.now());
       setElapsedTime(0);
       timerRef.current = setInterval(() => {
         setElapsedTime(prev => prev + 1);
