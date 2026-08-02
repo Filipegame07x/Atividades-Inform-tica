@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { shortcutCategories } from '../data/shortcuts';
 import type { ShortcutQuestion } from '../data/shortcuts';
-import { RefreshCw, Zap, ArrowLeft, Trophy, Keyboard, Play, Heart } from 'lucide-react';
+import { RefreshCw, Zap, ArrowLeft, Trophy, Keyboard, Play, Heart, FileText, MonitorPlay, Globe, Laptop, Palette, Brain, ShieldAlert, Table, Layers } from 'lucide-react';
 
 interface ShortcutChallengeProps {
   onBack: () => void;
@@ -12,6 +12,31 @@ type GameMode = 'SELECT' | 'PREPARE' | 'PLAYING' | 'SUMMARY';
 export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
   const [gameState, setGameState] = useState<GameMode>('SELECT');
+
+  const getCategoryTheme = (id: string) => {
+    switch(id) {
+      case 'word':
+        return { badgeClass: 'icon-badge-blue', color: 'var(--accent-primary)', icon: <FileText size={24} color="var(--accent-primary)" /> };
+      case 'powerpoint':
+        return { badgeClass: 'icon-badge-amber', color: 'var(--accent-warning)', icon: <MonitorPlay size={24} color="var(--accent-warning)" /> };
+      case 'chrome':
+        return { badgeClass: 'icon-badge-green', color: 'var(--accent-success)', icon: <Globe size={24} color="var(--accent-success)" /> };
+      case 'systems':
+        return { badgeClass: 'icon-badge-indigo', color: '#6366f1', icon: <Laptop size={24} color="#6366f1" /> };
+      case 'canva':
+        return { badgeClass: 'icon-badge-purple', color: '#8b5cf6', icon: <Palette size={24} color="#8b5cf6" /> };
+      case 'chatgpt':
+        return { badgeClass: 'icon-badge-teal', color: '#14b8a6', icon: <Brain size={24} color="#14b8a6" /> };
+      case 'security':
+        return { badgeClass: 'icon-badge-red', color: '#f43f5e', icon: <ShieldAlert size={24} color="#f43f5e" /> };
+      case 'excel':
+        return { badgeClass: 'icon-badge-green', color: '#059669', icon: <Table size={24} color="#059669" /> };
+      case 'google-workspace':
+        return { badgeClass: 'icon-badge-blue', color: '#0284c7', icon: <Layers size={24} color="#0284c7" /> };
+      default:
+        return { badgeClass: 'icon-badge-blue', color: 'var(--accent-primary)', icon: <Zap size={24} color="var(--accent-primary)" /> };
+    }
+  };
   
   // Game states
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -101,67 +126,61 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
     };
   }, [gameState, currentQuestionIndex, currentQuestion, feedback]);
 
-  // Check matching keys
+  // Check answers
   useEffect(() => {
     if (gameState !== 'PLAYING' || !currentQuestion || feedback !== 'NONE') return;
 
-    const requiredKeys = currentQuestion.keys;
-    // Check exact match
-    const match = requiredKeys.every(k => pressedKeys.has(k)) && pressedKeys.size === requiredKeys.length;
+    const targetKeys = currentQuestion.keys;
+    const pressedArray = Array.from(pressedKeys);
 
-    if (match) {
-      setFeedback('SUCCESS');
-      setCorrectCount(prev => prev + 1);
-      
-      setTimeout(() => {
-        setPressedKeys(new Set());
-        setFeedback('NONE');
-        setAttemptsLeft(3); // Reset attempts
-        if (activeCategory && currentQuestionIndex < activeCategory.questions.length - 1) {
-          setCurrentQuestionIndex(prev => prev + 1);
-        } else {
-          setGameState('SUMMARY');
-        }
-      }, 1000);
-    } else {
-      // Check for incorrect non-modifier keys pressed
-      const modifiers = ['control', 'shift', 'alt', 'meta'];
-      const nonModifiersPressed = Array.from(pressedKeys).filter(k => !modifiers.includes(k));
-      const requiredNonModifiers = requiredKeys.filter(k => !modifiers.includes(k));
+    if (pressedArray.length > 0) {
+      const isExactMatch = 
+        targetKeys.length === pressedArray.length && 
+        targetKeys.every(k => pressedKeys.has(k));
 
-      const hasIncorrectKey = nonModifiersPressed.some(k => !requiredNonModifiers.includes(k));
-
-      if (hasIncorrectKey) {
-        const nextAttempts = attemptsLeft - 1;
-        setAttemptsLeft(nextAttempts);
-
-        if (nextAttempts <= 0) {
-          setFeedback('OUT_OF_ATTEMPTS');
-          setIncorrectCount(prev => prev + 1);
-
-          setTimeout(() => {
-            setPressedKeys(new Set());
-            setFeedback('NONE');
-            setAttemptsLeft(3); // Reset attempts for next question
-            if (activeCategory && currentQuestionIndex < activeCategory.questions.length - 1) {
-              setCurrentQuestionIndex(prev => prev + 1);
-            } else {
-              setGameState('SUMMARY');
-            }
-          }, 2000); // 2s delay to show the correct answer
-        } else {
+      if (isExactMatch) {
+        setFeedback('SUCCESS');
+        setCorrectCount(prev => prev + 1);
+        setTimeout(() => {
+          handleNextQuestion();
+        }, 1200);
+      } else {
+        const isWrongKeyCombination = pressedArray.length >= targetKeys.length && !targetKeys.every(k => pressedKeys.has(k));
+        
+        if (isWrongKeyCombination) {
           setFeedback('ERROR');
-          setTimeout(() => {
-            setPressedKeys(new Set());
-            setFeedback('NONE');
-          }, 1000);
+          setIncorrectCount(prev => prev + 1);
+          const newAttempts = attemptsLeft - 1;
+          setAttemptsLeft(newAttempts);
+
+          if (newAttempts <= 0) {
+            setTimeout(() => {
+              setFeedback('OUT_OF_ATTEMPTS');
+            }, 800);
+          } else {
+            setTimeout(() => {
+              setFeedback('NONE');
+              setPressedKeys(new Set());
+            }, 1000);
+          }
         }
       }
     }
-  }, [pressedKeys, currentQuestion, feedback, gameState, attemptsLeft]);
+  }, [pressedKeys, gameState, currentQuestion, feedback, attemptsLeft]);
 
-  const handleSelectCategory = (categoryId: string) => {
-    setSelectedCategoryId(categoryId);
+  const handleNextQuestion = () => {
+    setFeedback('NONE');
+    setPressedKeys(new Set());
+
+    if (activeCategory && currentQuestionIndex + 1 < activeCategory.questions.length) {
+      setCurrentQuestionIndex(prev => prev + 1);
+    } else {
+      setGameState('SUMMARY');
+    }
+  };
+
+  const handleSelectCategory = (id: string) => {
+    setSelectedCategoryId(id);
     setGameState('PREPARE');
   };
 
@@ -169,24 +188,10 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
     setCurrentQuestionIndex(0);
     setCorrectCount(0);
     setIncorrectCount(0);
+    setAttemptsLeft(3);
     setFeedback('NONE');
     setPressedKeys(new Set());
-    setAttemptsLeft(3);
     setGameState('PLAYING');
-  };
-
-  const handleVirtualKeyClick = (virtualKey: string) => {
-    if (gameState !== 'PLAYING' || feedback !== 'NONE') return;
-
-    setPressedKeys(prev => {
-      const next = new Set(prev);
-      if (next.has(virtualKey)) {
-        next.delete(virtualKey);
-      } else {
-        next.add(virtualKey);
-      }
-      return next;
-    });
   };
 
   const formatTime = (secs: number) => {
@@ -194,59 +199,6 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
     const remainingSecs = secs % 60;
     return `${mins.toString().padStart(2, '0')}:${remainingSecs.toString().padStart(2, '0')}`;
   };
-
-  // Virtual Keyboard Layout
-  const keyboardRows = [
-    [
-      { label: 'Esc', code: 'escape' },
-      { label: 'F5', code: 'f5' },
-      { label: 'F11', code: 'f11' },
-      { label: 'Q', code: 'q' },
-      { label: 'W', code: 'w' },
-      { label: 'E', code: 'e' },
-      { label: 'R', code: 'r' },
-      { label: 'T', code: 't' },
-      { label: 'Y', code: 'y' },
-      { label: 'U', code: 'u' },
-      { label: 'I', code: 'i' },
-      { label: 'O', code: 'o' },
-      { label: 'P', code: 'p' },
-      { label: 'Apagar', code: 'backspace', class: 'keycap-backspace' }
-    ],
-    [
-      { label: 'Tab', code: 'tab', class: 'keycap-tab' },
-      { label: 'A', code: 'a' },
-      { label: 'S', code: 's' },
-      { label: 'D', code: 'd' },
-      { label: 'F', code: 'f' },
-      { label: 'G', code: 'g' },
-      { label: 'H', code: 'h' },
-      { label: 'J', code: 'j' },
-      { label: 'K', code: 'k' },
-      { label: 'L', code: 'l' },
-      { label: 'Enter', code: 'enter', class: 'keycap-enter' }
-    ],
-    [
-      { label: 'Shift', code: 'shift', class: 'keycap-shift' },
-      { label: 'Z', code: 'z' },
-      { label: 'X', code: 'x' },
-      { label: 'C', code: 'c' },
-      { label: 'V', code: 'v' },
-      { label: 'B', code: 'b' },
-      { label: 'N', code: 'n' },
-      { label: 'M', code: 'm' },
-      { label: 'Del', code: 'delete' },
-      { label: 'Shift', code: 'shift', class: 'keycap-shift' }
-    ],
-    [
-      { label: 'Ctrl', code: 'control', class: 'keycap-ctrl' },
-      { label: 'Win', code: 'meta', class: 'keycap-win' },
-      { label: 'Alt', code: 'alt', class: 'keycap-alt' },
-      { label: 'Espaço', code: ' ', class: 'keycap-space' },
-      { label: 'Alt', code: 'alt', class: 'keycap-alt' },
-      { label: 'Ctrl', code: 'control', class: 'keycap-ctrl' }
-    ]
-  ];
 
   // Helper to format keys array to human readable representation
   const formatKeysList = (keysList: Set<string> | string[]) => {
@@ -271,7 +223,7 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
               <ArrowLeft size={18} /> Voltar
             </button>
             <h2 className="heading-gradient text-3xl font-extrabold tracking-tight" style={{ margin: 0 }}>
-              Desafio de Atalhos
+              Mini Games: Desafio de Atalhos
             </h2>
             <div style={{ width: '74px' }}></div>
           </div>
@@ -280,54 +232,51 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
             <div style={{ display: 'inline-flex', padding: '1rem', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '50%', marginBottom: '1.5rem', border: '1px solid rgba(139, 92, 246, 0.2)' }}>
               <Keyboard size={36} color="var(--accent-secondary)" />
             </div>
-            <h1 className="text-2xl font-bold mb-3">Escolha o Programa para Treinar</h1>
+            <h1 className="text-2xl font-bold mb-3">Escolha o Mini Game para Estudo e Prática</h1>
             <p className="text-muted text-sm max-w-2xl mx-auto">
-              Cada programa de computador possui seus próprios comandos e atalhos. Escolha o módulo correspondente às suas aulas para estudar a lista e fazer o teste de memória!
+              Cada programa possui seus próprios atalhos e comandos. Escolha um dos <strong>9 mini games interativos</strong> abaixo para estudar e testar sua memória e velocidade no teclado!
             </p>
           </div>
 
           <div className="activities-grid stagger-children">
-            {shortcutCategories.map((category) => (
-              <div 
-                key={category.id} 
-                className="activity-card" 
-                style={{ 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  minHeight: '260px',
-                  justifyContent: 'between'
-                }}
-              >
-                <div>
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className={`icon-badge ${
-                      category.id === 'word' ? 'icon-badge-blue' : category.id === 'powerpoint' ? 'icon-badge-amber' : category.id === 'chrome' ? 'icon-badge-green' : 'icon-badge-indigo'
-                    }`}>
-                      <Zap size={24} color={
-                        category.id === 'word' ? 'var(--accent-primary)' : category.id === 'powerpoint' ? 'var(--accent-warning)' : category.id === 'chrome' ? 'var(--accent-success)' : '#6366f1'
-                      } />
-                    </div>
-                    <h3 className="text-xl font-bold">{category.name}</h3>
-                  </div>
-                  <p className="text-muted text-sm mb-6">{category.description}</p>
-                </div>
-
-                <button 
-                  onClick={() => handleSelectCategory(category.id)} 
-                  className={`btn ${
-                    category.id === 'word' ? 'btn-secondary' : category.id === 'powerpoint' ? 'btn-secondary' : category.id === 'chrome' ? 'btn-secondary' : 'btn-secondary'
-                  }`}
+            {shortcutCategories.map((category) => {
+              const theme = getCategoryTheme(category.id);
+              return (
+                <div 
+                  key={category.id} 
+                  className="activity-card" 
                   style={{ 
-                    marginTop: 'auto', 
-                    width: '100%',
-                    borderColor: 'rgba(255,255,255,0.15)',
-                    background: 'rgba(30, 41, 59, 0.4)'
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    minHeight: '270px',
+                    justifyContent: 'between'
                   }}
                 >
-                  Estudar e Treinar
-                </button>
-              </div>
-            ))}
+                  <div>
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className={`icon-badge ${theme.badgeClass}`}>
+                        {theme.icon}
+                      </div>
+                      <h3 className="text-xl font-bold">{category.name}</h3>
+                    </div>
+                    <p className="text-muted text-sm mb-6">{category.description}</p>
+                  </div>
+
+                  <button 
+                    onClick={() => handleSelectCategory(category.id)} 
+                    className="btn btn-secondary"
+                    style={{ 
+                      marginTop: 'auto', 
+                      width: '100%',
+                      borderColor: 'rgba(255,255,255,0.15)',
+                      background: 'rgba(30, 41, 59, 0.4)'
+                    }}
+                  >
+                    Estudar e Treinar
+                  </button>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}

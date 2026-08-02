@@ -122,5 +122,50 @@ export const typingTexts: TypingTextCategory[] = [
       "Receita de Bolo de Cenoura: 3 cenouras médias (descascadas e picadas), 4 ovos, 1 xícara de óleo de soja e 2 xícaras de açúcar refinado.\nBata tudo no liquidificador até formar uma mistura homogênea.\nAsse em forno pré-aquecido a 180°C por cerca de 45 minutos. Rende de 10 a 12 porções!\nEnquanto o bolo assa, prepare a cobertura de chocolate usando: 1 colher de sopa de manteiga, 3 colheres de chocolate em pó e meia xícara de leite.\nDeixe ferver por cinco minutos até engrossar e despeje sobre o bolo ainda quente (o resultado é simplesmente delicioso).",
       "A partida de futebol entre o Brasil e a Argentina terminou empatada em 2 x 2.\nO juiz concedeu 5 minutos de acréscimo no 2º tempo (aos 45' + 5').\nO estádio estava lotado, com um público pagante de 65.432 espectadores e renda estimada em R$ 3.500.800,00. Um espetáculo emocionante!\nA polícia militar registrou pequenos conflitos do lado de fora dos portões sul (setor B), mas os ânimos foram rapidamente acalmados após a intervenção da tropa de choque.\nNo dia seguinte, a imprensa esportiva destacou a brilhante atuação do goleiro titular que defendeu um pênalti perigoso aos 38 minutos do primeiro tempo."
     ]
+  },
+  {
+    id: 11,
+    theme: 'ChatGPT e Inteligência Artificial',
+    level: 1,
+    texts: [
+      "O ChatGPT é um assistente inteligente que conversa com a gente.\nPodemos fazer perguntas sobre história, geografia, matemática ou pedir dicas para trabalhos.\nPara usar a IA da melhor forma, escreva frases claras e bem explicadas.\nLembre-se de sempre revisar as informações antes de entregar sua lição de casa.",
+      "A inteligência artificial aprendeu lendo milhões de textos na internet.\nEla consegue escrever poemas, explicar palavras difíceis e ajudar a criar ideias.\nFerramentas como o Gemini e o Claude também são muito populares no mundo todo.\nAproveite a IA como uma grande parceira de estudos para aprender mais a cada dia."
+    ]
+  },
+  {
+    id: 12,
+    theme: 'Canva e Design Gráfico',
+    level: 1,
+    texts: [
+      "O Canva é um programa ótimo para criar cartazes e artes visuais.\nPodemos escolher modelos prontos, trocar as cores e colocar nossas fotos favoritas.\nA aba Elementos tem adesivos, ilustrações e linhas para deixar o trabalho bonito.\nAo terminar a arte, basta clicar em Compartilhar e baixar a imagem para o computador.",
+      "Criar apresentações no Canva é rápido e muito divertido.\nVocê pode usar a tecla T para adicionar um texto e a letra R para desenhar retângulos.\nUse cores que combinem entre si para garantir uma leitura agradável e clara.\nSalvar seus projetos na nuvem garante que nada seja perdido no meio do caminho."
+    ]
+  },
+  {
+    id: 13,
+    theme: 'Segurança Digital e Antivírus',
+    level: 2,
+    texts: [
+      "Manter o computador livre de vírus e malwares exige atenção constante do usuário.\nO antivírus Malwarebytes realiza verificações completas no sistema para encontrar ameaças ocultas.\nArquivos suspeitos são isolados em uma pasta segura chamada Quarentena.\nNunca clique em links estranhos recebidos por e-mail ou mensagens de desconhecidos na internet.",
+      "O golpe do Phishing tenta enganar as pessoas para roubar senhas e dados bancários.\nPara se proteger, verifique sempre se o site possui o ícone de cadeado de segurança na barra do navegador.\nAlém disso, desconfie de promoções absurdas e mensagens urgentes exigindo seus dados de acesso.\nManter o sistema operacional e o antivírus atualizados é a primeira linha de defesa contra os cibercriminosos."
+    ]
+  },
+  {
+    id: 14,
+    theme: 'Microsoft Excel e Planilhas',
+    level: 2,
+    texts: [
+      "O Microsoft Excel é a ferramenta mais usada em empresas para organizar tabelas e finanças.\nCada célula da planilha possui um endereço único formado por uma coluna e uma linha (ex: A1, B5).\nCom o atalho F2, abrimos o conteúdo da célula para alterar fórmulas e valores facilmente.\nAs funções de SOMA e MÉDIA automatizam os cálculos de maneira rápida e sem erros de digitação.",
+      "Formatando os números como Moeda (R$), a visualização das planilhas fica muito mais profissional.\nO atalho Ctrl + Espaço seleciona uma coluna inteira, enquanto Shift + Espaço marca a linha inteira.\nGráficos coloridos ajudam a entender a evolução das vendas ao longo dos meses do ano.\nSaber usar planilhas é uma das habilidades mais valorizadas no mercado de trabalho atual."
+    ]
+  },
+  {
+    id: 15,
+    theme: 'Google Workspace e Nuvem',
+    level: 3,
+    texts: [
+      "O ecossistema Google Workspace reúne ferramentas essenciais: Docs, Sheets, Drive e Gmail.\nAo trabalhar em equipe na nuvem, várias pessoas podem editar o mesmo documento simultaneamente (em tempo real).\nO atalho Ctrl + K insere hiperlinks profissionais em palavras do texto no Google Docs.\nAlém disso, o arquivo é salvo automaticamente a cada letra digitada, garantindo total segurança contra quedas de energia.",
+      "Para organizar seus arquivos no Google Drive, crie pastas separadas por matéria ou projeto (#2026).\nO atalho Ctrl + Shift + C exibe a contagem exata de palavras e caracteres do trabalho no Google Docs.\nEm caso de dúvidas sobre o documento, utilize a barra de busca rápida (Ctrl + F) para localizar frases específicas.\nA computação em nuvem transformou o trabalho remoto em uma experiência ágil, colaborativa e muito segura."
+    ]
   }
 ];
