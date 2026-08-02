@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BookOpen, Keyboard, Zap, Trophy } from 'lucide-react';
+import { BookOpen, Keyboard, Zap, Trophy, Flame } from 'lucide-react';
 import { SplashScreen } from './components/SplashScreen';
 import { Home } from './components/Home';
 import { PasswordGate } from './components/PasswordGate';
@@ -11,9 +11,10 @@ import { PracticeHome } from './components/PracticeHome';
 import { PracticeTyping } from './components/PracticeTyping';
 import type { TypingText } from './data/typingTexts';
 import { ShortcutChallenge } from './components/ShortcutChallenge';
+import { SpeedQuiz } from './components/SpeedQuiz';
 
 type AppState = 'HOME' | 'PASSWORD_GATE' | 'ACTIVITY' | 'RESULT';
-type ActiveTab = 'ACTIVITIES' | 'PRACTICE' | 'SHORTCUTS';
+type ActiveTab = 'ACTIVITIES' | 'PRACTICE' | 'SHORTCUTS' | 'SPEED_QUIZ';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -88,6 +89,13 @@ function App() {
                     >
                       <Zap size={16} /> Desafio de Atalhos
                     </button>
+                    <button 
+                      className={`nav-tab-btn ${activeTab === 'SPEED_QUIZ' ? 'active' : ''}`}
+                      style={activeTab === 'SPEED_QUIZ' ? {} : { color: '#f59e0b', borderColor: 'rgba(245, 158, 11, 0.3)', background: 'rgba(245, 158, 11, 0.08)' }}
+                      onClick={() => setActiveTab('SPEED_QUIZ')}
+                    >
+                      <Flame size={16} color="#f59e0b" /> Speed Quiz (V ou F)
+                    </button>
                   </div>
                 </div>
 
@@ -95,8 +103,10 @@ function App() {
                   <Home onSelectActivity={handleSelectActivity} />
                 ) : activeTab === 'PRACTICE' ? (
                   <PracticeHome onSelectText={setSelectedPracticeText} />
-                ) : (
+                ) : activeTab === 'SHORTCUTS' ? (
                   <ShortcutChallenge onBack={() => setActiveTab('ACTIVITIES')} />
+                ) : (
+                  <SpeedQuiz onBack={() => setActiveTab('ACTIVITIES')} />
                 )}
               </>
             )}
