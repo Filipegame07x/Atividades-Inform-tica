@@ -192,13 +192,78 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
     setFeedback('NONE');
     setPressedKeys(new Set());
     setGameState('PLAYING');
-  };
-
   const formatTime = (secs: number) => {
     const mins = Math.floor(secs / 60);
     const remainingSecs = secs % 60;
     return `${mins.toString().padStart(2, '0')}:${remainingSecs.toString().padStart(2, '0')}`;
   };
+
+  const handleVirtualKeyClick = (virtualKey: string) => {
+    if (gameState !== 'PLAYING' || feedback !== 'NONE') return;
+
+    setPressedKeys(prev => {
+      const next = new Set(prev);
+      if (next.has(virtualKey)) {
+        next.delete(virtualKey);
+      } else {
+        next.add(virtualKey);
+      }
+      return next;
+    });
+  };
+
+  // Virtual Keyboard Layout
+  const keyboardRows = [
+    [
+      { label: 'Esc', code: 'escape' },
+      { label: 'F5', code: 'f5' },
+      { label: 'F11', code: 'f11' },
+      { label: 'Q', code: 'q' },
+      { label: 'W', code: 'w' },
+      { label: 'E', code: 'e' },
+      { label: 'R', code: 'r' },
+      { label: 'T', code: 't' },
+      { label: 'Y', code: 'y' },
+      { label: 'U', code: 'u' },
+      { label: 'I', code: 'i' },
+      { label: 'O', code: 'o' },
+      { label: 'P', code: 'p' },
+      { label: 'Apagar', code: 'backspace', class: 'keycap-backspace' }
+    ],
+    [
+      { label: 'Tab', code: 'tab', class: 'keycap-tab' },
+      { label: 'A', code: 'a' },
+      { label: 'S', code: 's' },
+      { label: 'D', code: 'd' },
+      { label: 'F', code: 'f' },
+      { label: 'G', code: 'g' },
+      { label: 'H', code: 'h' },
+      { label: 'J', code: 'j' },
+      { label: 'K', code: 'k' },
+      { label: 'L', code: 'l' },
+      { label: 'Enter', code: 'enter', class: 'keycap-enter' }
+    ],
+    [
+      { label: 'Shift', code: 'shift', class: 'keycap-shift' },
+      { label: 'Z', code: 'z' },
+      { label: 'X', code: 'x' },
+      { label: 'C', code: 'c' },
+      { label: 'V', code: 'v' },
+      { label: 'B', code: 'b' },
+      { label: 'N', code: 'n' },
+      { label: 'M', code: 'm' },
+      { label: 'Del', code: 'delete' },
+      { label: 'Shift', code: 'shift', class: 'keycap-shift' }
+    ],
+    [
+      { label: 'Ctrl', code: 'control', class: 'keycap-ctrl' },
+      { label: 'Win', code: 'meta', class: 'keycap-win' },
+      { label: 'Alt', code: 'alt', class: 'keycap-alt' },
+      { label: 'Espaço', code: ' ', class: 'keycap-space' },
+      { label: 'Alt', code: 'alt', class: 'keycap-alt' },
+      { label: 'Ctrl', code: 'control', class: 'keycap-ctrl' }
+    ]
+  ];
 
   // Helper to format keys array to human readable representation
   const formatKeysList = (keysList: Set<string> | string[]) => {
@@ -569,4 +634,5 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
       )}
     </div>
   );
+}
 }
