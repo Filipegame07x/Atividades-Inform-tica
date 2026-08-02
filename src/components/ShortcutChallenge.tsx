@@ -192,6 +192,8 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
     setFeedback('NONE');
     setPressedKeys(new Set());
     setGameState('PLAYING');
+  };
+
   const formatTime = (secs: number) => {
     const mins = Math.floor(secs / 60);
     const remainingSecs = secs % 60;
@@ -634,5 +636,4 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
       )}
     </div>
   );
-}
 }
