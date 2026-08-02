@@ -706,5 +706,82 @@ export const shortcutCategories: ShortcutCategory[] = [
         description: "Abre a tela de impressão do navegador."
       }
     ]
+  },
+  {
+    id: 'windows11',
+    name: 'Windows 11 e Produtividade',
+    description: 'Mini game de agilidade no Windows 11: atalhos para captura de tela, organização de janelas, emojis e ditado por voz.',
+    questions: [
+      {
+        id: 1,
+        question: "Como tirar uma CAPTURA DE TELA SELETIVA (PrintScreen parcial) no Windows 11?",
+        keys: ['meta', 'shift', 's'],
+        display: "Win + Shift + S",
+        description: "Abre a Ferramenta de Captura para selecionar a área exata da tela que deseja fotografar."
+      },
+      {
+        id: 2,
+        question: "Qual atalho abre a VISÃO DE TAREFAS para ver todas as janelas e áreas de trabalho?",
+        keys: ['meta', 'tab'],
+        display: "Win + Tab",
+        description: "Mostra todas as aplicações abertas e permite criar novas Áreas de Trabalho Virtuais."
+      },
+      {
+        id: 3,
+        question: "Como abrir o recurso de DIGITAÇÃO POR VOZ (Ditado automático) no Windows 11?",
+        keys: ['meta', 'h'],
+        display: "Win + H",
+        description: "Ativa o microfone para que o Windows digite em texto tudo o que você falar."
+      },
+      {
+        id: 4,
+        question: "Qual atalho abre o EXPLORADOR DE ARQUIVOS (Pastas e Meu Computador)?",
+        keys: ['meta', 'e'],
+        display: "Win + E",
+        description: "Abre a janela de pastas e arquivos de sistema (File Explorer)."
+      },
+      {
+        id: 5,
+        question: "Como abrir o teclado flutuante de EMOJIS e símbolos especiais?",
+        keys: ['meta', '.'],
+        display: "Win + .",
+        description: "Abre o painel de emojis, gifs e símbolos decorativos do Windows."
+      },
+      {
+        id: 6,
+        question: "Qual atalho abre o menu SNAP LAYOUTS para organizar várias janelas lado a lado?",
+        keys: ['meta', 'z'],
+        display: "Win + Z",
+        description: "Exibe os modelos de divisão de tela para organizar 2, 3 ou 4 aplicativos juntos."
+      },
+      {
+        id: 7,
+        question: "Como abrir o HISTÓRICO DA ÁREA DE TRANSFERÊNCIA para colar textos anteriores?",
+        keys: ['meta', 'v'],
+        display: "Win + V",
+        description: "Mostra a lista de todos os textos e fotos que você copiou recentemente."
+      },
+      {
+        id: 8,
+        question: "Qual atalho abre a tela de CONFIGURAÇÕES do sistema Windows 11?",
+        keys: ['meta', 'i'],
+        display: "Win + I",
+        description: "Abre o painel de controle e configurações de rede, som e tela."
+      },
+      {
+        id: 9,
+        question: "Como BLOQUEAR A TELA instantaneamente ao se ausentar do computador?",
+        keys: ['meta', 'l'],
+        display: "Win + L",
+        description: "Bloqueia a sessão impedindo acessos não autorizados."
+      },
+      {
+        id: 10,
+        question: "Como MINIMIZAR TODAS AS JANELAS para ver a Área de Trabalho (Desktop)?",
+        keys: ['meta', 'd'],
+        display: "Win + D",
+        description: "Oculta todos os programas abertos para mostrar a área de trabalho limpa."
+      }
+    ]
   }
 ];

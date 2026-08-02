@@ -167,5 +167,14 @@ export const typingTexts: TypingTextCategory[] = [
       "O ecossistema Google Workspace reúne ferramentas essenciais: Docs, Sheets, Drive e Gmail.\nAo trabalhar em equipe na nuvem, várias pessoas podem editar o mesmo documento simultaneamente (em tempo real).\nO atalho Ctrl + K insere hiperlinks profissionais em palavras do texto no Google Docs.\nAlém disso, o arquivo é salvo automaticamente a cada letra digitada, garantindo total segurança contra quedas de energia.",
       "Para organizar seus arquivos no Google Drive, crie pastas separadas por matéria ou projeto (#2026).\nO atalho Ctrl + Shift + C exibe a contagem exata de palavras e caracteres do trabalho no Google Docs.\nEm caso de dúvidas sobre o documento, utilize a barra de busca rápida (Ctrl + F) para localizar frases específicas.\nA computação em nuvem transformou o trabalho remoto em uma experiência ágil, colaborativa e muito segura."
     ]
+  },
+  {
+    id: 16,
+    theme: 'Windows 11 e Produtividade',
+    level: 3,
+    texts: [
+      "O Windows 11 trouxe recursos modernos de organização de tela como o Snap Layouts (Win + Z).\nCom ele, você pode dividir o monitor em vários blocos sem precisar redimensionar janelas manualmente.\nO recurso de digitação por voz (Win + H) converte fala em texto em tempo real com extrema precisão.\nAproveitar esses atalhos do sistema operacional economiza dezenas de minutos todos os dias.",
+      "Tirar prints de trechos específicos da tela ficou muito fácil usando a tecla Win + Shift + S.\nA imagem capturada vai direto para a área de transferência e pode ser colada onde você quiser.\nAlém disso, o atalho Win + V guarda o histórico completo dos textos e imagens copiados anteriormente.\nDominar as ferramentas nativas do Windows transforma qualquer estudante em um usuário avançado de tecnologia."
+    ]
   }
 ];

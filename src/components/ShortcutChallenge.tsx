@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { shortcutCategories } from '../data/shortcuts';
 import type { ShortcutQuestion } from '../data/shortcuts';
-import { RefreshCw, Zap, ArrowLeft, Trophy, Keyboard, Play, Heart, FileText, MonitorPlay, Globe, Laptop, Palette, Brain, ShieldAlert, Table, Layers } from 'lucide-react';
+import { RefreshCw, Zap, ArrowLeft, Trophy, Keyboard, Play, Heart, FileText, MonitorPlay, Globe, Laptop, Palette, Brain, ShieldAlert, Table, Layers, LayoutGrid } from 'lucide-react';
 
 interface ShortcutChallengeProps {
   onBack: () => void;
@@ -33,6 +33,8 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
         return { badgeClass: 'icon-badge-green', color: '#059669', icon: <Table size={24} color="#059669" /> };
       case 'google-workspace':
         return { badgeClass: 'icon-badge-blue', color: '#0284c7', icon: <Layers size={24} color="#0284c7" /> };
+      case 'windows11':
+        return { badgeClass: 'icon-badge-amber', color: '#f59e0b', icon: <LayoutGrid size={24} color="#f59e0b" /> };
       default:
         return { badgeClass: 'icon-badge-blue', color: 'var(--accent-primary)', icon: <Zap size={24} color="var(--accent-primary)" /> };
     }
