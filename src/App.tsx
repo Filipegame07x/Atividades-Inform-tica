@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BookOpen, Keyboard, Zap } from 'lucide-react';
+import { BookOpen, Keyboard, Zap, Trophy } from 'lucide-react';
 import { SplashScreen } from './components/SplashScreen';
 import { Home } from './components/Home';
 import { PasswordGate } from './components/PasswordGate';
@@ -68,6 +68,13 @@ function App() {
                       onClick={() => setActiveTab('ACTIVITIES')}
                     >
                       <BookOpen size={16} /> Atividades
+                    </button>
+                    <button 
+                      className="nav-tab-btn"
+                      style={{ color: '#fbbf24', borderColor: 'rgba(245, 158, 11, 0.3)', background: 'rgba(245, 158, 11, 0.1)' }}
+                      onClick={() => handleSelectActivity('desafio-completo')}
+                    >
+                      <Trophy size={16} /> Desafio Completo (35 Qs)
                     </button>
                     <button 
                       className={`nav-tab-btn ${activeTab === 'PRACTICE' ? 'active' : ''}`}
