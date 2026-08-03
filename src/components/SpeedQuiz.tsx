@@ -19,7 +19,9 @@ interface SpeedQuizProps {
 }
 
 type QuizMode = 'SELECT' | 'PLAYING' | 'SUMMARY';
-type GameType = 'TIME_ATTACK' | 'PRACTICE'; // 60s vs 15 Questions
+type GameType = 'TIME_ATTACK' | 'PRACTICE'; // 60s Global vs 15 Questions
+
+const QUESTION_TIMEOUT_SECONDS = 20;
 
 export function SpeedQuiz({ onBack }: SpeedQuizProps) {
   const [mode, setMode] = useState<QuizMode>('SELECT');
@@ -35,21 +37,24 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
   const [maxCombo, setMaxCombo] = useState(0);
   
   // Feedback & timing
-  const [feedback, setFeedback] = useState<'NONE' | 'CORRECT' | 'WRONG'>('NONE');
+  const [feedback, setFeedback] = useState<'NONE' | 'CORRECT' | 'WRONG' | 'TIMEOUT'>('NONE');
   const [lastExplanation, setLastExplanation] = useState<string>('');
-  const [timeLeft, setTimeLeft] = useState(60); // for 60s Time Attack
-  const timerRef = useRef<any>(null);
+  const [globalTimeLeft, setGlobalTimeLeft] = useState(60); // for 60s Time Attack mode
+  const [questionTimeLeft, setQuestionTimeLeft] = useState(QUESTION_TIMEOUT_SECONDS); // 20s per question
+  
+  const globalTimerRef = useRef<any>(null);
+  const questionTimerRef = useRef<any>(null);
 
   const currentQuestion: SpeedQuizQuestion | undefined = shuffledQuestions[currentIndex];
 
-  // Start game timer
+  // 1. Global Game Timer (for Time Attack mode)
   useEffect(() => {
     if (mode === 'PLAYING' && gameType === 'TIME_ATTACK') {
-      setTimeLeft(60);
-      timerRef.current = setInterval(() => {
-        setTimeLeft(prev => {
+      setGlobalTimeLeft(60);
+      globalTimerRef.current = setInterval(() => {
+        setGlobalTimeLeft(prev => {
           if (prev <= 1) {
-            clearInterval(timerRef.current);
+            clearInterval(globalTimerRef.current);
             setMode('SUMMARY');
             return 0;
           }
@@ -57,16 +62,51 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
         });
       }, 1000);
     } else {
-      if (timerRef.current) clearInterval(timerRef.current);
+      if (globalTimerRef.current) clearInterval(globalTimerRef.current);
     }
 
     return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
+      if (globalTimerRef.current) clearInterval(globalTimerRef.current);
     };
   }, [mode, gameType]);
 
+  // 2. Per-Question 20-Second Countdown Timer
+  useEffect(() => {
+    if (mode === 'PLAYING' && feedback === 'NONE' && currentQuestion) {
+      setQuestionTimeLeft(QUESTION_TIMEOUT_SECONDS);
+
+      questionTimerRef.current = setInterval(() => {
+        setQuestionTimeLeft(prev => {
+          if (prev <= 1) {
+            clearInterval(questionTimerRef.current);
+            handleTimeout();
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    } else {
+      if (questionTimerRef.current) clearInterval(questionTimerRef.current);
+    }
+
+    return () => {
+      if (questionTimerRef.current) clearInterval(questionTimerRef.current);
+    };
+  }, [mode, currentIndex, feedback]);
+
+  const handleTimeout = () => {
+    if (!currentQuestion) return;
+    setFeedback('TIMEOUT');
+    setLastExplanation(`⏰ Tempo de 20s esgotado! ${currentQuestion.explanation}`);
+    setIncorrectCount(prev => prev + 1);
+    setCombo(0);
+
+    setTimeout(() => {
+      advanceQuestion();
+    }, 1600);
+  };
+
   const handleStartGame = (selectedType: GameType) => {
-    // Shuffle array of questions
     const shuffled = [...speedQuizQuestions].sort(() => Math.random() - 0.5);
     setShuffledQuestions(shuffled);
     setCurrentIndex(0);
@@ -77,12 +117,15 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
     setMaxCombo(0);
     setFeedback('NONE');
     setLastExplanation('');
+    setQuestionTimeLeft(QUESTION_TIMEOUT_SECONDS);
     setGameType(selectedType);
     setMode('PLAYING');
   };
 
   const handleAnswer = (userAnswer: boolean) => {
     if (feedback !== 'NONE' || !currentQuestion) return;
+
+    if (questionTimerRef.current) clearInterval(questionTimerRef.current);
 
     const isRight = userAnswer === currentQuestion.isTrue;
     setLastExplanation(currentQuestion.explanation);
@@ -94,8 +137,9 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
       setCombo(newCombo);
       if (newCombo > maxCombo) setMaxCombo(newCombo);
 
-      // Score multiplier based on combo
-      const points = 100 * Math.min(newCombo, 4);
+      // Score multiplier based on combo and remaining speed
+      const speedBonus = Math.floor(questionTimeLeft * 5);
+      const points = 100 * Math.min(newCombo, 4) + speedBonus;
       setScore(prev => prev + points);
 
       setTimeout(() => {
@@ -115,13 +159,13 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
   const advanceQuestion = () => {
     setFeedback('NONE');
     setLastExplanation('');
+    setQuestionTimeLeft(QUESTION_TIMEOUT_SECONDS);
 
     if (gameType === 'PRACTICE' && currentIndex >= 14) {
       setMode('SUMMARY');
     } else if (currentIndex + 1 < shuffledQuestions.length) {
       setCurrentIndex(prev => prev + 1);
     } else {
-      // Loop or finish
       setMode('SUMMARY');
     }
   };
@@ -155,9 +199,9 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
             <div style={{ display: 'inline-flex', padding: '1.25rem', background: 'rgba(245, 158, 11, 0.1)', borderRadius: '50%', marginBottom: '1.5rem', border: '1px solid rgba(245, 158, 11, 0.2)' }}>
               <Zap size={44} color="#f59e0b" />
             </div>
-            <h1 className="text-2xl font-bold mb-3">Novo Estilo de Aprendizado: Verdadeiro ou Falso!</h1>
+            <h1 className="text-2xl font-bold mb-3">Quiz Rápido: 20 Segundos por Questão!</h1>
             <p className="text-muted text-sm max-w-2xl mx-auto">
-              Teste seu raciocínio rápido em informática! Analise as afirmações na tela e decida se são <strong>VERDADEIRAS</strong> ou <strong>FALSAS</strong> o mais rápido que puder.
+              Decida se a afirmação é <strong>VERDADEIRA</strong> ou <strong>FALSA</strong> antes que o cronômetro de <strong>20 segundos</strong> zere!
             </p>
           </div>
 
@@ -179,10 +223,10 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
                   <div className="icon-badge icon-badge-amber">
                     <Clock size={24} color="#f59e0b" />
                   </div>
-                  <h3 className="text-xl font-bold">⏱️ Modo 60 Segundos</h3>
+                  <h3 className="text-xl font-bold">⏱️ Modo Contra o Tempo (60s)</h3>
                 </div>
                 <p className="text-muted text-sm mb-6">
-                  Responda ao máximo de afirmações antes do cronômetro zerar! Faça combos para multiplicar sua pontuação final.
+                  Responda ao máximo de questões em 60s total, tendo 20s limite por pergunta! Faça combos rápidos para pontuação máxima.
                 </p>
               </div>
               <button 
@@ -210,10 +254,10 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
                   <div className="icon-badge icon-badge-blue">
                     <HelpCircle size={24} color="#3b82f6" />
                   </div>
-                  <h3 className="text-xl font-bold">📚 Modo Treino (15 Qs)</h3>
+                  <h3 className="text-xl font-bold">📚 Modo 15 Questões (20s/Q)</h3>
                 </div>
                 <p className="text-muted text-sm mb-6">
-                  Responda a 15 perguntas sem relógio de tempo. Ideal para estudar cada explicação com calma e fixar o conteúdo.
+                  Enfrente 15 perguntas consecutivas com um relógio de 20 segundos por questão para testar sua agilidade digital.
                 </p>
               </div>
               <button 
@@ -221,7 +265,7 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
                 className="btn btn-primary"
                 style={{ width: '100%', padding: '0.85rem' }}
               >
-                <Play size={18} /> Iniciar Modo Treino
+                <Play size={18} /> Iniciar Desafio 15 Qs
               </button>
             </div>
 
@@ -241,12 +285,30 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
               </button>
 
               <div className="flex items-center gap-6">
-                {gameType === 'TIME_ATTACK' ? (
-                  <div className="flex items-center gap-2" style={{ color: timeLeft <= 10 ? '#ef4444' : '#f59e0b', fontWeight: 'bold', fontSize: '1.2rem' }}>
-                    <Clock size={20} />
-                    <span>{timeLeft}s</span>
+                
+                {/* 20-Second Question Timer */}
+                <div 
+                  className={`flex items-center gap-2 font-extrabold ${questionTimeLeft <= 5 ? 'animate-pulse' : ''}`}
+                  style={{ 
+                    color: questionTimeLeft <= 5 ? '#ef4444' : questionTimeLeft <= 10 ? '#f59e0b' : '#10b981', 
+                    fontSize: '1.25rem',
+                    background: questionTimeLeft <= 5 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(255,255,255,0.05)',
+                    padding: '0.35rem 0.85rem',
+                    borderRadius: '20px',
+                    border: `1px solid ${questionTimeLeft <= 5 ? '#ef4444' : 'transparent'}`
+                  }}
+                >
+                  <Clock size={20} />
+                  <span>{questionTimeLeft}s</span>
+                </div>
+
+                {gameType === 'TIME_ATTACK' && (
+                  <div className="text-center font-bold text-xs text-muted">
+                    Global: {globalTimeLeft}s
                   </div>
-                ) : (
+                )}
+
+                {gameType === 'PRACTICE' && (
                   <div className="text-center font-bold text-sm text-muted">
                     Questão {currentIndex + 1} de 15
                   </div>
@@ -265,12 +327,29 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
                 </div>
               </div>
             </div>
+
+            {/* Countdown Progress Bar for current question */}
+            <div style={{
+              width: '100%',
+              height: '6px',
+              backgroundColor: 'rgba(255,255,255,0.1)',
+              borderRadius: '3px',
+              marginTop: '1rem',
+              overflow: 'hidden'
+            }}>
+              <div style={{
+                height: '100%',
+                width: `${(questionTimeLeft / QUESTION_TIMEOUT_SECONDS) * 100}%`,
+                backgroundColor: questionTimeLeft <= 5 ? '#ef4444' : questionTimeLeft <= 10 ? '#f59e0b' : '#10b981',
+                transition: 'width 1s linear, background-color 0.3s ease'
+              }} />
+            </div>
           </div>
 
           {/* Statement Card */}
           <div 
             className={`glass-card-static text-center mb-8 style-transition ${
-              feedback === 'CORRECT' ? 'border-success' : feedback === 'WRONG' ? 'border-error' : ''
+              feedback === 'CORRECT' ? 'border-success' : (feedback === 'WRONG' || feedback === 'TIMEOUT') ? 'border-error' : ''
             }`}
             style={{
               padding: '2.5rem 2rem',
@@ -279,10 +358,10 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
               flexDirection: 'column',
               justifyContent: 'center',
               alignItems: 'center',
-              borderColor: feedback === 'CORRECT' ? '#10b981' : feedback === 'WRONG' ? '#ef4444' : 'rgba(255,255,255,0.1)',
+              borderColor: feedback === 'CORRECT' ? '#10b981' : (feedback === 'WRONG' || feedback === 'TIMEOUT') ? '#ef4444' : 'rgba(255,255,255,0.1)',
               background: feedback === 'CORRECT' 
                 ? 'rgba(16, 185, 129, 0.08)' 
-                : feedback === 'WRONG' 
+                : (feedback === 'WRONG' || feedback === 'TIMEOUT') 
                 ? 'rgba(239, 68, 68, 0.08)' 
                 : 'rgba(30, 41, 59, 0.5)',
               transition: 'all 0.3s ease'
@@ -311,7 +390,13 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
                   color: feedback === 'CORRECT' ? '#10b981' : '#ef4444'
                 }}>
                   {feedback === 'CORRECT' ? <CheckCircle2 size={20} /> : <XCircle size={20} />}
-                  <span>{feedback === 'CORRECT' ? 'CORRETO! +100 PTS' : 'INCORRETO!'}</span>
+                  <span>
+                    {feedback === 'CORRECT' 
+                      ? 'CORRETO!' 
+                      : feedback === 'TIMEOUT' 
+                      ? 'TEMPO ESGOTADO! (20s)' 
+                      : 'INCORRETO!'}
+                  </span>
                 </div>
 
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontStyle: 'italic', maxWidth: '600px', margin: '0 auto' }}>

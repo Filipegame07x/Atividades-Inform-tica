@@ -161,7 +161,7 @@ export function Home({ onSelectActivity }: HomeProps) {
                     fontWeight: 600
                   }}
                 >
-                  35 Questões Fáceis
+                  40 Questões Fáceis
                 </span>
                 <span 
                   style={{
@@ -181,12 +181,12 @@ export function Home({ onSelectActivity }: HomeProps) {
                 Prova Geral: Word + Google + ChatGPT + Malwarebytes + Canva
               </h2>
               <p className="text-muted text-sm max-w-2xl">
-                Teste seus conhecimentos no desafio de <strong>35 perguntas fáceis</strong> divididas igualmente (7 por módulo):
-                <span style={{ color: '#38bdf8' }}> Word (7)</span> • 
-                <span style={{ color: '#4ade80' }}> Google (7)</span> • 
-                <span style={{ color: '#2dd4bf' }}> ChatGPT (7)</span> • 
-                <span style={{ color: '#fb7185' }}> Malwarebytes (7)</span> • 
-                <span style={{ color: '#c084fc' }}> Canva (7)</span>.
+                Teste seus conhecimentos no desafio de <strong>40 perguntas fáceis</strong> divididas igualmente (8 por módulo):
+                <span style={{ color: '#38bdf8' }}> Word (8)</span> • 
+                <span style={{ color: '#4ade80' }}> Google (8)</span> • 
+                <span style={{ color: '#2dd4bf' }}> ChatGPT (8)</span> • 
+                <span style={{ color: '#fb7185' }}> Malwarebytes (8)</span> • 
+                <span style={{ color: '#c084fc' }}> Canva (8)</span>.
               </p>
             </div>
           </div>
