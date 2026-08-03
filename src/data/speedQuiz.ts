@@ -38,9 +38,9 @@ export const speedQuizQuestions: SpeedQuizQuestion[] = [
   },
   {
     id: 5,
-    statement: "No Google Docs, várias pessoas podem editar o mesmo documento simultaneamente na nuvem.",
+    statement: "No Google Drive, você pode criar pastas para organizar seus arquivos e documentos na nuvem.",
     isTrue: true,
-    explanation: "A colaboração em tempo real é uma das principais vantagens do Google Workspace.",
+    explanation: "O Google Drive permite criar pastas e guardar arquivos de fotos, PDFs e vídeos na nuvem.",
     category: 'google'
   },
   {
@@ -68,7 +68,7 @@ export const speedQuizQuestions: SpeedQuizQuestion[] = [
     id: 9,
     statement: "O Google Gemini é a Inteligência Artificial desenvolvida pelo Google.",
     isTrue: true,
-    explanation: "O Gemini é o modelo principal do Google, integrado ao Docs, Gmail, YouTube e busca.",
+    explanation: "O Gemini é o modelo principal do Google, integrado aos serviços e buscas da web.",
     category: 'ai'
   },
   {
@@ -80,9 +80,9 @@ export const speedQuizQuestions: SpeedQuizQuestion[] = [
   },
   {
     id: 11,
-    statement: "No Google Docs, o atalho Ctrl + K serve para criar um Hiperlink em uma palavra.",
+    statement: "Ao pesquisar no Google, usar aspas entre uma palavra ou frase busca pelo termo exato.",
     isTrue: true,
-    explanation: "Ctrl + K abre a caixa para vincular uma URL a um texto selecionado.",
+    explanation: "Colocar termos entre aspas no Google (ex: \"informática básica\") força a busca pela frase exata.",
     category: 'google'
   },
   {
@@ -122,9 +122,9 @@ export const speedQuizQuestions: SpeedQuizQuestion[] = [
   },
   {
     id: 17,
-    statement: "No Google Docs, o atalho Ctrl + Shift + C exibe a contagem de palavras e caracteres.",
+    statement: "No Google Chrome, o atalho Ctrl + H abre a página com o Histórico de navegação recente.",
     isTrue: true,
-    explanation: "Ctrl + Shift + C abre o painel estatístico de contagem do documento.",
+    explanation: "O atalho Ctrl + H exibe a lista com todos os sites acessados anteriormente no navegador Chrome.",
     category: 'google'
   },
   {
@@ -278,9 +278,9 @@ export const speedQuizQuestions: SpeedQuizQuestion[] = [
   },
   {
     id: 39,
-    statement: "No Google Docs, a opção 'Baixar como PDF' converte o arquivo em um aplicativo instalável.",
+    statement: "No Google Chrome, fechar uma aba apaga todos os arquivos salvos no seu computador.",
     isTrue: false,
-    explanation: "A opção converte o documento em um arquivo PDF para leitura e impressão universais.",
+    explanation: "Fechar uma aba apenas encerra a visualização da página da internet, sem apagar arquivos do PC.",
     category: 'google'
   },
   {
