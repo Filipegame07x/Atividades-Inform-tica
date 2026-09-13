@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BookOpen, Keyboard, Zap, Trophy, Flame } from 'lucide-react';
+import { BookOpen, Keyboard, Zap, Flame } from 'lucide-react';
 import { SplashScreen } from './components/SplashScreen';
 import { Home } from './components/Home';
 import { PasswordGate } from './components/PasswordGate';
@@ -68,33 +68,25 @@ function App() {
                       className={`nav-tab-btn ${activeTab === 'ACTIVITIES' ? 'active' : ''}`}
                       onClick={() => setActiveTab('ACTIVITIES')}
                     >
-                      <BookOpen size={16} /> Atividades
-                    </button>
-                    <button 
-                      className="nav-tab-btn"
-                      style={{ color: '#fbbf24', borderColor: 'rgba(245, 158, 11, 0.3)', background: 'rgba(245, 158, 11, 0.1)' }}
-                      onClick={() => handleSelectActivity('desafio-completo')}
-                    >
-                      <Trophy size={16} /> Desafio Completo (35 Qs)
+                      <BookOpen size={16} /> Provas Oficiais
                     </button>
                     <button 
                       className={`nav-tab-btn ${activeTab === 'PRACTICE' ? 'active' : ''}`}
                       onClick={() => setActiveTab('PRACTICE')}
                     >
-                      <Keyboard size={16} /> Atividades para Praticar
+                      <Keyboard size={16} /> Prática de Digitação
                     </button>
                     <button 
                       className={`nav-tab-btn ${activeTab === 'SHORTCUTS' ? 'active' : ''}`}
                       onClick={() => setActiveTab('SHORTCUTS')}
                     >
-                      <Zap size={16} /> Desafio de Atalhos
+                      <Zap size={16} /> Atalhos de Teclado
                     </button>
                     <button 
                       className={`nav-tab-btn ${activeTab === 'SPEED_QUIZ' ? 'active' : ''}`}
-                      style={activeTab === 'SPEED_QUIZ' ? {} : { color: '#f59e0b', borderColor: 'rgba(245, 158, 11, 0.3)', background: 'rgba(245, 158, 11, 0.08)' }}
                       onClick={() => setActiveTab('SPEED_QUIZ')}
                     >
-                      <Flame size={16} color="#f59e0b" /> Speed Quiz (V ou F)
+                      <Flame size={16} color="#f59e0b" /> Speed Quiz
                     </button>
                   </div>
                 </div>

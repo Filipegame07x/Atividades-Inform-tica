@@ -8,6 +8,7 @@ export interface ObjectiveQuestion {
   question: string;
   options: QuestionOption[];
   correctOptionId: string;
+  difficulty?: 'facil' | 'media' | 'dificil';
 }
 
 export interface DiscursiveQuestion {
@@ -20,12 +21,4870 @@ export interface ActivityData {
   title: string;
   description: string;
   password: string;
-  iconType: 'word' | 'powerpoint' | 'chrome' | 'antivirus' | 'canva' | 'systems' | 'ai';
+  iconType: 'word' | 'powerpoint' | 'chrome' | 'antivirus' | 'canva' | 'systems' | 'ai' | 'gmail' | 'drive' | 'meet' | 'anydesk' | 'excel';
   objectiveQuestions: ObjectiveQuestion[];
   discursiveQuestions: DiscursiveQuestion[];
 }
 
 export const activities: ActivityData[] = [
+  // ===================================================================
+  // NOVAS ATIVIDADES OFICIAIS (40 QUESTÕES CADA)
+  // ===================================================================
+{
+  "id": "gmail",
+  "title": "Gmail - Correio Eletrônico",
+  "description": "Teste seus conhecimentos sobre o Gmail: redação de e-mails, anexos, organização com marcadores, pesquisa e segurança.",
+  "password": "IEPOP",
+  "iconType": "gmail",
+  "objectiveQuestions": [
+    {
+      "id": 1,
+      "question": "O que é o Gmail desenvolvido pelo Google?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Um reprodutor digital para arquivos musicais"
+        },
+        {
+          "id": "b",
+          "text": "Um serviço online de correio eletrônico"
+        },
+        {
+          "id": "c",
+          "text": "Um editor profissional de vídeos caseiros"
+        },
+        {
+          "id": "d",
+          "text": "Um navegador moderno para páginas web"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 2,
+      "question": "Qual a função do botão 'Escrever' (+)?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Excluir todas as mensagens da lixeira principal"
+        },
+        {
+          "id": "b",
+          "text": "Imprimir documentos em folhas de papel comum"
+        },
+        {
+          "id": "c",
+          "text": "Bloquear contatos suspeitos na conta pessoal"
+        },
+        {
+          "id": "d",
+          "text": "Iniciar a redação de um novo e-mail"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 3,
+      "question": "O que encontramos dentro da 'Caixa de Entrada'?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Novos e-mails recebidos de contatos"
+        },
+        {
+          "id": "b",
+          "text": "Vídeos salvos pelo histórico recente"
+        },
+        {
+          "id": "c",
+          "text": "Arquivos apagados do disco rígido"
+        },
+        {
+          "id": "d",
+          "text": "Programas prontos para serem instalados"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 4,
+      "question": "Para que serve a pasta de 'Rascunhos'?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Armazenar mensagens suspeitas com vírus perigosos"
+        },
+        {
+          "id": "b",
+          "text": "Exibir contatos bloqueados pelo usuário atual"
+        },
+        {
+          "id": "c",
+          "text": "Guardar e-mails iniciados e não enviados"
+        },
+        {
+          "id": "d",
+          "text": "Listar arquivos baixados da internet recentemente"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 5,
+      "question": "Qual informação deve ser digitada no campo 'Para'?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "O resumo do conteúdo da mensagem"
+        },
+        {
+          "id": "b",
+          "text": "A senha secreta da sua conta"
+        },
+        {
+          "id": "c",
+          "text": "O endereço de e-mail do destinatário"
+        },
+        {
+          "id": "d",
+          "text": "O link de uma página externa"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 6,
+      "question": "Para que serve o campo 'Assunto' da mensagem?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Resumir o tema principal do e-mail"
+        },
+        {
+          "id": "b",
+          "text": "Exibir a data atual no computador"
+        },
+        {
+          "id": "c",
+          "text": "Digitar a senha do remetente cadastrado"
+        },
+        {
+          "id": "d",
+          "text": "Inserir o número de telefone celular"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 7,
+      "question": "Qual ícone é utilizado para anexar um arquivo?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ícone de uma tesoura de cortar papel"
+        },
+        {
+          "id": "b",
+          "text": "Ícone de uma lupa para pesquisas rápidas"
+        },
+        {
+          "id": "c",
+          "text": "Ícone de uma lixeira de cor cinza"
+        },
+        {
+          "id": "d",
+          "text": "Ícone de um clipe metálico de papel"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 8,
+      "question": "O que significa a ação de 'Responder' um e-mail?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Apagar permanentemente a mensagem lida"
+        },
+        {
+          "id": "b",
+          "text": "Enviar retorno direto para o remetente"
+        },
+        {
+          "id": "c",
+          "text": "Bloquear a conta da pessoa imediatamente"
+        },
+        {
+          "id": "d",
+          "text": "Salvar a conversa no pendrive conectado"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 9,
+      "question": "O que a ferramenta 'Encaminhar' faz com a mensagem?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Envia o mesmo e-mail para terceiros"
+        },
+        {
+          "id": "b",
+          "text": "Traduz o conteúdo para outro idioma"
+        },
+        {
+          "id": "c",
+          "text": "Altera a fonte das letras digitadas"
+        },
+        {
+          "id": "d",
+          "text": "Remove as fotos salvas no computador"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 10,
+      "question": "Para que serve marcar uma mensagem com 'Estrela'?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Remover a mensagem para a lixeira comum"
+        },
+        {
+          "id": "b",
+          "text": "Bloquear o recebimento de novas notificações sonoras"
+        },
+        {
+          "id": "c",
+          "text": "Destacar e-mails de alta importância pessoal"
+        },
+        {
+          "id": "d",
+          "text": "Alterar a foto de perfil do remetente"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 11,
+      "question": "O que é a pasta 'Spam' no Gmail?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Área para armazenar contatos favoritos salvos"
+        },
+        {
+          "id": "b",
+          "text": "Local para mensagens indesejadas ou suspeitas"
+        },
+        {
+          "id": "c",
+          "text": "Pasta com fotos enviadas pelos colegas"
+        },
+        {
+          "id": "d",
+          "text": "Espaço para recibos de compras aprovadas"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 12,
+      "question": "Por quanto tempo os e-mails permanecem na Lixeira?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Por duas horas antes de serem apagados"
+        },
+        {
+          "id": "b",
+          "text": "Por dez anos guardados nos servidores seguros"
+        },
+        {
+          "id": "c",
+          "text": "Por cinco minutos até fechar o navegador"
+        },
+        {
+          "id": "d",
+          "text": "Por trinta dias até a exclusão automática"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 13,
+      "question": "Como localizar um e-mail específico rapidamente?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Reiniciando o computador para atualizar o sistema"
+        },
+        {
+          "id": "b",
+          "text": "Apagando todas as mensagens recebidas da caixa"
+        },
+        {
+          "id": "c",
+          "text": "Mudando a senha da sua conta Google"
+        },
+        {
+          "id": "d",
+          "text": "Usando a barra de pesquisa no topo"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 14,
+      "question": "O que significa um e-mail em 'Negrito' na lista?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que a mensagem contém um vírus perigoso"
+        },
+        {
+          "id": "b",
+          "text": "Que a mensagem ainda não foi lida"
+        },
+        {
+          "id": "c",
+          "text": "Que o remetente cancelou o envio anterior"
+        },
+        {
+          "id": "d",
+          "text": "Que o arquivo anexo foi danificado totalmente"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 15,
+      "question": "Onde ficam armazenados os e-mails enviados com sucesso?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Na pasta de Enviados do próprio Gmail"
+        },
+        {
+          "id": "b",
+          "text": "Na pasta de arquivos corrompidos da máquina"
+        },
+        {
+          "id": "c",
+          "text": "Na área de trabalho do sistema operacional"
+        },
+        {
+          "id": "d",
+          "text": "Na lixeira temporária do navegador de internet"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 16,
+      "question": "Qual símbolo identifica os e-mails marcados como importantes?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Um relógio vermelho de contagem regressiva ativa"
+        },
+        {
+          "id": "b",
+          "text": "Um triângulo de alerta de perigo iminente"
+        },
+        {
+          "id": "c",
+          "text": "Um marcador amarelo de formato tipo seta"
+        },
+        {
+          "id": "d",
+          "text": "Um ponto de exclamação de cor roxa"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 17,
+      "question": "Como desconectar sua conta com segurança ao terminar?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pressionando o botão físico de desligar monitor"
+        },
+        {
+          "id": "b",
+          "text": "Clicando na foto de perfil e em Sair"
+        },
+        {
+          "id": "c",
+          "text": "Desconectando o cabo de internet da parede"
+        },
+        {
+          "id": "d",
+          "text": "Excluindo o ícone do navegador da tela"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 18,
+      "question": "O que fazer ao receber um e-mail com link suspeito?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Não clicar no link e denunciar como spam"
+        },
+        {
+          "id": "b",
+          "text": "Clicar no link imediatamente para conferir prêmio"
+        },
+        {
+          "id": "c",
+          "text": "Encaminhar a mensagem para todos os amigos"
+        },
+        {
+          "id": "d",
+          "text": "Informar seus dados bancários para confirmar cadastro"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 19,
+      "question": "Qual o formato correto de um endereço de e-mail?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "www.nomedousuario.com sem arroba no texto digitado"
+        },
+        {
+          "id": "b",
+          "text": "http://usuario.provedor contendo barras e pontuação de site"
+        },
+        {
+          "id": "c",
+          "text": "usuario@provedor.com com arroba separando nome e provedor"
+        },
+        {
+          "id": "d",
+          "text": "usuario#provedor.net usando símbolo de cerquilha no meio"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 20,
+      "question": "O que acontece ao clicar no botão da lixeira?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Fecha a janela do navegador em execução"
+        },
+        {
+          "id": "b",
+          "text": "Salva uma cópia no disco do computador"
+        },
+        {
+          "id": "c",
+          "text": "Envia mensagem automática para todos os contatos"
+        },
+        {
+          "id": "d",
+          "text": "Move o e-mail selecionado para a lixeira"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 21,
+      "question": "Qual a finalidade do campo 'Cc' no e-mail?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ocultar o remetente de todas as pessoas"
+        },
+        {
+          "id": "b",
+          "text": "Cancelar o envio após dez segundos contados"
+        },
+        {
+          "id": "c",
+          "text": "Enviar cópia visível para outros destinatários"
+        },
+        {
+          "id": "d",
+          "text": "Inserir senhas de segurança em arquivos anexados"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 22,
+      "question": "O que acontece ao utilizar o campo 'Cco'?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "A mensagem é enviada sem texto digitado"
+        },
+        {
+          "id": "b",
+          "text": "O e-mail é marcado como rascunho temporário"
+        },
+        {
+          "id": "c",
+          "text": "Todos os anexos são excluídos automaticamente antes"
+        },
+        {
+          "id": "d",
+          "text": "Os destinatários não veem quem recebeu cópia"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 23,
+      "question": "Como funciona a função 'Desfazer Envio' no Gmail?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Apaga a mensagem lida na caixa alheia"
+        },
+        {
+          "id": "b",
+          "text": "Cancela o envio durante alguns segundos configurados"
+        },
+        {
+          "id": "c",
+          "text": "Exclui o contato da sua agenda telefônica"
+        },
+        {
+          "id": "d",
+          "text": "Reescreve o texto com sinônimos mais elegantes"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 24,
+      "question": "No Gmail, como são chamadas as etiquetas organizadoras?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Marcadores personalizados para classificar mensagens recebidas"
+        },
+        {
+          "id": "b",
+          "text": "Pastas de arquivos compactados do sistema"
+        },
+        {
+          "id": "c",
+          "text": "Tabelas com fórmulas numéricas do aplicativo"
+        },
+        {
+          "id": "d",
+          "text": "Janelas flutuantes de bate-papo de texto"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 25,
+      "question": "Para que serve o recurso de 'Agendar Envio'?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Programar data e hora futuras para envio"
+        },
+        {
+          "id": "b",
+          "text": "Despertar o usuário com um alarme sonoro"
+        },
+        {
+          "id": "c",
+          "text": "Imprimir relatórios automáticos no final do dia"
+        },
+        {
+          "id": "d",
+          "text": "Limpar a lixeira em horários pré-determinados"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 26,
+      "question": "Qual o limite tradicional de anexo no Gmail?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Até cinquenta gigabytes por mensagem enviada"
+        },
+        {
+          "id": "b",
+          "text": "Até vinte e cinco megabytes por envio"
+        },
+        {
+          "id": "c",
+          "text": "Até cem kilobytes apenas por documento"
+        },
+        {
+          "id": "d",
+          "text": "Sem nenhum tipo de limite de arquivo"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 27,
+      "question": "Como enviar arquivos maiores que o limite permitido?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dividindo o arquivo em mil partes minúsculas"
+        },
+        {
+          "id": "b",
+          "text": "Alterando a extensão do arquivo para texto"
+        },
+        {
+          "id": "c",
+          "text": "Enviando por correio tradicional em papel impresso"
+        },
+        {
+          "id": "d",
+          "text": "Compartilhando através de link do Google Drive"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 28,
+      "question": "O que é a 'Assinatura' automática de e-mail?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Documento oficial autenticado em cartório de notas"
+        },
+        {
+          "id": "b",
+          "text": "Comprovante de pagamento da mensalidade do serviço"
+        },
+        {
+          "id": "c",
+          "text": "Texto inserido automaticamente no final da mensagem"
+        },
+        {
+          "id": "d",
+          "text": "Código numérico enviado para validar o telefone"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 29,
+      "question": "Para que serve o 'Modo Confidencial' no Gmail?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Publicar o e-mail em redes sociais abertas"
+        },
+        {
+          "id": "b",
+          "text": "Gravar a voz do usuário enquanto escreve"
+        },
+        {
+          "id": "c",
+          "text": "Mudar o endereço de e-mail do remetente"
+        },
+        {
+          "id": "d",
+          "text": "Impedir cópia, impressão e definir prazo limite"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 30,
+      "question": "Qual a utilidade da 'Resposta Automática de Férias'?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Avisar automaticamente ausência para quem mandar e-mail"
+        },
+        {
+          "id": "b",
+          "text": "Comprar passagens de viagens aéreas com desconto"
+        },
+        {
+          "id": "c",
+          "text": "Desligar o roteador de internet da sua residência"
+        },
+        {
+          "id": "d",
+          "text": "Bloquear todas as chamadas telefônicas no celular"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 31,
+      "question": "O que a ação de 'Arquivar' faz com a mensagem?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Apaga o e-mail definitivamente sem chance volta"
+        },
+        {
+          "id": "b",
+          "text": "Envia o texto para a impressora padrão"
+        },
+        {
+          "id": "c",
+          "text": "Tira da entrada mantendo salva em Todos"
+        },
+        {
+          "id": "d",
+          "text": "Altera o remetente original da conversa salva"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 32,
+      "question": "Para que serve criar 'Filtros' automáticos no Gmail?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Melhorar as cores e brilho das fotos"
+        },
+        {
+          "id": "b",
+          "text": "Organizar e marcar e-mails conforme regras definidas"
+        },
+        {
+          "id": "c",
+          "text": "Aumentar a velocidade física da internet contratada"
+        },
+        {
+          "id": "d",
+          "text": "Limpar o pó acumulado no teclado físico"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 33,
+      "question": "Como o Gmail divide as abas na caixa padrão?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Em Jogos, Músicas e arquivos de Vídeos"
+        },
+        {
+          "id": "b",
+          "text": "Em Manhã, Tarde e período da Noite"
+        },
+        {
+          "id": "c",
+          "text": "Em Principal, Social e aba de Promoções"
+        },
+        {
+          "id": "d",
+          "text": "Em Curtas, Médias e mensagens muito Longas"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 34,
+      "question": "Qual atalho padrão do teclado abre novo e-mail?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pressionar a tecla Escape três vezes seguidas"
+        },
+        {
+          "id": "b",
+          "text": "Pressionar a tecla C com atalhos ativados"
+        },
+        {
+          "id": "c",
+          "text": "Segurar a tecla Tab por dez segundos"
+        },
+        {
+          "id": "d",
+          "text": "Apertar a barra de espaço cinco vezes"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 35,
+      "question": "Como bloquear um remetente indesejado no Gmail?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nos três pontos da mensagem > Bloquear remetente"
+        },
+        {
+          "id": "b",
+          "text": "Desinstalando o navegador de internet do computador pessoal"
+        },
+        {
+          "id": "c",
+          "text": "Apagando a sua própria conta Google principal"
+        },
+        {
+          "id": "d",
+          "text": "Desligando a tomada de energia do aparelho"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 36,
+      "question": "Qual operador de busca localiza mensagens com anexos?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "find:files escrito na caixa de mensagens enviadas"
+        },
+        {
+          "id": "b",
+          "text": "get:docs colocado no início do campo assunto"
+        },
+        {
+          "id": "c",
+          "text": "show:media colocado entre parênteses no texto digitado"
+        },
+        {
+          "id": "d",
+          "text": "has:attachment digitado na barra de pesquisa superior"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 37,
+      "question": "O que a autenticação de dois fatores (2FA) garante?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Duplicação da velocidade de download de anexos"
+        },
+        {
+          "id": "b",
+          "text": "Segurança extra exigindo código além da senha"
+        },
+        {
+          "id": "c",
+          "text": "Acesso livre sem necessidade de lembrar senhas"
+        },
+        {
+          "id": "d",
+          "text": "Armazenamento ilimitado gratuito para vídeos em nuvem"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 38,
+      "question": "Qual a diferença entre protocolos IMAP e POP3?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "IMAP envia cartas físicas e POP3 digitais"
+        },
+        {
+          "id": "b",
+          "text": "IMAP apaga senhas e POP3 cria cadastros"
+        },
+        {
+          "id": "c",
+          "text": "IMAP sincroniza tudo e POP3 baixa localmente"
+        },
+        {
+          "id": "d",
+          "text": "IMAP serve jogos e POP3 edita planilhas"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 39,
+      "question": "Como buscar mensagens enviadas por alguém específico?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Usando to:nomedapessoa no final do documento escrito"
+        },
+        {
+          "id": "b",
+          "text": "Usando send:usuario na lista de contatos bloqueados"
+        },
+        {
+          "id": "c",
+          "text": "Usando mail:pessoa no rodapé de configurações avançadas"
+        },
+        {
+          "id": "d",
+          "text": "Usando from:nomedapessoa na caixa de busca superior"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 40,
+      "question": "Como funciona o encaminhamento automático de e-mails?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Requer autorização com código de confirmação prévia"
+        },
+        {
+          "id": "b",
+          "text": "Transfere os e-mails sem nenhum aviso prévio"
+        },
+        {
+          "id": "c",
+          "text": "Apaga a conta original no primeiro envio"
+        },
+        {
+          "id": "d",
+          "text": "Exige pagamento mensal por cada cópia enviada"
+        }
+      ],
+      "correctOptionId": "a"
+    }
+  ],
+  "discursiveQuestions": []
+},
+
+{
+  "id": "drive",
+  "title": "Google Drive - Nuvem e Armazenamento",
+  "description": "Teste seus conhecimentos sobre o Google Drive: pastas, upload de arquivos, níveis de compartilhamento, histórico e sincronização.",
+  "password": "IEPOP",
+  "iconType": "drive",
+  "objectiveQuestions": [
+    {
+      "id": 1,
+      "question": "O que é o Google Drive desenvolvido pelo Google?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Um editor profissional para corte e montagem de vídeos"
+        },
+        {
+          "id": "b",
+          "text": "Um serviço online para armazenar arquivos em nuvem"
+        },
+        {
+          "id": "c",
+          "text": "Um reprodutor portátil para arquivos de áudio digital"
+        },
+        {
+          "id": "d",
+          "text": "Um antivírus focado na remoção de vírus do sistema"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 2,
+      "question": "Para que serve o botão colorido 'Novo' (+)?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Excluir permanentemente todas as fotos salvas no computador"
+        },
+        {
+          "id": "b",
+          "text": "Desligar o monitor de vídeo do seu computador pessoal"
+        },
+        {
+          "id": "c",
+          "text": "Imprimir páginas de texto em folhas de papel comum"
+        },
+        {
+          "id": "d",
+          "text": "Criar novas pastas ou fazer envio de arquivos"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 3,
+      "question": "Como criar uma pasta nova dentro do Drive?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Clicar no botão Novo e selecionar Nova Pasta"
+        },
+        {
+          "id": "b",
+          "text": "Reiniciar o computador para aplicar as novas alterações"
+        },
+        {
+          "id": "c",
+          "text": "Desinstalar o navegador de internet do seu computador"
+        },
+        {
+          "id": "d",
+          "text": "Apagar todas as mensagens da sua caixa de entrada"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 4,
+      "question": "O que significa 'Fazer Upload de Arquivo'?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Baixar arquivos da internet para o pendrive"
+        },
+        {
+          "id": "b",
+          "text": "Excluir documentos antigos gravados no disco rígido"
+        },
+        {
+          "id": "c",
+          "text": "Enviar arquivos do computador para a nuvem"
+        },
+        {
+          "id": "d",
+          "text": "Imprimir folhas de documentos em preto e branco"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 5,
+      "question": "O que a opção 'Upload de Pastas' permite fazer?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Apagar diretórios do sistema operacional sem autorização"
+        },
+        {
+          "id": "b",
+          "text": "Criar senhas aleatórias para arquivos de texto"
+        },
+        {
+          "id": "c",
+          "text": "Enviar pastas inteiras de uma só vez"
+        },
+        {
+          "id": "d",
+          "text": "Formatar a memória interna do telefone celular"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 6,
+      "question": "Quanto espaço gratuito padrão cada conta Google possui?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Quinze gigabytes de espaço total na nuvem"
+        },
+        {
+          "id": "b",
+          "text": "Dois megabytes apenas para documentos de texto"
+        },
+        {
+          "id": "c",
+          "text": "Quinhentos terabytes liberados sem cobrança nenhuma"
+        },
+        {
+          "id": "d",
+          "text": "Cem kilobytes para uso em dias úteis"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 7,
+      "question": "O que encontramos na aba 'Compartilhados Comigo'?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Vídeos excluídos da lixeira nos últimos dias"
+        },
+        {
+          "id": "b",
+          "text": "Programas bloqueados pelo antivírus do seu computador"
+        },
+        {
+          "id": "c",
+          "text": "Fotos tiradas pela câmera do telefone móvel"
+        },
+        {
+          "id": "d",
+          "text": "Arquivos que outras pessoas enviaram para você"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 8,
+      "question": "Para que serve a aba 'Recentes' no menu?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Mostrar os e-mails excluídos da sua conta pessoal"
+        },
+        {
+          "id": "b",
+          "text": "Exibir arquivos abertos ou modificados recentemente pelo usuário"
+        },
+        {
+          "id": "c",
+          "text": "Listar contatos sem número de telefone celular cadastrado"
+        },
+        {
+          "id": "d",
+          "text": "Medir a velocidade da conexão de rede local ativa"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 9,
+      "question": "Para que serve a aba 'Com Estrela'?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Acessar documentos favoritos destacados pelo usuário facilmente"
+        },
+        {
+          "id": "b",
+          "text": "Apagar fotos borradas salvas na memória interna"
+        },
+        {
+          "id": "c",
+          "text": "Bloquear downloads vindos de fontes desconhecidas na rede"
+        },
+        {
+          "id": "d",
+          "text": "Alterar a foto de perfil da sua conta"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 10,
+      "question": "O que acontece com itens enviados para Lixeira?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "São deletados imediatamente no primeiro segundo após clique"
+        },
+        {
+          "id": "b",
+          "text": "Ficam disponíveis para sempre sem nunca serem apagados"
+        },
+        {
+          "id": "c",
+          "text": "Permanecem guardados por trinta dias até exclusão"
+        },
+        {
+          "id": "d",
+          "text": "São transformados em arquivos executáveis de jogos modernos"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 11,
+      "question": "Como abrir um arquivo salvo no Drive?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pressionando a tecla Esc dez vezes consecutivas"
+        },
+        {
+          "id": "b",
+          "text": "Dando dois cliques rápidos sobre o item"
+        },
+        {
+          "id": "c",
+          "text": "Desconectando o cabo de rede do roteador"
+        },
+        {
+          "id": "d",
+          "text": "Fechando o navegador com o mouse esquerdo"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 12,
+      "question": "Como alterar o nome de um arquivo existente?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Desligando a energia elétrica da tomada da parede"
+        },
+        {
+          "id": "b",
+          "text": "Excluindo a pasta principal do sistema operacional Windows"
+        },
+        {
+          "id": "c",
+          "text": "Enviando uma mensagem para o suporte técnico oficial"
+        },
+        {
+          "id": "d",
+          "text": "Clicando com botão direito e escolhendo Renomear"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 13,
+      "question": "Qual ícone é usado para excluir arquivos selecionados?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ícone no formato de uma lupa azul"
+        },
+        {
+          "id": "b",
+          "text": "Ícone no formato de um sol amarelo"
+        },
+        {
+          "id": "c",
+          "text": "Ícone no formato de uma chave prateada"
+        },
+        {
+          "id": "d",
+          "text": "Ícone no formato de uma lixeira cinza"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 14,
+      "question": "Para que serve a barra de busca superior?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Alterar a senha da conta Google do usuário"
+        },
+        {
+          "id": "b",
+          "text": "Pesquisar palavras e nomes de documentos arquivados"
+        },
+        {
+          "id": "c",
+          "text": "Calcular fórmulas matemáticas avançadas de física quântica"
+        },
+        {
+          "id": "d",
+          "text": "Aumentar a memória RAM do computador pessoal"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 15,
+      "question": "O que significa a ação de 'Fazer Download'?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Baixar o arquivo da nuvem para computador"
+        },
+        {
+          "id": "b",
+          "text": "Enviar o arquivo da máquina para internet"
+        },
+        {
+          "id": "c",
+          "text": "Remover todos os textos do arquivo selecionado"
+        },
+        {
+          "id": "d",
+          "text": "Imprimir cinco cópias coloridas em folha sulfite"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 16,
+      "question": "Como alternar entre a exibição em grade ou lista?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Reiniciando o sistema operacional em modo de segurança"
+        },
+        {
+          "id": "b",
+          "text": "Apertando a barra de espaço quatro vezes seguidas"
+        },
+        {
+          "id": "c",
+          "text": "Clicando no botão de layout no canto superior"
+        },
+        {
+          "id": "d",
+          "text": "Segurando a tecla Shift por trinta segundos contados"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 17,
+      "question": "Como mover um documento para dentro de uma pasta?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Digitando a palavra mover na caixa de pesquisa"
+        },
+        {
+          "id": "b",
+          "text": "Arrastando o arquivo com mouse até a pasta"
+        },
+        {
+          "id": "c",
+          "text": "Formatando a partição de inicialização do disco rígido"
+        },
+        {
+          "id": "d",
+          "text": "Abrindo o painel de controle do sistema operacional"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 18,
+      "question": "Qual é o símbolo visual oficial do Drive?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Um triângulo geométrico com três cores vibrantes diferentes"
+        },
+        {
+          "id": "b",
+          "text": "Um quadrado preto com uma letra X branca"
+        },
+        {
+          "id": "c",
+          "text": "Um círculo roxo com desenho de uma nota musical"
+        },
+        {
+          "id": "d",
+          "text": "Uma estrela dourada com cinco pontas perfeitamente alinhadas"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 19,
+      "question": "É possível acessar o Drive em celulares e tablets?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Não pois computadores de mesa são obrigatórios sempre"
+        },
+        {
+          "id": "b",
+          "text": "Apenas durante os finais de semana e feriados"
+        },
+        {
+          "id": "c",
+          "text": "Sim através do aplicativo oficial para sistemas móveis"
+        },
+        {
+          "id": "d",
+          "text": "Somente conectando um teclado físico com cabo USB"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 20,
+      "question": "O que é indispensável para usar o Google Drive?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Comprar uma impressora colorida de alta velocidade profissional"
+        },
+        {
+          "id": "b",
+          "text": "Instalar placas aceleradoras de jogos de última geração"
+        },
+        {
+          "id": "c",
+          "text": "Possuir diploma universitário na área de engenharia de software"
+        },
+        {
+          "id": "d",
+          "text": "Ter uma conta Google e conexão à internet"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 21,
+      "question": "Quais são os níveis básicos de permissão no compartilhamento?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Permissões de Administrador, Dono e função de Convidado"
+        },
+        {
+          "id": "b",
+          "text": "Permissões de Aluno, Professor e função de Diretor"
+        },
+        {
+          "id": "c",
+          "text": "Permissões de Leitor, Comentador e também de Editor"
+        },
+        {
+          "id": "d",
+          "text": "Permissões de Básico, Prata e plano de Ouro"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 22,
+      "question": "O que a permissão de 'Leitor' autoriza fazer?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Apagar todas as páginas e renomear o arquivo"
+        },
+        {
+          "id": "b",
+          "text": "Excluir a conta Google do proprietário do documento"
+        },
+        {
+          "id": "c",
+          "text": "Alterar as fórmulas matemáticas de todas as células"
+        },
+        {
+          "id": "d",
+          "text": "Apenas visualizar e baixar o documento sem alterá-lo"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 23,
+      "question": "O que a permissão de 'Editor' autoriza fazer?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Apenas visualizar o documento sem poder fazer download"
+        },
+        {
+          "id": "b",
+          "text": "Modificar, adicionar e excluir conteúdos do próprio documento"
+        },
+        {
+          "id": "c",
+          "text": "Bloquear o acesso da internet de outros participantes"
+        },
+        {
+          "id": "d",
+          "text": "Desligar os servidores centrais da empresa prestadora"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 24,
+      "question": "Como compartilhar um arquivo através de um link?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Gerando link compartilhável nas configurações do próprio arquivo"
+        },
+        {
+          "id": "b",
+          "text": "Copiando o atalho da área de trabalho do PC"
+        },
+        {
+          "id": "c",
+          "text": "Formatando o disco rígido do computador em questão"
+        },
+        {
+          "id": "d",
+          "text": "Enviando uma carta registrada pelo correio tradicional brasileiro"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 25,
+      "question": "O que faz a opção 'Qualquer pessoa com o link'?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Permite acesso público a quem tiver o endereço"
+        },
+        {
+          "id": "b",
+          "text": "Exige aprovação do governo federal para visualização livre"
+        },
+        {
+          "id": "c",
+          "text": "Bloqueia o arquivo para todas as pessoas do mundo"
+        },
+        {
+          "id": "d",
+          "text": "Envia o arquivo para a lixeira do sistema"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 26,
+      "question": "Para que serve o 'Histórico de Versões' de documentos?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Limpar o histórico de navegação do Google Chrome"
+        },
+        {
+          "id": "b",
+          "text": "Restaurar alterações anteriores feitas ao longo do tempo"
+        },
+        {
+          "id": "c",
+          "text": "Aumentar a resolução das imagens contidas no texto"
+        },
+        {
+          "id": "d",
+          "text": "Traduzir automaticamente o documento para cinquenta idiomas diferentes"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 27,
+      "question": "O espaço de 15 GB é compartilhado com quais serviços?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Com Netflix, YouTube e serviços de música Spotify"
+        },
+        {
+          "id": "b",
+          "text": "Com Microsoft Word, PowerPoint e o programa Excel"
+        },
+        {
+          "id": "c",
+          "text": "Com jogos eletrônicos instalados na área de trabalho"
+        },
+        {
+          "id": "d",
+          "text": "Com Gmail, Google Fotos e com o próprio Drive"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 28,
+      "question": "Para que serve o recurso de 'Adicionar Atalho'?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Duplicar o arquivo consumindo o dobro do armazenamento"
+        },
+        {
+          "id": "b",
+          "text": "Apagar permanentemente o documento original de sua pasta"
+        },
+        {
+          "id": "c",
+          "text": "Criar caminho rápido sem duplicar espaço do arquivo"
+        },
+        {
+          "id": "d",
+          "text": "Proteger o computador contra invasões de vírus espiões"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 29,
+      "question": "O que acontece ao esvaziar a Lixeira do Drive?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Devolve os documentos para suas pastas originais imediatamente"
+        },
+        {
+          "id": "b",
+          "text": "Envia cópias para os e-mails de todos contatos"
+        },
+        {
+          "id": "c",
+          "text": "Transforma os arquivos em planilhas numéricas do Excel"
+        },
+        {
+          "id": "d",
+          "text": "Exclui definitivamente todos os arquivos sem possibilidade retorno"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 30,
+      "question": "Quais aplicativos funcionam integrados diretamente ao Google Drive?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Google Documentos, Google Planilhas e também Google Apresentações"
+        },
+        {
+          "id": "b",
+          "text": "Adobe Photoshop, Corel Draw e reprodutor de mídia VLC"
+        },
+        {
+          "id": "c",
+          "text": "Bloco de Notas, Paint clássico e Calculadora nativa"
+        },
+        {
+          "id": "d",
+          "text": "Jogos eletrônicos de computador e emuladores de videogame"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 31,
+      "question": "Para que serve ativar o 'Acesso Offline' nos arquivos?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Esconder os arquivos de todas as pessoas cadastradas"
+        },
+        {
+          "id": "b",
+          "text": "Economizar bateria desligando totalmente a tela do computador"
+        },
+        {
+          "id": "c",
+          "text": "Trabalhar nos documentos mesmo sem conexão com internet"
+        },
+        {
+          "id": "d",
+          "text": "Impedir que novos arquivos sejam salvos na máquina"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 32,
+      "question": "O que é 'Transferir Propriedade' de um arquivo compartilhado?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Vender o arquivo na internet por moedas digitais"
+        },
+        {
+          "id": "b",
+          "text": "Passar o controle total do arquivo para outro usuário"
+        },
+        {
+          "id": "c",
+          "text": "Apagar o arquivo da nuvem de modo irreversível"
+        },
+        {
+          "id": "d",
+          "text": "Enviar o arquivo impresso para o endereço residencial"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 33,
+      "question": "Como filtrar a busca apenas por arquivos em formato PDF?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Digitando a palavra vírus na barra de pesquisa principal"
+        },
+        {
+          "id": "b",
+          "text": "Desconectando o mouse e usando apenas as setas direcionais"
+        },
+        {
+          "id": "c",
+          "text": "Selecionando o filtro específico de Tipo de Arquivo PDF"
+        },
+        {
+          "id": "d",
+          "text": "Apagando a extensão de todos os arquivos da pasta"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 34,
+      "question": "Qual o papel do aplicativo Google Drive para Computador?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Aumentar a resolução dos jogos instalados na máquina"
+        },
+        {
+          "id": "b",
+          "text": "Sincronizar pastas do computador automaticamente com a nuvem"
+        },
+        {
+          "id": "c",
+          "text": "Limpar o pó acumulado dentro da placa mãe"
+        },
+        {
+          "id": "d",
+          "text": "Bloquear chamadas recebidas no aparelho de telefone celular"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 35,
+      "question": "Como gerar uma cópia idêntica de um arquivo existente?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Clicando com botão direito e escolhendo Fazer Cópia"
+        },
+        {
+          "id": "b",
+          "text": "Desinstalando e instalando novamente o navegador Google Chrome"
+        },
+        {
+          "id": "c",
+          "text": "Formatando o pendrive conectado na porta USB frontal"
+        },
+        {
+          "id": "d",
+          "text": "Tirando uma foto da tela com câmera do celular"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 36,
+      "question": "O que são 'Drives Compartilhados' no Google Workspace?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Disquetes magnéticos antigos usados para gravação de fotos"
+        },
+        {
+          "id": "b",
+          "text": "Cabos de alta velocidade para transferência entre celulares"
+        },
+        {
+          "id": "c",
+          "text": "Programas antivírus destinados a servidores de rede local"
+        },
+        {
+          "id": "d",
+          "text": "Espaços corporativos cujos arquivos pertencem à instituição"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 37,
+      "question": "Qual o tamanho máximo aceito para upload de arquivo individual?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Até cem kilobytes para qualquer formato de arquivo"
+        },
+        {
+          "id": "b",
+          "text": "Até cinco terabytes para contas com suporte corporativo"
+        },
+        {
+          "id": "c",
+          "text": "Até vinte megabytes apenas para imagens e vídeos"
+        },
+        {
+          "id": "d",
+          "text": "Sem nenhum limite físico definido nos servidores centrais"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 38,
+      "question": "Como impedir que visualizadores copiem, imprimam ou baixem arquivos?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Desligando o computador do usuário que está visualizando remotamente"
+        },
+        {
+          "id": "b",
+          "text": "Renomeando a extensão do arquivo para ponto exe criptografado"
+        },
+        {
+          "id": "c",
+          "text": "Desmarcando a opção nas configurações avançadas de compartilhamento"
+        },
+        {
+          "id": "d",
+          "text": "Bloqueando o endereço IP do roteador da sua cidade"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 39,
+      "question": "Qual operador de busca encontra arquivos criados por você?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "find:user escrito no campo de rascunhos de e-mails"
+        },
+        {
+          "id": "b",
+          "text": "get:mine colocado entre colchetes no final do documento"
+        },
+        {
+          "id": "c",
+          "text": "show:files inserido na lixeira temporária do seu navegador"
+        },
+        {
+          "id": "d",
+          "text": "owner:me digitado diretamente na barra de pesquisa superior"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 40,
+      "question": "Como recuperar arquivos apagados da lixeira de contas institucionais?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Através do painel do administrador em até 25 dias"
+        },
+        {
+          "id": "b",
+          "text": "Formatando o computador e reinstalando o sistema operacional Windows"
+        },
+        {
+          "id": "c",
+          "text": "Ligando para o provedor de internet e pedindo backup"
+        },
+        {
+          "id": "d",
+          "text": "Criando uma nova conta de e-mail com outro nome"
+        }
+      ],
+      "correctOptionId": "a"
+    }
+  ],
+  "discursiveQuestions": []
+},
+
+{
+  "id": "meet",
+  "title": "Google Meet - Videoconferências",
+  "description": "Teste seus conhecimentos sobre o Google Meet: chamadas de vídeo, microfone e câmera, compartilhamento de tela e controles da reunião.",
+  "password": "IEPOP",
+  "iconType": "meet",
+  "objectiveQuestions": [
+    {
+      "id": 1,
+      "question": "O que é o Google Meet desenvolvido pelo Google?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Um editor profissional para corte e montagem de fotos"
+        },
+        {
+          "id": "b",
+          "text": "Um serviço online de videoconferências e chamadas de vídeo"
+        },
+        {
+          "id": "c",
+          "text": "Um utilitário de segurança voltado para remover vírus perigosos"
+        },
+        {
+          "id": "d",
+          "text": "Um reprodutor portátil para escutar faixas de músicas digitais"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 2,
+      "question": "Como iniciar uma nova reunião no Google Meet?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Desconectando o monitor de vídeo do seu computador"
+        },
+        {
+          "id": "b",
+          "text": "Excluindo a pasta de arquivos da sua lixeira"
+        },
+        {
+          "id": "c",
+          "text": "Formatando a memória principal do seu telefone celular"
+        },
+        {
+          "id": "d",
+          "text": "Clicando no botão azul chamado Nova Reunião"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 3,
+      "question": "Como convidar colegas para entrar na sua chamada?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Compartilhando o link ou o código da reunião"
+        },
+        {
+          "id": "b",
+          "text": "Desinstalando o navegador de internet do computador pessoal"
+        },
+        {
+          "id": "c",
+          "text": "Alterando a senha secreta da sua conta Google"
+        },
+        {
+          "id": "d",
+          "text": "Desligando o roteador de sinal Wi-Fi da residência"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 4,
+      "question": "Para que serve o ícone do microfone na tela?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Alterar a cor de fundo de todas as páginas"
+        },
+        {
+          "id": "b",
+          "text": "Desconectar todos os colegas da chamada ao mesmo tempo"
+        },
+        {
+          "id": "c",
+          "text": "Ligar ou silenciar a sua própria voz na reunião"
+        },
+        {
+          "id": "d",
+          "text": "Imprimir documentos em folhas brancas de papel sulfite padrão"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 5,
+      "question": "Para que serve o ícone de filmadora na tela?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Formatar o disco rígido do computador em que está conectado"
+        },
+        {
+          "id": "b",
+          "text": "Apagar todas as mensagens salvas na caixa de entrada"
+        },
+        {
+          "id": "c",
+          "text": "Ligar ou desligar a transmissão da sua câmera de vídeo"
+        },
+        {
+          "id": "d",
+          "text": "Aumentar a quantidade de memória RAM física do seu equipamento"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 6,
+      "question": "O que o botão vermelho com desenho de telefone faz?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Encerra a sua participação na chamada de vídeo atual"
+        },
+        {
+          "id": "b",
+          "text": "Aumenta o volume do som para a potência máxima"
+        },
+        {
+          "id": "c",
+          "text": "Envia convite para todas as pessoas da lista contatos"
+        },
+        {
+          "id": "d",
+          "text": "Grava a chamada na memória do aparelho de celular"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 7,
+      "question": "Qual a função do botão 'Levantar a Mão'?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Expulsar participantes que estiverem falando alto na sala virtual"
+        },
+        {
+          "id": "b",
+          "text": "Desligar a tela do monitor de vídeo do participante"
+        },
+        {
+          "id": "c",
+          "text": "Mudar o idioma padrão de todos os participantes presentes"
+        },
+        {
+          "id": "d",
+          "text": "Sinalizar educadamente que você deseja falar na reunião"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 8,
+      "question": "Para que serve a janela de 'Chat' na chamada?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Apagar fotos e documentos salvos no disco do computador"
+        },
+        {
+          "id": "b",
+          "text": "Digitar mensagens de texto e compartilhar links com participantes"
+        },
+        {
+          "id": "c",
+          "text": "Medir a temperatura dos componentes internos da placa do PC"
+        },
+        {
+          "id": "d",
+          "text": "Alterar as senhas das redes sociais de outros colegas"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 9,
+      "question": "O que a ferramenta 'Apresentar Agora' permite fazer?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Compartilhar a tela do seu computador com outros participantes"
+        },
+        {
+          "id": "b",
+          "text": "Excluir permanentemente o perfil de outros participantes da chamada"
+        },
+        {
+          "id": "c",
+          "text": "Diminuir a velocidade de conexão de outros computadores conectados"
+        },
+        {
+          "id": "d",
+          "text": "Limpar o histórico de páginas acessadas no seu navegador"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 10,
+      "question": "Para que serve o botão de legendas automáticas (CC)?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Gravar arquivos de áudio em formato musical MP3 compacto"
+        },
+        {
+          "id": "b",
+          "text": "Desativar as caixas de som de todos os aparelhos"
+        },
+        {
+          "id": "c",
+          "text": "Exibir em texto na tela tudo o que falam"
+        },
+        {
+          "id": "d",
+          "text": "Traduzir o sistema operacional para língua russa ou japonesa"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 11,
+      "question": "Para que serve o recurso de 'Efeitos Visuais'?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Aumentar a velocidade física de operação do processador principal"
+        },
+        {
+          "id": "b",
+          "text": "Desfocar ou trocar a imagem do fundo da câmera"
+        },
+        {
+          "id": "c",
+          "text": "Corrigir defeitos físicos na tela do monitor do computador"
+        },
+        {
+          "id": "d",
+          "text": "Desinstalar aplicativos indesejados da memória do telefone celular"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 12,
+      "question": "O que é o código identificador de uma reunião?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "A senha bancária pessoal de quem criou a reunião"
+        },
+        {
+          "id": "b",
+          "text": "O número de série gravado na carcaça do computador"
+        },
+        {
+          "id": "c",
+          "text": "O endereço residencial de quem organizou a sala virtual"
+        },
+        {
+          "id": "d",
+          "text": "Uma combinação única de letras para entrar na sala"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 13,
+      "question": "Como funciona a exibição visual em formato Mosaico?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Esconde todas as pessoas deixando a tela totalmente preta"
+        },
+        {
+          "id": "b",
+          "text": "Exibe apenas o relógio de contagem de tempo restante"
+        },
+        {
+          "id": "c",
+          "text": "Divide a chamada em três ligações telefônicas convencionais analógicas"
+        },
+        {
+          "id": "d",
+          "text": "Mostra vários participantes em pequenos retângulos na tela simultaneamente"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 14,
+      "question": "O que significa 'Fixar' um participante na tela?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Impedir que a pessoa saia da chamada de vídeo"
+        },
+        {
+          "id": "b",
+          "text": "Manter o vídeo daquela pessoa em destaque contínuo principal"
+        },
+        {
+          "id": "c",
+          "text": "Apagar os arquivos salvos no computador daquele usuário específico"
+        },
+        {
+          "id": "d",
+          "text": "Cobrar taxa de inscrição pelo tempo permanecido na sala"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 15,
+      "question": "Por que é recomendável utilizar fones de ouvido?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Para evitar eco e ruídos indesejados na transmissão sonora"
+        },
+        {
+          "id": "b",
+          "text": "Para aumentar a velocidade da internet em duas vezes"
+        },
+        {
+          "id": "c",
+          "text": "Para impedir que a câmera do computador pare de funcionar"
+        },
+        {
+          "id": "d",
+          "text": "Para desbloquear o acesso a salas virtuais pagas internacionalmente"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 16,
+      "question": "Quem tem autoridade para aceitar novos participantes externos?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Qualquer pessoa que esteja passando na rua naquele momento"
+        },
+        {
+          "id": "b",
+          "text": "O provedor de energia elétrica da cidade do usuário"
+        },
+        {
+          "id": "c",
+          "text": "O anfitrião que organiza e gerencia a reunião ativa"
+        },
+        {
+          "id": "d",
+          "text": "Nenhum usuário pois a entrada é sempre proibida totalmente"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 17,
+      "question": "O que podemos conferir na tela de preparação inicial?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Apagar todas as fotos armazenadas no computador da escola"
+        },
+        {
+          "id": "b",
+          "text": "Testar o funcionamento da câmera e do microfone conectado"
+        },
+        {
+          "id": "c",
+          "text": "Pagar boletos bancários através de código de barras digitado"
+        },
+        {
+          "id": "d",
+          "text": "Mudar as configurações físicas da rede elétrica da casa"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 18,
+      "question": "É viável utilizar o Google Meet em celulares modernos?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sim instalando o aplicativo oficial em aparelhos móveis compatíveis"
+        },
+        {
+          "id": "b",
+          "text": "Não pois computadores com gabinetes pesados são obrigatórios sempre"
+        },
+        {
+          "id": "c",
+          "text": "Apenas se o aparelho estiver conectado por cabos submarinos"
+        },
+        {
+          "id": "d",
+          "text": "Somente após realizar recarga financeira no cartão de crédito"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 19,
+      "question": "Qual o símbolo característico do logotipo do Google Meet?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Uma tesoura verde para cortar papel vegetal de desenho"
+        },
+        {
+          "id": "b",
+          "text": "Um volante de automóvel de corrida para jogos eletrônicos"
+        },
+        {
+          "id": "c",
+          "text": "Uma câmera de vídeo desenhada com quatro cores diferentes"
+        },
+        {
+          "id": "d",
+          "text": "Uma nota musical preta sobre um fundo totalmente amarelo"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 20,
+      "question": "O que é indispensável para entrar em videoconferências virtuais?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Uma placa de som profissional de estúdio de gravação"
+        },
+        {
+          "id": "b",
+          "text": "Três monitores de vídeo de alta resolução gráfica simultâneos"
+        },
+        {
+          "id": "c",
+          "text": "Assinatura mensal de televisão a cabo em canal fechado"
+        },
+        {
+          "id": "d",
+          "text": "Acesso à internet estável e um navegador ou aplicativo"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 21,
+      "question": "Quais opções surgem ao clicar em Apresentar Agora?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Um Arquivo de Som, um E-mail ou Mensagem Direta"
+        },
+        {
+          "id": "b",
+          "text": "Um Contato Salvo, uma Foto ou Teclado Virtual Numérico"
+        },
+        {
+          "id": "c",
+          "text": "Uma Guia do Chrome, uma Janela ou Tela Inteira"
+        },
+        {
+          "id": "d",
+          "text": "Um Vírus Detectado, uma Lixeira ou Painel de Controle"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 22,
+      "question": "Qual opção é recomendada para transmitir vídeos com áudio?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Gravar a tela com o celular e enviar por correio"
+        },
+        {
+          "id": "b",
+          "text": "Aproximar o microfone físico das caixas de som acústicas"
+        },
+        {
+          "id": "c",
+          "text": "Reiniciar o computador em modo texto preto e branco"
+        },
+        {
+          "id": "d",
+          "text": "Compartilhar uma Guia do navegador com áudio ativado junto"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 23,
+      "question": "Para que servem os 'Controles do Organizador' na chamada?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Mudar a senha do e-mail de todos os convidados"
+        },
+        {
+          "id": "b",
+          "text": "Controlar quem pode enviar mensagens no chat e compartilhar tela"
+        },
+        {
+          "id": "c",
+          "text": "Desligar os aparelhos de ar-condicionado das residências dos colegas"
+        },
+        {
+          "id": "d",
+          "text": "Aumentar a memória do disco rígido de todos participantes"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 24,
+      "question": "Qual a diferença entre Reunião Instantânea e Agendada?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Instantânea começa imediatamente e agendada tem data e hora"
+        },
+        {
+          "id": "b",
+          "text": "Instantânea exige pagamento em dinheiro e agendada é gratuita"
+        },
+        {
+          "id": "c",
+          "text": "Instantânea não permite som e agendada não permite vídeo"
+        },
+        {
+          "id": "d",
+          "text": "Instantânea apaga o computador e agendada grava no pendrive"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 25,
+      "question": "O que o anfitrião pode fazer se alguém fizer barulho?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Desativar o microfone do participante para manter o silêncio"
+        },
+        {
+          "id": "b",
+          "text": "Desligar a energia elétrica do bairro daquele participante específico"
+        },
+        {
+          "id": "c",
+          "text": "Formatar o telefone celular daquela pessoa sem pedir autorização"
+        },
+        {
+          "id": "d",
+          "text": "Mudar o nome de usuário daquela pessoa na chamada"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 26,
+      "question": "Qual o limite de tempo em chamadas gratuitas em grupo?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Até vinte e quatro horas contínuas sem nenhuma limitação"
+        },
+        {
+          "id": "b",
+          "text": "Até sessenta minutos contados para três ou mais pessoas"
+        },
+        {
+          "id": "c",
+          "text": "Até dois minutos apenas e encerra a sala automaticamente"
+        },
+        {
+          "id": "d",
+          "text": "Sem nenhum tipo de tempo máximo estipulado pela empresa"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 27,
+      "question": "Para que serve o recurso de 'Enquetes e Perguntas'?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sortear prêmios em dinheiro de verdade para os participantes"
+        },
+        {
+          "id": "b",
+          "text": "Excluir os contatos que responderem incorretamente as perguntas feitas"
+        },
+        {
+          "id": "c",
+          "text": "Aumentar a fatura de cobrança telefônica no fim do mês"
+        },
+        {
+          "id": "d",
+          "text": "Coletar votos rápidos e tirar dúvidas durante a apresentação"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 28,
+      "question": "O que é o recurso de 'Lousa Interativa' (Jamboard)?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Um jogo de corrida tridimensional com gráficos de alta qualidade"
+        },
+        {
+          "id": "b",
+          "text": "Uma ferramenta voltada para escanear documentos impressos na mesa"
+        },
+        {
+          "id": "c",
+          "text": "Um espaço digital para anotações, desenhos e post-its colaborativos"
+        },
+        {
+          "id": "d",
+          "text": "Um reprodutor de vídeos salvos no formato de arquivo AVI"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 29,
+      "question": "Como atua o recurso de 'Ajuste de Pouca Luz'?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Desliga as lâmpadas da casa onde a pessoa está trabalhando"
+        },
+        {
+          "id": "b",
+          "text": "Troca o idioma da conversa para inglês ou espanhol fluentemente"
+        },
+        {
+          "id": "c",
+          "text": "Bloqueia a entrada de luz solar pelas janelas do quarto"
+        },
+        {
+          "id": "d",
+          "text": "Aumenta o brilho da câmera se o ambiente estiver escuro"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 30,
+      "question": "Quem possui autorização para Gravar reuniões no Google Meet?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Usuários com planos educacionais ou corporativos habilitados pelo administrador"
+        },
+        {
+          "id": "b",
+          "text": "Qualquer pessoa que acessar uma chamada pelo telefone celular público"
+        },
+        {
+          "id": "c",
+          "text": "Apenas crianças menores de dez anos devidamente matriculadas no colégio"
+        },
+        {
+          "id": "d",
+          "text": "Somente quem possuir uma câmera fotográfica analógica com filme colorido"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 31,
+      "question": "Qual atalho padrão ativa ou silencia o microfone rapidamente?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pressionar a tecla Enter cinquenta vezes sem parar"
+        },
+        {
+          "id": "b",
+          "text": "Segurar a barra de espaço com o pé esquerdo"
+        },
+        {
+          "id": "c",
+          "text": "Pressionar as teclas Ctrl mais a letra D juntas"
+        },
+        {
+          "id": "d",
+          "text": "Apertar a tecla Caps Lock por cinco minutos contínuos"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 32,
+      "question": "Qual atalho padrão liga ou desliga a câmera rapidamente?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pressionar a tecla Esc vinte vezes em seguida"
+        },
+        {
+          "id": "b",
+          "text": "Pressionar as teclas Ctrl mais a letra E juntas"
+        },
+        {
+          "id": "c",
+          "text": "Segurar a tecla Alt enquanto desliga o computador"
+        },
+        {
+          "id": "d",
+          "text": "Apertar a tecla F1 até reiniciar todo o sistema"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 33,
+      "question": "Como verificar a lista completa de pessoas na chamada?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Desconectando o cabo de alimentação do monitor do computador"
+        },
+        {
+          "id": "b",
+          "text": "Digitando a lista de nomes manualmente em folha sulfite"
+        },
+        {
+          "id": "c",
+          "text": "Clicando no ícone com silhueta de pessoas no canto"
+        },
+        {
+          "id": "d",
+          "text": "Ligando para o suporte técnico internacional da empresa Google"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 34,
+      "question": "Como o anfitrião pode retirar um intruso da reunião?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Desligando a chave geral de energia de todo o prédio"
+        },
+        {
+          "id": "b",
+          "text": "Clicando nas opções do participante e selecionando Remover da chamada"
+        },
+        {
+          "id": "c",
+          "text": "Avisando por carta postal com aviso de recebimento assinado"
+        },
+        {
+          "id": "d",
+          "text": "Formatando o servidor central de telecomunicações do seu estado"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 35,
+      "question": "O que acontece com as mensagens do chat após sair?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Desaparecem e não ficam disponíveis em contas comuns gratuitas"
+        },
+        {
+          "id": "b",
+          "text": "São impressas e enviadas para o endereço dos participantes"
+        },
+        {
+          "id": "c",
+          "text": "Ficam salvas para sempre na área de trabalho local"
+        },
+        {
+          "id": "d",
+          "text": "São publicadas automaticamente no mural das redes sociais públicas"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 36,
+      "question": "O que são as 'Salas Temáticas' (Breakout Rooms) no Meet?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Espaços virtuais para compra e venda de itens colecionáveis"
+        },
+        {
+          "id": "b",
+          "text": "Salas de aula físicas equipadas com carteiras e cadeiras estofadas"
+        },
+        {
+          "id": "c",
+          "text": "Canais de televisão aberta com transmissão de notícias e esportes"
+        },
+        {
+          "id": "d",
+          "text": "Divisões da chamada em grupos menores para discussões simultâneas separadas"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 37,
+      "question": "Para que serve a 'Transmissão ao Vivo' (Live Stream)?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ligar para telefones fixos sem cobrança de tarifas interurbanas"
+        },
+        {
+          "id": "b",
+          "text": "Transmitir a reunião para até cem mil espectadores institucionais"
+        },
+        {
+          "id": "c",
+          "text": "Gravar vídeos em fitas magnéticas antigas do padrão VHS"
+        },
+        {
+          "id": "d",
+          "text": "Instalar atualizações automáticas de segurança no Windows e Linux"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 38,
+      "question": "Como opera o 'Cancelamento de Ruído' inteligente no Meet?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Desliga totalmente o sinal de som de todos os microfones"
+        },
+        {
+          "id": "b",
+          "text": "Coloca música clássica para tocar durante as falas dos professores"
+        },
+        {
+          "id": "c",
+          "text": "Filtra barulhos como digitação e latidos usando inteligência artificial"
+        },
+        {
+          "id": "d",
+          "text": "Reduz a velocidade da conexão de internet de quem fala"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 39,
+      "question": "Qual informação consta no Relatório de Frequência escolar?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "A senha do e-mail e o extrato bancário dos responsáveis"
+        },
+        {
+          "id": "b",
+          "text": "As notas de todas as disciplinas do ano letivo passado"
+        },
+        {
+          "id": "c",
+          "text": "A velocidade da placa de vídeo do computador do estudante"
+        },
+        {
+          "id": "d",
+          "text": "Nome, e-mail e tempo exato de permanência do aluno"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 40,
+      "question": "Como o Google Meet protege os dados das videochamadas?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Usando criptografia em trânsito e medidas avançadas contra invasões externas"
+        },
+        {
+          "id": "b",
+          "text": "Gravando as conversas e postando em sites de compartilhamento público"
+        },
+        {
+          "id": "c",
+          "text": "Desativando a proteção de dados para acelerar a transmissão das reuniões"
+        },
+        {
+          "id": "d",
+          "text": "Exigindo que os usuários mostrem seus documentos pessoais na tela"
+        }
+      ],
+      "correctOptionId": "a"
+    }
+  ],
+  "discursiveQuestions": []
+},
+
+{
+  "id": "anydesk",
+  "title": "AnyDesk - Acesso Remoto e Suporte",
+  "description": "Teste seus conhecimentos sobre o AnyDesk: controle remoto, IDs de conexão, acesso não assistido, permissões e segurança.",
+  "password": "IEPOP",
+  "iconType": "anydesk",
+  "objectiveQuestions": [
+    {
+      "id": 1,
+      "question": "O que é o AnyDesk utilizado no suporte técnico?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Um editor de textos para digitação de trabalhos escolares"
+        },
+        {
+          "id": "b",
+          "text": "Um programa para acesso remoto e controle de computadores"
+        },
+        {
+          "id": "c",
+          "text": "Um reprodutor portátil para escutar faixas de músicas digitais"
+        },
+        {
+          "id": "d",
+          "text": "Um jogo de corrida com pistas e carros velozes"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 2,
+      "question": "Para que serve o AnyDesk na área da informática?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Imprimir documentos em folhas brancas de papel sulfite padrão"
+        },
+        {
+          "id": "b",
+          "text": "Limpar o pó acumulado dentro do gabinete da máquina"
+        },
+        {
+          "id": "c",
+          "text": "Aumentar a memória RAM física sem gastar nenhum dinheiro"
+        },
+        {
+          "id": "d",
+          "text": "Prestar suporte técnico controlando outro computador pela internet"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 3,
+      "question": "O que é o código numérico que aparece na tela?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "O ID de nove ou dez dígitos daquele computador"
+        },
+        {
+          "id": "b",
+          "text": "A senha secreta da conta de e-mail do usuário"
+        },
+        {
+          "id": "c",
+          "text": "O valor da fatura de energia elétrica da residência"
+        },
+        {
+          "id": "d",
+          "text": "A quantidade de arquivos salvos na lixeira do Windows"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 4,
+      "question": "Onde você localiza o seu próprio código de endereço?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Atrás da etiqueta colada na carcaça do monitor ligado"
+        },
+        {
+          "id": "b",
+          "text": "Dentro da pasta de lixeira do seu correio eletrônico"
+        },
+        {
+          "id": "c",
+          "text": "No quadro verde chamado Este Dispositivo na tela inicial"
+        },
+        {
+          "id": "d",
+          "text": "No menu de configurações de som do seu computador"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 5,
+      "question": "Onde você digita o código do computador que deseja acessar?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Na calculadora padrão do Windows usando os botões numéricos"
+        },
+        {
+          "id": "b",
+          "text": "No bloco de notas em uma linha de texto"
+        },
+        {
+          "id": "c",
+          "text": "Na barra superior no campo chamado Outro Dispositivo informado"
+        },
+        {
+          "id": "d",
+          "text": "No rodapé da página inicial do buscador da internet"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 6,
+      "question": "Qual botão inicia a tentativa de conexão com outro aparelho?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "O botão verde com a inscrição Conectar na tela"
+        },
+        {
+          "id": "b",
+          "text": "O botão físico de desligar o monitor do computador"
+        },
+        {
+          "id": "c",
+          "text": "A tecla Caps Lock localizada no teclado do computador"
+        },
+        {
+          "id": "d",
+          "text": "A barra de rolagem vertical da janela do navegador"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 7,
+      "question": "O que o usuário remoto deve fazer para liberar a entrada?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Desconectar o cabo de energia elétrica da tomada da parede"
+        },
+        {
+          "id": "b",
+          "text": "Excluir permanentemente todos os arquivos de fotos do disco"
+        },
+        {
+          "id": "c",
+          "text": "Reiniciar o computador três vezes seguidas sem parar nada"
+        },
+        {
+          "id": "d",
+          "text": "Clicar no botão verde chamado Aceitar na janela aberta"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 8,
+      "question": "O que acontece ao clicar no botão vermelho Recusar?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "O computador da outra pessoa é formatado de modo irreversível"
+        },
+        {
+          "id": "b",
+          "text": "A solicitação de acesso remoto é cancelada imediatamente sem conexão"
+        },
+        {
+          "id": "c",
+          "text": "A velocidade da internet é duplicada pelo provedor de rede"
+        },
+        {
+          "id": "d",
+          "text": "Todos os e-mails da caixa de entrada são apagados"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 9,
+      "question": "Como finalizar uma sessão de suporte remoto em andamento?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Clicando no botão vermelho Finalizar na barra do AnyDesk"
+        },
+        {
+          "id": "b",
+          "text": "Desinstalando todos os programas instalados na sua área de trabalho"
+        },
+        {
+          "id": "c",
+          "text": "Desligando o interruptor de luz do cômodo da sua casa"
+        },
+        {
+          "id": "d",
+          "text": "Tirando uma foto da tela com a câmera do celular"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 10,
+      "question": "O que aparece na tela do técnico durante a conexão?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Uma tela totalmente preta sem exibir nenhum tipo de imagem"
+        },
+        {
+          "id": "b",
+          "text": "Um filme de ação com legendas automáticas em língua inglesa"
+        },
+        {
+          "id": "c",
+          "text": "A área de trabalho exata do computador que está conectado"
+        },
+        {
+          "id": "d",
+          "text": "O extrato da conta bancária de quem pediu o suporte"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 11,
+      "question": "O técnico consegue movimentar a seta do mouse remotamente?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Não pois o mouse só funciona no computador de origem"
+        },
+        {
+          "id": "b",
+          "text": "Sim movimentando o mouse normalmente sobre a janela da sessão"
+        },
+        {
+          "id": "c",
+          "text": "Apenas se o computador tiver dois teclados físicos conectados"
+        },
+        {
+          "id": "d",
+          "text": "Somente aos sábados e domingos no período da manhã"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 12,
+      "question": "É possível digitar textos no computador remoto usando seu teclado?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Não pois comandos de digitação são bloqueados em acessos remotos"
+        },
+        {
+          "id": "b",
+          "text": "Apenas digitando números de zero a nove pelo teclado numérico"
+        },
+        {
+          "id": "c",
+          "text": "Somente se ambos os computadores forem da mesma marca física"
+        },
+        {
+          "id": "d",
+          "text": "Sim enviando os caracteres digitados diretamente para a máquina remota"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 13,
+      "question": "O que é indispensável para que o AnyDesk funcione corretamente?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Uma impressora a laser ligada na mesma tomada do equipamento"
+        },
+        {
+          "id": "b",
+          "text": "Dois monitores de alta definição conectados no mesmo cabo de vídeo"
+        },
+        {
+          "id": "c",
+          "text": "Assinatura paga de TV a cabo com pacote de filmes"
+        },
+        {
+          "id": "d",
+          "text": "Ambos os computadores estarem ligados e conectados à internet ativa"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 14,
+      "question": "É obrigatório instalar o AnyDesk para conseguir utilizá-lo?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sim sendo necessário reiniciar o computador cinco vezes para rodar"
+        },
+        {
+          "id": "b",
+          "text": "Não pois ele pode rodar de maneira portátil sem instalação"
+        },
+        {
+          "id": "c",
+          "text": "Apenas se o computador for do modelo antigo sem internet"
+        },
+        {
+          "id": "d",
+          "text": "Somente mediante pagamento de taxa mensal no cartão de crédito"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 15,
+      "question": "Para que serve a janela de Chat dentro do AnyDesk?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Trocar mensagens escritas entre as duas pessoas durante o suporte"
+        },
+        {
+          "id": "b",
+          "text": "Apagar todas as mensagens de correio eletrônico da sua conta"
+        },
+        {
+          "id": "c",
+          "text": "Aumentar a velocidade física da ventoinha do gabinete do computador"
+        },
+        {
+          "id": "d",
+          "text": "Assistir a transmissões de televisão ao vivo pela rede local"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 16,
+      "question": "Para que serve ativar o modo Tela Cheia no AnyDesk?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Desligar os autofalantes para economizar energia da rede elétrica doméstica"
+        },
+        {
+          "id": "b",
+          "text": "Bloquear a transmissão de áudio e vídeo de outros aparelhos"
+        },
+        {
+          "id": "c",
+          "text": "Ocupar todo o monitor proporcionando melhor visualização da máquina remota"
+        },
+        {
+          "id": "d",
+          "text": "Formatar a memória interna do telefone celular em poucos segundos"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 17,
+      "question": "Qual é o símbolo característico do logotipo do AnyDesk?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Uma tesoura verde para cortar folhas de papel de desenho"
+        },
+        {
+          "id": "b",
+          "text": "Dois losangos vermelhos sobrepostos sobre um fundo de cor clara"
+        },
+        {
+          "id": "c",
+          "text": "Um círculo azul com uma letra G maiúscula no centro"
+        },
+        {
+          "id": "d",
+          "text": "Uma estrela amarela brilhante com cinco pontas perfeitamente alinhadas"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 18,
+      "question": "Por que não devemos passar o ID para pessoas estranhas?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pois pessoas mal-intencionadas podem tentar invadir e roubar seus dados"
+        },
+        {
+          "id": "b",
+          "text": "Pois o monitor do computador pode queimar se alguém conectar"
+        },
+        {
+          "id": "c",
+          "text": "Pois a conta de energia elétrica pode vir mais cara"
+        },
+        {
+          "id": "d",
+          "text": "Pois o teclado físico pode parar de digitar letras maiúsculas"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 19,
+      "question": "O que fazer se um desconhecido pedir para instalar o AnyDesk?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Passar o código e digitar suas senhas bancárias na tela"
+        },
+        {
+          "id": "b",
+          "text": "Deixar o computador ligado e sair de casa sem vigiar"
+        },
+        {
+          "id": "c",
+          "text": "Recusar e não passar o código pois costuma ser golpe"
+        },
+        {
+          "id": "d",
+          "text": "Fazer um pagamento em dinheiro para a pessoa desconhecida imediatamente"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 20,
+      "question": "O AnyDesk funciona em telefones celulares e computadores?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Não pois funciona exclusivamente em computadores da década de noventa"
+        },
+        {
+          "id": "b",
+          "text": "Apenas se o aparelho celular não possuir tela de toque"
+        },
+        {
+          "id": "c",
+          "text": "Somente conectado por cabos de telefone fixo na tomada de parede"
+        },
+        {
+          "id": "d",
+          "text": "Sim havendo versões para computadores e também para aparelhos celulares"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 21,
+      "question": "O que é o recurso de 'Acesso Não Assistido' no AnyDesk?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Assistir a vídeos de aulas gravadas sem conexão de internet"
+        },
+        {
+          "id": "b",
+          "text": "Ligar para telefones celulares de graça em horários de pico"
+        },
+        {
+          "id": "c",
+          "text": "Conectar com senha fixa sem precisar de alguém para aceitar"
+        },
+        {
+          "id": "d",
+          "text": "Desligar o monitor do computador remotamente para economizar energia elétrica"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 22,
+      "question": "Por que a senha do acesso não assistido deve ser segura?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Para fazer o computador ligar mais rápido durante as manhãs"
+        },
+        {
+          "id": "b",
+          "text": "Para diminuir a temperatura da placa-mãe do gabinete do computador"
+        },
+        {
+          "id": "c",
+          "text": "Para desbloquear canais de televisão aberta sem antena externa instalada"
+        },
+        {
+          "id": "d",
+          "text": "Para impedir que invasores acessem sua máquina a qualquer momento"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 23,
+      "question": "Para que serve o modo de 'Transferência de Arquivos'?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Apagar todas as fotos salvas na pasta de imagens pessoais"
+        },
+        {
+          "id": "b",
+          "text": "Copiar documentos entre os dois computadores através de duas janelas"
+        },
+        {
+          "id": "c",
+          "text": "Formatar a partição do sistema operacional sem pedir confirmação prévia"
+        },
+        {
+          "id": "d",
+          "text": "Enviar e-mails em massa para milhares de contatos desconhecidos"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 24,
+      "question": "O que a permissão de 'Área de Transferência' permite fazer?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Copiar textos com Ctrl+C num PC e colar no outro"
+        },
+        {
+          "id": "b",
+          "text": "Mudar a foto de papel de parede dos dois computadores"
+        },
+        {
+          "id": "c",
+          "text": "Desconectar o sinal de internet de ambos aparelhos ao mesmo tempo"
+        },
+        {
+          "id": "d",
+          "text": "Gravar a conversa em áudio e postar em redes sociais"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 25,
+      "question": "Para que serve a opção 'Bloquear Entrada do Usuário'?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Impedir que o cliente mexa no mouse enquanto o técnico trabalha"
+        },
+        {
+          "id": "b",
+          "text": "Desligar o monitor do cliente e não ligar nunca mais"
+        },
+        {
+          "id": "c",
+          "text": "Apagar a conta de usuário do Windows sem deixar rastros"
+        },
+        {
+          "id": "d",
+          "text": "Bloquear as redes sociais do cliente durante o horário comercial"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 26,
+      "question": "O que significa o botão de 'Solicitar Elevação' no AnyDesk?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Aumentar a altura física da mesa onde fica o computador"
+        },
+        {
+          "id": "b",
+          "text": "Pedir permissão de administrador para aceitar avisos do sistema Windows"
+        },
+        {
+          "id": "c",
+          "text": "Cobrar um valor financeiro mais alto pelo serviço prestado pelo técnico"
+        },
+        {
+          "id": "d",
+          "text": "Acelerar a velocidade de rotação do ventilador do processador principal"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 27,
+      "question": "Qual a utilidade de ativar a 'Gravação de Sessão'?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Tocar música clássica de fundo enquanto o suporte está trabalhando"
+        },
+        {
+          "id": "b",
+          "text": "Apagar os registros de log para esconder o trabalho do técnico"
+        },
+        {
+          "id": "c",
+          "text": "Aumentar o brilho da tela do computador em cem por cento"
+        },
+        {
+          "id": "d",
+          "text": "Registrar em vídeo tudo o que foi realizado durante o acesso"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 28,
+      "question": "Como o AnyDesk permite adaptar o tamanho da tela remota?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cortando metade da imagem para caber na tela do computador"
+        },
+        {
+          "id": "b",
+          "text": "Desligando as bordas do monitor com uma fita adesiva preta"
+        },
+        {
+          "id": "c",
+          "text": "Alternando entre tamanho original, esticado ou ajustado ao monitor local"
+        },
+        {
+          "id": "d",
+          "text": "Exibindo a tela do computador sempre em preto e branco"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 29,
+      "question": "Para que serve a ação de 'Enviar Ctrl+Alt+Del'?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Excluir permanentemente todas as janelas abertas no momento da conexão"
+        },
+        {
+          "id": "b",
+          "text": "Desligar o roteador de internet do provedor de acesso local"
+        },
+        {
+          "id": "c",
+          "text": "Formatar o disco rígido sem precisar de confirmação do usuário"
+        },
+        {
+          "id": "d",
+          "text": "Abrir a tela de segurança ou gerenciador do Windows remoto"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 30,
+      "question": "O que a ferramenta 'Reiniciar Computador Remoto' faz?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Reinicia o sistema do cliente e reconecta o AnyDesk automaticamente"
+        },
+        {
+          "id": "b",
+          "text": "Desliga o computador do cliente e queima a fonte de alimentação"
+        },
+        {
+          "id": "c",
+          "text": "Exclui a conta do Windows do cliente de forma definitiva"
+        },
+        {
+          "id": "d",
+          "text": "Desinstala todos os jogos eletrônicos instalados na área de trabalho"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 31,
+      "question": "Para que serve o recurso de 'Favoritos' ou Livro de Endereços?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Comprar computadores novos pela internet com desconto no preço final"
+        },
+        {
+          "id": "b",
+          "text": "Bloquear todos os contatos que enviarem mensagens pelo correio eletrônico"
+        },
+        {
+          "id": "c",
+          "text": "Salvar IDs frequentes com nomes personalizados para conexões futuras rápidas"
+        },
+        {
+          "id": "d",
+          "text": "Gravar listas de compras de supermercado com cálculo de impostos"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 32,
+      "question": "O que a opção 'Transmitir Áudio' realiza na sessão?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Liga o microfone do quarto do cliente sem que ele saiba"
+        },
+        {
+          "id": "b",
+          "text": "Permite ouvir os sons do computador remoto na sua caixa"
+        },
+        {
+          "id": "c",
+          "text": "Toca um alarme de incêndio no gabinete da máquina remota"
+        },
+        {
+          "id": "d",
+          "text": "Silencia todos os vídeos do YouTube acessados no computador cliente"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 33,
+      "question": "Como ajustar a conexão para priorizar resposta rápida?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Desconectando o teclado e utilizando apenas os botões do mouse"
+        },
+        {
+          "id": "b",
+          "text": "Desinstalando o antivírus para deixar a internet duas vezes rápida"
+        },
+        {
+          "id": "c",
+          "text": "Selecionando a opção Melhor Reação nas configurações de exibição gráfica"
+        },
+        {
+          "id": "d",
+          "text": "Desligando a ventoinha de resfriamento do processador do computador pessoal"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 34,
+      "question": "O que fazer se a transmissão de tela estiver muito lenta?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pressionar a tecla F5 cinquenta vezes seguidas sem parar nada"
+        },
+        {
+          "id": "b",
+          "text": "Reduzir a qualidade de imagem para diminuir o consumo de rede"
+        },
+        {
+          "id": "c",
+          "text": "Apagar todas as fotos salvas na lixeira do seu computador"
+        },
+        {
+          "id": "d",
+          "text": "Trocar o mouse por um modelo com iluminação colorida RGB"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 35,
+      "question": "O que costuma significar o aviso 'Aguardando Imagem'?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Lentidão de rede ou tela de bloqueio com tela preta"
+        },
+        {
+          "id": "b",
+          "text": "Que a máquina remota foi destruída por um raio elétrico"
+        },
+        {
+          "id": "c",
+          "text": "Que o suporte técnico foi cancelado pela polícia da internet"
+        },
+        {
+          "id": "d",
+          "text": "Que a impressora do cliente está sem papel para imprimir"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 36,
+      "question": "O que é a 'Lista de Permissões' (Whitelist) no AnyDesk?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Listar nomes de programas antivírus proibidos de rodar no computador"
+        },
+        {
+          "id": "b",
+          "text": "Listar preços de peças e componentes de informática para empresas"
+        },
+        {
+          "id": "c",
+          "text": "Listar telefones de emergência de hospitais da sua região metropolitana"
+        },
+        {
+          "id": "d",
+          "text": "Permitir conexões apenas de computadores com IDs autorizados previamente cadastrados"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 37,
+      "question": "Qual porta padrão TCP o AnyDesk utiliza para conexões diretas?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Porta vinte e um utilizada exclusivamente para envio de arquivos"
+        },
+        {
+          "id": "b",
+          "text": "Porta sete mil e setenta TCP com conexões protegidas TLS"
+        },
+        {
+          "id": "c",
+          "text": "Porta oitenta usada para páginas antigas sem certificado de segurança"
+        },
+        {
+          "id": "d",
+          "text": "Porta vinte e cinco destinada ao envio de correio eletrônico"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 38,
+      "question": "O que é um 'Alias' personalizado no programa AnyDesk?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Um vírus espião criado para capturar senhas digitadas no teclado"
+        },
+        {
+          "id": "b",
+          "text": "Um tipo de cabo de rede de alta velocidade óptica"
+        },
+        {
+          "id": "c",
+          "text": "Um nome amigável que substitui o número do seu ID"
+        },
+        {
+          "id": "d",
+          "text": "Um comando do sistema operacional para formatar discos de armazenamento"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 39,
+      "question": "Qual padrão criptográfico garante a segurança das sessões AnyDesk?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Criptografia básica de quatro dígitos numéricos sem proteção de chaves"
+        },
+        {
+          "id": "b",
+          "text": "Nenhum tipo de criptografia pois todas as transmissões são totalmente abertas"
+        },
+        {
+          "id": "c",
+          "text": "Criptografia mecânica baseada em cartões de papel perfurado da época antiga"
+        },
+        {
+          "id": "d",
+          "text": "Criptografia RSA de 2048 bits e padrão AES de 256 bits"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 40,
+      "question": "O que é uma 'Conexão Direta' (Direct Connection / P2P)?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Comunicação direta entre as duas máquinas sem passar pelos servidores centrais"
+        },
+        {
+          "id": "b",
+          "text": "Um cabo físico esticado entre duas cidades vizinhas para transmitir áudio"
+        },
+        {
+          "id": "c",
+          "text": "Uma ligação telefônica convencional transmitida por antenas parabólicas de televisão aberta"
+        },
+        {
+          "id": "d",
+          "text": "Um envio de cartas registradas pelo correio postal tradicional de documentos impressos"
+        }
+      ],
+      "correctOptionId": "a"
+    }
+  ],
+  "discursiveQuestions": []
+},
+
+{
+  "id": "excel",
+  "title": "Excel Básico - Planilhas e Fórmulas",
+  "description": "Teste seus conhecimentos sobre o Excel: células, operadores matemáticos, fórmulas SOMA, MÉDIA, gráficos e formatação de valores.",
+  "password": "IEPOP",
+  "iconType": "excel",
+  "objectiveQuestions": [
+    {
+      "id": 1,
+      "question": "O que é o Microsoft Excel do pacote Office?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Um editor profissional para corte e montagem de fotos"
+        },
+        {
+          "id": "b",
+          "text": "Um programa para criação de planilhas eletrônicas e cálculos"
+        },
+        {
+          "id": "c",
+          "text": "Um reprodutor portátil para escutar faixas de músicas digitais"
+        },
+        {
+          "id": "d",
+          "text": "Um navegador moderno para acessar páginas da internet mundial"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 2,
+      "question": "O que é uma 'Célula' em uma planilha?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "O botão usado para imprimir folhas de papel comum"
+        },
+        {
+          "id": "b",
+          "text": "A lixeira onde ficam guardados os arquivos excluídos"
+        },
+        {
+          "id": "c",
+          "text": "O cabo de energia conectado ao monitor do computador"
+        },
+        {
+          "id": "d",
+          "text": "O ponto de encontro entre uma linha e coluna"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 3,
+      "question": "Como as Colunas são identificadas no topo da planilha?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Por letras maiúsculas do alfabeto como A, B e C"
+        },
+        {
+          "id": "b",
+          "text": "Por números inteiros positivos como 1, 2 e 3"
+        },
+        {
+          "id": "c",
+          "text": "Por nomes de cores primárias como azul e vermelho"
+        },
+        {
+          "id": "d",
+          "text": "Por desenhos de animais geométricos na barra de tarefas"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 4,
+      "question": "Como as Linhas são identificadas no canto esquerdo?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Por letras maiúsculas do alfabeto como as letras A"
+        },
+        {
+          "id": "b",
+          "text": "Por nomes de cidades brasileiras em uma ordem alfabética"
+        },
+        {
+          "id": "c",
+          "text": "Por números inteiros positivos sequenciais como 1 e 2"
+        },
+        {
+          "id": "d",
+          "text": "Por símbolos de pontuação comuns como vírgulas e pontos"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 5,
+      "question": "Como é composto o endereço de uma célula específica?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pelo número do CPF registrado na conta do usuário"
+        },
+        {
+          "id": "b",
+          "text": "Pelo endereço residencial cadastrado no perfil da escola"
+        },
+        {
+          "id": "c",
+          "text": "Pela letra da coluna seguida do número da linha"
+        },
+        {
+          "id": "d",
+          "text": "Pela quantidade de letras maiúsculas digitadas no texto"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 6,
+      "question": "Qual símbolo é obrigatório para iniciar qualquer cálculo?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "O sinal de igual colocado no início da fórmula"
+        },
+        {
+          "id": "b",
+          "text": "O ponto de interrogação escrito antes dos números digitados"
+        },
+        {
+          "id": "c",
+          "text": "A tecla de arroba inserida no final do texto"
+        },
+        {
+          "id": "d",
+          "text": "O símbolo de cerquilha repetido três vezes em seguida"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 7,
+      "question": "Qual operador do teclado realiza a conta de Soma?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "O ponto de exclamação usado para destacar frases importantes"
+        },
+        {
+          "id": "b",
+          "text": "A barra de espaço pressionada com o polegar direito"
+        },
+        {
+          "id": "c",
+          "text": "A tecla de parênteses esquerdo no topo das letras"
+        },
+        {
+          "id": "d",
+          "text": "O símbolo de mais tradicional localizado no teclado numérico"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 8,
+      "question": "Qual operador do teclado realiza a conta de Subtração?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "O símbolo de porcentagem inserido entre duas palavras escritas"
+        },
+        {
+          "id": "b",
+          "text": "O traço de menos localizado junto ao teclado numérico"
+        },
+        {
+          "id": "c",
+          "text": "A barra vertical dupla presente ao lado do enter"
+        },
+        {
+          "id": "d",
+          "text": "A tecla de vírgula usada para separar casas decimais"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 9,
+      "question": "Qual operador matemático é usado para Multiplicação?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "O asterisco usado para realizar a multiplicação de valores"
+        },
+        {
+          "id": "b",
+          "text": "A letra X minúscula digitada no meio da célula"
+        },
+        {
+          "id": "c",
+          "text": "O ponto final colocado após a última palavra digitada"
+        },
+        {
+          "id": "d",
+          "text": "O sinal de menor que apontado para o lado"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 10,
+      "question": "Qual operador matemático é usado para Divisão?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dois pontos sobrepostos usados para marcar intervalos de células"
+        },
+        {
+          "id": "b",
+          "text": "O sinal de til colocado sobre uma letra vogal"
+        },
+        {
+          "id": "c",
+          "text": "A barra inclinada para direita usada para dividir números"
+        },
+        {
+          "id": "d",
+          "text": "A tecla de ponto e vírgula do teclado físico"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 11,
+      "question": "Para que serve o botão de 'AutoSoma' (∑)?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Apagar todas as linhas com valores menores que dez"
+        },
+        {
+          "id": "b",
+          "text": "Calcular a soma de números selecionados em um clique"
+        },
+        {
+          "id": "c",
+          "text": "Trocar o idioma do documento para português de Portugal"
+        },
+        {
+          "id": "d",
+          "text": "Formatar o disco rígido do computador em que trabalha"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 12,
+      "question": "Qual fórmula soma corretamente os valores de A1 até A5?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Somar de A1 até A5 em texto"
+        },
+        {
+          "id": "b",
+          "text": "+A1-A2-A3 com sinais de subtração totalmente incorretos"
+        },
+        {
+          "id": "c",
+          "text": "A1 mais A5 escrito entre aspas duplas"
+        },
+        {
+          "id": "d",
+          "text": "=SOMA(A1:A5) digitado dentro da célula de resultado"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 13,
+      "question": "Qual fórmula calcula a média aritmética de B1 até B10?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "fazer a média de todos os números em português"
+        },
+        {
+          "id": "b",
+          "text": "B1 dividido por dez sem colocar sinal de igual"
+        },
+        {
+          "id": "c",
+          "text": "multiplicar B1 por B10 e somar cinco pontos"
+        },
+        {
+          "id": "d",
+          "text": "=MÉDIA(B1:B10) digitado na barra de fórmulas da planilha"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 14,
+      "question": "Qual tecla do teclado confirma o dado digitado na célula?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "A tecla Esc pressionada para cancelar a edição feita"
+        },
+        {
+          "id": "b",
+          "text": "A tecla Enter pressionada para descer para a célula"
+        },
+        {
+          "id": "c",
+          "text": "A tecla Backspace usada para apagar os caracteres digitados"
+        },
+        {
+          "id": "d",
+          "text": "A tecla F1 acionada para abrir o menu ajuda"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 15,
+      "question": "O que é a 'Alça de Preenchimento' no canto da célula?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Um quadradinho verde para arrastar e copiar fórmulas facilmente"
+        },
+        {
+          "id": "b",
+          "text": "Um defeito visual na placa de vídeo do computador"
+        },
+        {
+          "id": "c",
+          "text": "Um botão voltado para desligar o monitor do aparelho"
+        },
+        {
+          "id": "d",
+          "text": "Uma ferramenta destinada a imprimir a folha de cálculo"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 16,
+      "question": "Como formatar um número para o formato de moeda em reais?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Digitando a palavra dinheiro em maiúsculo ao lado do valor"
+        },
+        {
+          "id": "b",
+          "text": "Desenhando cédulas de papel usando a ferramenta do pincel"
+        },
+        {
+          "id": "c",
+          "text": "Aplicando o formato de Moeda ou Número de Contabilização"
+        },
+        {
+          "id": "d",
+          "text": "Mudando a cor do texto para amarelo ouro brilhante"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 17,
+      "question": "Para que serve colocar 'Bordas' nas células da planilha?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Impedir que outras pessoas leiam os números da tabela"
+        },
+        {
+          "id": "b",
+          "text": "Deixar as divisões visíveis para impressão e leitura organizada"
+        },
+        {
+          "id": "c",
+          "text": "Apagar todas as fórmulas e deixar apenas os títulos"
+        },
+        {
+          "id": "d",
+          "text": "Aumentar a velocidade da conexão de rede do computador"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 18,
+      "question": "O que o botão 'Mesclar e Centralizar' realiza?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Une várias células selecionadas em uma só centralizando texto"
+        },
+        {
+          "id": "b",
+          "text": "Exclui as linhas pares e divide as colunas ímpares"
+        },
+        {
+          "id": "c",
+          "text": "Transforma a planilha em um arquivo de apresentação PowerPoint"
+        },
+        {
+          "id": "d",
+          "text": "Copia os dados para a área de transferência do Windows"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 19,
+      "question": "Qual a cor e o logotipo característico do Microsoft Excel?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Um ícone azul com uma letra W em fonte negrito"
+        },
+        {
+          "id": "b",
+          "text": "Um ícone vermelho com uma letra P maiúscula no meio"
+        },
+        {
+          "id": "c",
+          "text": "Um ícone verde contendo uma letra X destacada nele"
+        },
+        {
+          "id": "d",
+          "text": "Um círculo roxo sem nenhuma letra desenhada em seu interior"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 20,
+      "question": "É possível gerar gráficos a partir dos números da tabela?",
+      "difficulty": "facil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Não pois o Excel é restrito apenas a textos pretos"
+        },
+        {
+          "id": "b",
+          "text": "Apenas se a planilha tiver mais de mil linhas cadastradas"
+        },
+        {
+          "id": "c",
+          "text": "Somente conectando uma câmera digital profissional no computador pessoal"
+        },
+        {
+          "id": "d",
+          "text": "Sim criando gráficos de colunas, barras, linhas e pizzas"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 21,
+      "question": "Qual a diferença entre os dois pontos (:) e ponto e vírgula (;)?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dois pontos serve para dividir e ponto e vírgula para multiplicar"
+        },
+        {
+          "id": "b",
+          "text": "Dois pontos apaga a fórmula e ponto e vírgula salva tudo"
+        },
+        {
+          "id": "c",
+          "text": "Dois pontos indica intervalo até e ponto e vírgula separa elementos"
+        },
+        {
+          "id": "d",
+          "text": "Dois pontos cria tabelas e ponto e vírgula formata textos"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 22,
+      "question": "Qual função descobre o maior número dentro de uma lista?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "A função =MAIORAL() escrita em letras maiúsculas na barra"
+        },
+        {
+          "id": "b",
+          "text": "A função =TOP() acompanhada de um número entre parênteses"
+        },
+        {
+          "id": "c",
+          "text": "A função =GIGANTE() digitada antes dos valores da coluna"
+        },
+        {
+          "id": "d",
+          "text": "A função =MÁXIMO() aplicada no intervalo de células pretendido"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 23,
+      "question": "Qual função descobre o menor número dentro de uma lista?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "A função =PEQUENO() acompanhada de colchetes no texto final"
+        },
+        {
+          "id": "b",
+          "text": "A função =MÍNIMO() aplicada no intervalo de células pretendido"
+        },
+        {
+          "id": "c",
+          "text": "A função =MENORZINHO() escrita com o sinal de menos"
+        },
+        {
+          "id": "d",
+          "text": "A função =BAIXO() colocada dentro de uma célula vazia"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 24,
+      "question": "Para que serve a função =CONT.VALORES() na planilha?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Contar quantas células estão preenchidas no intervalo selecionado"
+        },
+        {
+          "id": "b",
+          "text": "Multiplicar todos os valores pelo número de linhas totais"
+        },
+        {
+          "id": "c",
+          "text": "Dividir o valor total pelo número de colunas existentes"
+        },
+        {
+          "id": "d",
+          "text": "Apagar os textos repetidos da tabela de forma automática"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 25,
+      "question": "Para que serve a função =CONT.SE() no Microsoft Excel?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Contar células que atendem a um critério ou condição específica"
+        },
+        {
+          "id": "b",
+          "text": "Somar os números pares e subtrair todos os números ímpares"
+        },
+        {
+          "id": "c",
+          "text": "Imprimir a planilha se a impressora estiver com tinta preta"
+        },
+        {
+          "id": "d",
+          "text": "Trocar o formato de todas as letras para minúsculas imediatamente"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 26,
+      "question": "Qual fórmula insere a data atual do computador na célula?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "A fórmula =CALENDÁRIO() acompanhada do ano atual em números"
+        },
+        {
+          "id": "b",
+          "text": "A fórmula =HOJE() sem colocar argumentos dentro dos parênteses"
+        },
+        {
+          "id": "c",
+          "text": "A palavra hoje digitada com a primeira letra maiúscula apenas"
+        },
+        {
+          "id": "d",
+          "text": "O comando =DATA.ATUAL() precedido de três pontos de interrogação"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 27,
+      "question": "Para que serve a ferramenta de 'Formatação Condicional'?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Formatar o computador se a planilha apresentar erros de cálculo"
+        },
+        {
+          "id": "b",
+          "text": "Proteger o arquivo com uma senha criptografada de oito dígitos"
+        },
+        {
+          "id": "c",
+          "text": "Apagar linhas vazias para economizar papel na hora de imprimir"
+        },
+        {
+          "id": "d",
+          "text": "Destacar células com cores baseadas em regras de valores numéricos"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 28,
+      "question": "Para que serve a opção 'Congelar Painéis' no Excel?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Diminuir a temperatura da placa-mãe do gabinete do computador"
+        },
+        {
+          "id": "b",
+          "text": "Impedir que qualquer pessoa altere as fórmulas da tabela criada"
+        },
+        {
+          "id": "c",
+          "text": "Manter linhas de cabeçalho visíveis enquanto rola a planilha"
+        },
+        {
+          "id": "d",
+          "text": "Desligar a tela do monitor para economizar energia da rede"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 29,
+      "question": "Como organizar uma lista de nomes em ordem alfabética?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Recortando e colando cada nome manualmente em ordem com mouse"
+        },
+        {
+          "id": "b",
+          "text": "Excluindo os nomes iniciados com as últimas letras do alfabeto"
+        },
+        {
+          "id": "c",
+          "text": "Digitando a fórmula =ALFABETO() na primeira linha da coluna"
+        },
+        {
+          "id": "d",
+          "text": "Selecionando a coluna e clicando no botão Classificar de A-Z"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 30,
+      "question": "Para que serve aplicar 'Filtros' nos cabeçalhos da tabela?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Exibir somente as linhas que atendem a opções selecionadas pelo usuário"
+        },
+        {
+          "id": "b",
+          "text": "Remover a poeira e sujeira acumuladas nas teclas do computador físico"
+        },
+        {
+          "id": "c",
+          "text": "Melhorar a qualidade das cores exibidas pelo monitor de vídeo conectado"
+        },
+        {
+          "id": "d",
+          "text": "Aumentar a velocidade física da conexão com a internet banda larga"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 31,
+      "question": "Como ajustar automaticamente a largura ideal de uma coluna?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Reiniciando o sistema operacional em modo de segurança com rede habilitada"
+        },
+        {
+          "id": "b",
+          "text": "Formatando a partição onde o pacote de programas está instalado atualmente"
+        },
+        {
+          "id": "c",
+          "text": "Dando dois cliques rápidos na linha divisória entre duas colunas adjacentes"
+        },
+        {
+          "id": "d",
+          "text": "Segurando a tecla Shift enquanto bate na mesa do computador conectado"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 32,
+      "question": "O que significa o símbolo ##### exibido dentro de uma célula?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que o computador está infectado por vírus espiões altamente perigosos atualmente"
+        },
+        {
+          "id": "b",
+          "text": "Que a coluna está estreita demais para exibir o número completamente"
+        },
+        {
+          "id": "c",
+          "text": "Que a fórmula digitada cometeu uma infração grave nas regras matemáticas"
+        },
+        {
+          "id": "d",
+          "text": "Que a conta do usuário foi suspensa por falta de pagamento"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 33,
+      "question": "Qual o atalho padrão de teclado para Salvar no Excel em português?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pressionar a tecla Esc dez vezes seguidas sem parar nada"
+        },
+        {
+          "id": "b",
+          "text": "Apertar a barra de espaço cinco vezes com a mão esquerda"
+        },
+        {
+          "id": "c",
+          "text": "Pressionar as teclas Ctrl mais a letra B juntas no teclado"
+        },
+        {
+          "id": "d",
+          "text": "Segurar a tecla Tab por vinte segundos contados no relógio"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 34,
+      "question": "Qual atalho desfaz a última ação realizada na planilha?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pressionar a tecla F12 acompanhada da tecla Shift do lado direito"
+        },
+        {
+          "id": "b",
+          "text": "Pressionar as teclas Ctrl mais a letra Z juntas no teclado"
+        },
+        {
+          "id": "c",
+          "text": "Desconectar o cabo de energia elétrica do gabinete do computador"
+        },
+        {
+          "id": "d",
+          "text": "Apertar a tecla Caps Lock três vezes seguidas com rapidez"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 35,
+      "question": "O que é uma 'Pasta de Trabalho' no Microsoft Excel?",
+      "difficulty": "media",
+      "options": [
+        {
+          "id": "a",
+          "text": "O arquivo completo do Excel que pode conter várias abas de planilhas"
+        },
+        {
+          "id": "b",
+          "text": "Uma pasta de papelão usada para guardar provas impressas da turma"
+        },
+        {
+          "id": "c",
+          "text": "Um compartimento interno onde fica localizado o disco rígido do computador"
+        },
+        {
+          "id": "d",
+          "text": "Um programa de segurança voltado para escanear arquivos recebidos pela internet"
+        }
+      ],
+      "correctOptionId": "a"
+    },
+    {
+      "id": 36,
+      "question": "Para que serve o símbolo de cifrão ($) como em $A$1?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Converter o valor numérico para dólares americanos em tempo real"
+        },
+        {
+          "id": "b",
+          "text": "Cobrar taxa de licença toda vez que a planilha for aberta"
+        },
+        {
+          "id": "c",
+          "text": "Indicar que a célula contém um erro grave de fórmula matemática"
+        },
+        {
+          "id": "d",
+          "text": "Travar a célula criando referência absoluta que não muda ao arrastar"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 37,
+      "question": "Como funciona a estrutura da função condicional =SE()?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "=SE(somar; subtrair; dividir) calculando todas as operações básicas"
+        },
+        {
+          "id": "b",
+          "text": "=SE(teste_lógico; valor_se_verdadeiro; valor_se_falso) avaliando uma condição de cálculo"
+        },
+        {
+          "id": "c",
+          "text": "=SE(início; meio; fim) organizando os textos em ordem"
+        },
+        {
+          "id": "d",
+          "text": "=SE(nome; data; hora) registrando o momento de acesso"
+        }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": 38,
+      "question": "Para que serve a função =PROCV() no Microsoft Excel?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Proteger o computador contra ataques de vírus enviados por correio eletrônico"
+        },
+        {
+          "id": "b",
+          "text": "Aumentar a memória RAM física instalada na placa-mãe do gabinete"
+        },
+        {
+          "id": "c",
+          "text": "Procurar um valor na primeira coluna e retornar dados de outra"
+        },
+        {
+          "id": "d",
+          "text": "Imprimir a planilha em formato de cartaz para apresentações em feiras"
+        }
+      ],
+      "correctOptionId": "c"
+    },
+    {
+      "id": 39,
+      "question": "O que indica a mensagem de erro #DIV/0! na planilha?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que o arquivo de planilha está com o tamanho acima do limite"
+        },
+        {
+          "id": "b",
+          "text": "Que a impressora conectada está sem folha sulfite na bandeja de papel"
+        },
+        {
+          "id": "c",
+          "text": "Que a bateria do computador portátil precisa de recarga na tomada"
+        },
+        {
+          "id": "d",
+          "text": "Que a fórmula tentou efetuar uma divisão impossível pelo número zero"
+        }
+      ],
+      "correctOptionId": "d"
+    },
+    {
+      "id": 40,
+      "question": "Para que serve o recurso de 'Validação de Dados'?",
+      "difficulty": "dificil",
+      "options": [
+        {
+          "id": "a",
+          "text": "Restringir o tipo de dado aceito criando listas suspensas na célula"
+        },
+        {
+          "id": "b",
+          "text": "Validar se o aluno pagou a mensalidade do curso de informática"
+        },
+        {
+          "id": "c",
+          "text": "Testar se a conexão de internet possui velocidade para carregar vídeos"
+        },
+        {
+          "id": "d",
+          "text": "Enviar uma cópia da planilha para a Receita Federal do Brasil"
+        }
+      ],
+      "correctOptionId": "a"
+    }
+  ],
+  "discursiveQuestions": []
+},
+
   // ===================================================================
   // MICROSOFT WORD
   // ===================================================================

@@ -1,317 +1,369 @@
-import { FileText, MonitorPlay, Globe, ShieldAlert, Palette, Laptop, Brain, Trophy, Sparkles } from 'lucide-react';
+import { useState } from 'react';
+import { 
+  ArrowRight, CheckCircle2, ChevronDown, ChevronUp, Monitor, Sparkles
+} from 'lucide-react';
+import { 
+  GmailLogo, GoogleDriveLogo, GoogleMeetLogo, AnyDeskLogo, ExcelLogo,
+  WordLogo, PowerPointLogo, ChromeLogo, MalwarebytesLogo, CanvaLogo,
+  WindowsLogo, ChatGPTLogo
+} from './AppLogos';
 
 interface HomeProps {
   onSelectActivity: (id: string) => void;
 }
 
 export function Home({ onSelectActivity }: HomeProps) {
-  const categories = [
+  const [showArchive, setShowArchive] = useState(false);
+
+  // 5 Novas Provas Oficiais (Organizadas, Limpas, Estilo Pinterest / Notion)
+  const newOfficialActivities = [
     {
-      id: 'word',
-      title: 'Microsoft Word',
-      description: 'Teste seus conhecimentos sobre o Microsoft Word. Crie e formate textos, tabelas, mala direta e muito mais.',
-      iconType: 'word',
-      badgeClass: 'icon-badge icon-badge-blue',
-      glowColor: 'rgba(6, 182, 212, 0.3)'
+      id: 'gmail',
+      number: '01',
+      title: 'Gmail',
+      tag: 'E-mails, Marcadores e Organização',
+      logo: <GmailLogo size={36} />,
+      accentColor: '#ea4335',
+      glowColor: 'rgba(234, 67, 53, 0.25)',
+      gradient: 'linear-gradient(145deg, rgba(234, 67, 53, 0.1) 0%, rgba(15, 23, 42, 0.9) 100%)',
+      borderColor: 'rgba(234, 67, 53, 0.3)',
+      btnGradient: 'linear-gradient(135deg, #ea4335 0%, #c5221f 100%)'
     },
     {
-      id: 'powerpoint',
-      title: 'Microsoft PowerPoint',
-      description: 'Teste seus conhecimentos sobre o PowerPoint. Slides, transições, animações e apresentações profissionais.',
-      iconType: 'powerpoint',
-      badgeClass: 'icon-badge icon-badge-amber',
-      glowColor: 'rgba(245, 158, 11, 0.3)'
+      id: 'drive',
+      number: '02',
+      title: 'Google Drive',
+      tag: 'Nuvem, Pastas e Compartilhamento',
+      logo: <GoogleDriveLogo size={36} />,
+      accentColor: '#34a853',
+      glowColor: 'rgba(52, 168, 83, 0.25)',
+      gradient: 'linear-gradient(145deg, rgba(52, 168, 83, 0.1) 0%, rgba(15, 23, 42, 0.9) 100%)',
+      borderColor: 'rgba(52, 168, 83, 0.3)',
+      btnGradient: 'linear-gradient(135deg, #34a853 0%, #1e8e3e 100%)'
     },
     {
-      id: 'chrome',
-      title: 'Google Chrome',
-      description: 'Aprenda sobre navegação segura, favoritos, abas, cache, cookies e atalhos no navegador.',
-      iconType: 'chrome',
-      badgeClass: 'icon-badge icon-badge-green',
-      glowColor: 'rgba(16, 185, 129, 0.3)'
+      id: 'meet',
+      number: '03',
+      title: 'Google Meet',
+      tag: 'Videoconferências e Ferramentas',
+      logo: <GoogleMeetLogo size={36} />,
+      accentColor: '#00ac47',
+      glowColor: 'rgba(0, 172, 71, 0.25)',
+      gradient: 'linear-gradient(145deg, rgba(0, 172, 71, 0.1) 0%, rgba(15, 23, 42, 0.9) 100%)',
+      borderColor: 'rgba(0, 172, 71, 0.3)',
+      btnGradient: 'linear-gradient(135deg, #00ac47 0%, #00832d 100%)'
     },
     {
-      id: 'antivirus',
-      title: 'Antivírus Malwarebytes',
-      description: 'Entenda segurança digital, proteção em tempo real, ameaças como malware e ransomware e uso do antivírus.',
-      iconType: 'antivirus',
-      badgeClass: 'icon-badge icon-badge-red',
-      glowColor: 'rgba(244, 63, 94, 0.3)'
+      id: 'anydesk',
+      number: '04',
+      title: 'AnyDesk',
+      tag: 'Acesso Remoto e Suporte Técnico',
+      logo: <AnyDeskLogo size={36} />,
+      accentColor: '#ef4444',
+      glowColor: 'rgba(239, 68, 68, 0.25)',
+      gradient: 'linear-gradient(145deg, rgba(239, 68, 68, 0.1) 0%, rgba(15, 23, 42, 0.9) 100%)',
+      borderColor: 'rgba(239, 68, 68, 0.3)',
+      btnGradient: 'linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)'
     },
     {
-      id: 'canva',
-      title: 'Canva',
-      description: 'Aprenda a criar designs incríveis: cartazes, apresentações, logotipos, edições de imagens, uploads e muito mais.',
-      iconType: 'canva',
-      badgeClass: 'icon-badge icon-badge-purple',
-      glowColor: 'rgba(139, 92, 246, 0.3)'
-    },
-    {
-      id: 'systems',
-      title: 'Windows vs Linux',
-      description: 'Compreenda as diferenças de cada sistema operacional, quando utilizar cada um, prós e contras de cada ambiente.',
-      iconType: 'systems',
-      badgeClass: 'icon-badge icon-badge-indigo',
-      glowColor: 'rgba(99, 102, 241, 0.3)'
-    },
-    {
-      id: 'ai',
-      title: 'ChatGPT e IAs',
-      description: 'Entenda como funcionam as Inteligências Artificiais conversacionais, prompts de comando, Gemini e Claude.',
-      iconType: 'ai',
-      badgeClass: 'icon-badge icon-badge-teal',
-      glowColor: 'rgba(20, 184, 166, 0.3)'
+      id: 'excel',
+      number: '05',
+      title: 'Excel Básico',
+      tag: 'Planilhas, Células e Fórmulas',
+      logo: <ExcelLogo size={36} />,
+      accentColor: '#107c41',
+      glowColor: 'rgba(16, 124, 65, 0.3)',
+      gradient: 'linear-gradient(145deg, rgba(16, 124, 65, 0.12) 0%, rgba(15, 23, 42, 0.9) 100%)',
+      borderColor: 'rgba(16, 124, 65, 0.35)',
+      btnGradient: 'linear-gradient(135deg, #107c41 0%, #0c592e 100%)'
     }
   ];
 
-  const getIcon = (type: string) => {
-    switch(type) {
-      case 'word': return <FileText size={24} color="var(--accent-primary)" />;
-      case 'powerpoint': return <MonitorPlay size={24} color="var(--accent-warning)" />;
-      case 'chrome': return <Globe size={24} color="var(--accent-success)" />;
-      case 'antivirus': return <ShieldAlert size={24} color="var(--accent-error)" />;
-      case 'canva': return <Palette size={24} color="var(--accent-secondary)" />;
-      case 'systems': return <Laptop size={24} color="#6366f1" />;
-      case 'ai': return <Brain size={24} color="#14b8a6" />;
-      default: return <FileText size={24} color="var(--accent-primary)" />;
-    }
-  };
+  // Atividades Concluídas Anteriores
+  const completedModules = [
+    { id: 'word', title: 'Microsoft Word', desc: 'Processador de Texto', logo: <WordLogo size={22} /> },
+    { id: 'powerpoint', title: 'PowerPoint', desc: 'Apresentações & Slides', logo: <PowerPointLogo size={22} /> },
+    { id: 'chrome', title: 'Google Chrome', desc: 'Navegação Web', logo: <ChromeLogo size={22} /> },
+    { id: 'antivirus', title: 'Malwarebytes', desc: 'Segurança & Antivírus', logo: <MalwarebytesLogo size={22} /> },
+    { id: 'canva', title: 'Canva', desc: 'Design & Criatividade', logo: <CanvaLogo size={22} /> },
+    { id: 'systems', title: 'Windows & Linux', desc: 'Sistemas Operacionais', logo: <WindowsLogo size={22} /> },
+    { id: 'ai', title: 'ChatGPT & IAs', desc: 'Inteligência Artificial', logo: <ChatGPTLogo size={22} /> },
+    { id: 'desafio-completo', title: 'Revisão Geral (Word, PPT, IAs)', desc: 'Desafio Interdisciplinar', logo: <Sparkles size={22} color="#fbbf24" /> }
+  ];
 
   return (
-    <div className="animate-fade-in text-center mt-10">
-      {/* Hero Section */}
-      <div className="flex justify-center mb-6">
-        <div className="home-logo-container">
+    <div className="animate-fade-in text-center mt-4">
+      {/* Header Resumido e Elegante */}
+      <div className="flex flex-col items-center justify-center mb-8">
+        <div 
+          style={{ 
+            padding: '0.45rem', 
+            background: 'rgba(255, 255, 255, 0.04)', 
+            borderRadius: '20px', 
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            marginBottom: '0.85rem'
+          }}
+        >
           <img 
             src="/iepop.png" 
             alt="IEPOP Logo" 
-            className="home-logo-img"
+            style={{ maxHeight: '60px', objectFit: 'contain' }}
           />
         </div>
-      </div>
-      <h1 className="hero-title mb-3">Atividades Online de Informática</h1>
-      <p className="hero-subtitle mb-8">
-        Bem-vindo! Escolha uma categoria e selecione o nível para iniciar a atividade ou faça a Prova Geral Completa.
-      </p>
 
-      {/* Hero Banner: Desafio Completo */}
-      <div 
-        className="glass-card-static mb-10 text-left p-6 md:p-8"
-        style={{
-          background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%)',
-          border: '1px solid rgba(245, 158, 11, 0.45)',
-          boxShadow: '0 10px 30px rgba(245, 158, 11, 0.15)',
-          borderRadius: '16px',
-          position: 'relative',
-          overflow: 'hidden'
-        }}
-      >
-        <div 
-          style={{
-            position: 'absolute',
-            top: '-50px',
-            right: '-50px',
-            width: '220px',
-            height: '220px',
-            background: 'radial-gradient(circle, rgba(245, 158, 11, 0.18) 0%, transparent 70%)',
-            pointerEvents: 'none'
+        <h1 
+          style={{ 
+            fontSize: '2.15rem', 
+            fontWeight: 800, 
+            letterSpacing: '-0.02em', 
+            color: '#f8fafc',
+            marginBottom: '0.35rem'
           }}
-        />
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6" style={{ position: 'relative', zIndex: 1 }}>
-          <div className="flex items-start gap-4">
-            <div 
-              style={{
-                background: 'linear-gradient(135deg, #f59e0b, #d97706)',
-                padding: '1rem',
-                borderRadius: '14px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 4px 14px rgba(245, 158, 11, 0.4)',
-                flexShrink: 0
-              }}
-            >
-              <Trophy size={32} color="#ffffff" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2 mb-2 flex-wrap">
-                <span 
-                  style={{
-                    background: 'rgba(245, 158, 11, 0.2)',
-                    color: '#fbbf24',
-                    border: '1px solid rgba(245, 158, 11, 0.4)',
-                    padding: '0.2rem 0.65rem',
-                    borderRadius: '20px',
-                    fontSize: '0.75rem',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.05em'
-                  }}
-                >
-                  🏆 Desafio Completo • Prova Geral
-                </span>
-                <span 
-                  style={{
-                    background: 'rgba(16, 185, 129, 0.2)',
-                    color: '#34d399',
-                    border: '1px solid rgba(16, 185, 129, 0.3)',
-                    padding: '0.2rem 0.65rem',
-                    borderRadius: '20px',
-                    fontSize: '0.75rem',
-                    fontWeight: 600
-                  }}
-                >
-                  40 Questões Fáceis
-                </span>
-                <span 
-                  style={{
-                    background: 'rgba(99, 102, 241, 0.2)',
-                    color: '#818cf8',
-                    border: '1px solid rgba(99, 102, 241, 0.3)',
-                    padding: '0.2rem 0.65rem',
-                    borderRadius: '20px',
-                    fontSize: '0.75rem',
-                    fontWeight: 600
-                  }}
-                >
-                  Sem Nível 3
-                </span>
-              </div>
-              <h2 className="text-2xl font-extrabold text-white tracking-tight mb-2">
-                Prova Geral: Word + Google + ChatGPT + Malwarebytes + Canva
-              </h2>
-              <p className="text-muted text-sm max-w-2xl">
-                Teste seus conhecimentos no desafio de <strong>40 perguntas fáceis</strong> divididas igualmente (8 por módulo):
-                <span style={{ color: '#38bdf8' }}> Word (8)</span> • 
-                <span style={{ color: '#4ade80' }}> Google (8)</span> • 
-                <span style={{ color: '#2dd4bf' }}> ChatGPT (8)</span> • 
-                <span style={{ color: '#fb7185' }}> Malwarebytes (8)</span> • 
-                <span style={{ color: '#c084fc' }}> Canva (8)</span>.
-              </p>
-            </div>
-          </div>
-          <button
-            onClick={() => onSelectActivity('desafio-completo')}
-            className="btn"
-            style={{
-              background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
-              color: '#ffffff',
-              fontWeight: 700,
-              fontSize: '1.05rem',
-              padding: '0.9rem 1.8rem',
-              borderRadius: '12px',
-              border: 'none',
-              boxShadow: '0 4px 16px rgba(245, 158, 11, 0.4)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.6rem',
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-              transition: 'all 0.2s ease-in-out'
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(245, 158, 11, 0.55)';
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.transform = 'translateY(0) scale(1)';
-              e.currentTarget.style.boxShadow = '0 4px 16px rgba(245, 158, 11, 0.4)';
-            }}
-          >
-            <Sparkles size={20} /> Iniciar Desafio (35 Qs)
-          </button>
+        >
+          Avaliações de Informática
+        </h1>
+
+        <div className="flex items-center gap-3 flex-wrap justify-center text-sm" style={{ color: '#94a3b8' }}>
+          <span>5 Provas Oficiais</span>
+          <span>•</span>
+          <span>40 Questões por Módulo</span>
+          <span>•</span>
+          <span className="flex items-center gap-1.5" style={{ color: '#38bdf8' }}>
+            <Monitor size={15} /> Modo Tela Cheia
+          </span>
         </div>
       </div>
 
-      {/* Activity Cards Grid */}
-      <div className="activities-grid stagger-children">
-        {categories.map((category) => (
+      {/* Grid das 5 Provas (Pinterest Clean Cards) */}
+      <div 
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '1.25rem',
+          maxWidth: '1100px',
+          margin: '0 auto 2.5rem auto',
+          textAlign: 'left'
+        }}
+      >
+        {newOfficialActivities.map((act) => (
           <div 
-            key={category.id}
-            className="activity-card"
-            style={{ 
-              cursor: 'default',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'between',
-              minHeight: '340px'
+            key={act.id}
+            className="pinterest-exam-card"
+            style={{
+              background: act.gradient,
+              borderColor: act.borderColor,
+              boxShadow: `0 8px 24px rgba(0, 0, 0, 0.3), 0 0 20px ${act.glowColor}`
             }}
           >
-            <div>
-              <div className="flex items-center gap-4 mb-4">
-                <div className={category.badgeClass}>
-                  {getIcon(category.iconType)}
-                </div>
-                <h2 className="text-xl font-bold tracking-tight">{category.title}</h2>
+            {/* Top row: Logo + Counter */}
+            <div className="flex items-center justify-between gap-3 mb-3">
+              <div 
+                style={{
+                  width: '52px',
+                  height: '52px',
+                  borderRadius: '14px',
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  border: `1px solid ${act.borderColor}`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}
+              >
+                {act.logo}
               </div>
-              <p className="text-muted text-sm mb-6">
-                {category.description}
+
+              <div className="flex items-center gap-2">
+                <span 
+                  style={{
+                    fontSize: '0.72rem',
+                    fontWeight: 800,
+                    color: '#94a3b8',
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    padding: '0.2rem 0.55rem',
+                    borderRadius: '8px',
+                    border: '1px solid rgba(255, 255, 255, 0.08)'
+                  }}
+                >
+                  #{act.number}
+                </span>
+                <span 
+                  style={{
+                    fontSize: '0.72rem',
+                    fontWeight: 800,
+                    color: '#f8fafc',
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    padding: '0.2rem 0.55rem',
+                    borderRadius: '8px',
+                    border: '1px solid rgba(255, 255, 255, 0.15)'
+                  }}
+                >
+                  40 Questões
+                </span>
+              </div>
+            </div>
+
+            {/* Title & Short Tag */}
+            <div className="mb-4">
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#ffffff', margin: '0 0 0.2rem 0' }}>
+                {act.title}
+              </h3>
+              <p style={{ fontSize: '0.82rem', color: '#94a3b8', margin: 0, fontWeight: 500 }}>
+                {act.tag}
               </p>
             </div>
 
-            {/* Level selection buttons */}
-            <div style={{ marginTop: 'auto' }}>
-              <p style={{ 
-                fontSize: '0.8rem', 
-                color: 'var(--text-muted)', 
-                marginBottom: '0.75rem', 
-                fontWeight: 600, 
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em'
-              }}>
-                Selecione o Nível:
-              </p>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
-                <button 
-                  onClick={() => onSelectActivity(`${category.id}-1`)} 
-                  className="btn btn-secondary level-btn"
-                  style={{ 
-                    padding: '0.625rem 0.25rem', 
-                    fontSize: '0.85rem',
-                    borderColor: 'rgba(100, 116, 139, 0.15)'
-                  }}
-                  title={`Iniciar ${category.title} - Nível 1`}
-                >
-                  Nível 1
-                </button>
-                <button 
-                  onClick={() => onSelectActivity(`${category.id}-2`)} 
-                  className="btn btn-secondary level-btn"
-                  style={{ 
-                    padding: '0.625rem 0.25rem', 
-                    fontSize: '0.85rem',
-                    borderColor: 'rgba(100, 116, 139, 0.15)'
-                  }}
-                  title={`Iniciar ${category.title} - Nível 2`}
-                >
-                  Nível 2
-                </button>
-                <button 
-                  onClick={() => onSelectActivity(`${category.id}-3`)} 
-                  className="btn btn-secondary level-btn"
-                  style={{ 
-                    padding: '0.625rem 0.25rem', 
-                    fontSize: '0.85rem',
-                    borderColor: 'rgba(100, 116, 139, 0.15)'
-                  }}
-                  title={`Iniciar ${category.title} - Nível 3`}
-                >
-                  Nível 3
-                </button>
-              </div>
+            {/* Micro Difficulty Bar */}
+            <div 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.6rem',
+                fontSize: '0.75rem',
+                color: '#cbd5e1',
+                padding: '0.4rem 0.75rem',
+                background: 'rgba(0, 0, 0, 0.25)',
+                borderRadius: '10px',
+                marginBottom: '1.25rem',
+                border: '1px solid rgba(255, 255, 255, 0.05)'
+              }}
+            >
+              <span className="flex items-center gap-1.5 font-medium">
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#34d399' }} />
+                20 Fáceis
+              </span>
+              <span style={{ color: '#475569' }}>•</span>
+              <span className="flex items-center gap-1.5 font-medium">
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#fbbf24' }} />
+                15 Médias
+              </span>
+              <span style={{ color: '#475569' }}>•</span>
+              <span className="flex items-center gap-1.5 font-medium">
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#f43f5e' }} />
+                5 Difíceis
+              </span>
             </div>
-            
-            {/* Custom interactive hover glow */}
-            <style>{`
-              .level-btn:hover {
-                border-color: ${category.glowColor} !important;
-                background: rgba(15, 23, 42, 0.85) !important;
-                box-shadow: 0 0 10px ${category.glowColor};
-                transform: translateY(-1px);
-              }
-            `}</style>
+
+            {/* CTA Button */}
+            <button
+              onClick={() => onSelectActivity(act.id)}
+              className="pinterest-exam-btn"
+              style={{
+                background: act.btnGradient,
+                boxShadow: `0 4px 16px ${act.glowColor}`
+              }}
+            >
+              <span>Iniciar Avaliação</span>
+              <ArrowRight size={16} />
+            </button>
           </div>
         ))}
+      </div>
+
+      {/* Seção Resumida de Módulos Concluídos (Drawer Elegante) */}
+      <div 
+        style={{
+          maxWidth: '1100px',
+          margin: '0 auto 2.5rem auto',
+          background: 'rgba(15, 23, 42, 0.4)',
+          border: '1px solid rgba(148, 163, 184, 0.1)',
+          borderRadius: '16px',
+          padding: '0.85rem 1.25rem'
+        }}
+      >
+        <button
+          onClick={() => setShowArchive(!showArchive)}
+          style={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            background: 'none',
+            border: 'none',
+            color: '#94a3b8',
+            cursor: 'pointer',
+            padding: '0.25rem 0.5rem',
+            fontSize: '0.88rem',
+            fontWeight: 600
+          }}
+        >
+          <div className="flex items-center gap-2">
+            <span 
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.3rem',
+                background: 'rgba(16, 185, 129, 0.15)',
+                color: '#34d399',
+                padding: '0.2rem 0.6rem',
+                borderRadius: '9999px',
+                fontSize: '0.72rem',
+                fontWeight: 700
+              }}
+            >
+              <CheckCircle2 size={12} /> Módulos Anteriores Concluídos ({completedModules.length})
+            </span>
+            <span style={{ fontSize: '0.8rem', color: '#64748b' }}>
+              Word, PowerPoint, Chrome, Antivírus, Canva, etc.
+            </span>
+          </div>
+
+          <div className="flex items-center gap-1 text-xs" style={{ color: '#cbd5e1' }}>
+            <span>{showArchive ? 'Ocultar' : 'Visualizar'}</span>
+            {showArchive ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          </div>
+        </button>
+
+        {showArchive && (
+          <div 
+            className="animate-fade-in"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: '0.75rem',
+              marginTop: '1rem',
+              paddingTop: '1rem',
+              borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+              textAlign: 'left'
+            }}
+          >
+            {completedModules.map((m) => (
+              <div 
+                key={m.id}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: '0.75rem',
+                  padding: '0.65rem 0.85rem',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(255, 255, 255, 0.06)',
+                  borderRadius: '10px'
+                }}
+              >
+                <div className="flex items-center gap-2.5">
+                  <div style={{ opacity: 0.85 }}>{m.logo}</div>
+                  <div>
+                    <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#e2e8f0' }}>{m.title}</div>
+                    <div style={{ fontSize: '0.7rem', color: '#64748b' }}>{m.desc}</div>
+                  </div>
+                </div>
+                <span 
+                  style={{
+                    fontSize: '0.68rem',
+                    fontWeight: 700,
+                    color: '#34d399',
+                    background: 'rgba(16, 185, 129, 0.1)',
+                    padding: '0.15rem 0.45rem',
+                    borderRadius: '6px'
+                  }}
+                >
+                  ✓ Concluído
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
