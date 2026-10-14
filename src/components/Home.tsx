@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { 
-  ArrowRight, CheckCircle2, ChevronDown, ChevronUp, Monitor, Sparkles
+  ArrowRight, CheckCircle2, ChevronDown, ChevronUp, Monitor, Sparkles, Download
 } from 'lucide-react';
 import { 
   GmailLogo, GoogleDriveLogo, GoogleMeetLogo, AnyDeskLogo, ExcelLogo,
@@ -81,7 +81,14 @@ export function Home({ onSelectActivity }: HomeProps) {
 
   // Atividades Concluídas Anteriores
   const completedModules = [
-    { id: 'word', title: 'Microsoft Word', desc: 'Processador de Texto', logo: <WordLogo size={22} /> },
+    { 
+      id: 'word', 
+      title: 'Microsoft Word', 
+      desc: 'Processador de Texto', 
+      logo: <WordLogo size={22} />,
+      downloadUrl: `${import.meta.env.BASE_URL}Curriculo_Editavel.docx`,
+      downloadLabel: 'Baixar Modelo (.docx)'
+    },
     { id: 'powerpoint', title: 'PowerPoint', desc: 'Apresentações & Slides', logo: <PowerPointLogo size={22} /> },
     { id: 'chrome', title: 'Google Chrome', desc: 'Navegação Web', logo: <ChromeLogo size={22} /> },
     { id: 'antivirus', title: 'Malwarebytes', desc: 'Segurança & Antivírus', logo: <MalwarebytesLogo size={22} /> },
@@ -260,6 +267,103 @@ export function Home({ onSelectActivity }: HomeProps) {
         ))}
       </div>
 
+      {/* Banner de Download do Modelo de Currículo Editável no Word */}
+      <div 
+        style={{
+          maxWidth: '1100px',
+          margin: '0 auto 2.5rem auto',
+          background: 'linear-gradient(135deg, rgba(24, 90, 189, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          border: '1px solid rgba(37, 99, 235, 0.35)',
+          borderRadius: '16px',
+          padding: '1.25rem 1.5rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '1.25rem',
+          flexWrap: 'wrap',
+          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3), 0 0 24px rgba(24, 90, 189, 0.18)',
+          textAlign: 'left'
+        }}
+      >
+        <div className="flex items-center gap-4" style={{ minWidth: '280px', flex: '1 1 auto' }}>
+          <div 
+            style={{
+              width: '56px',
+              height: '56px',
+              borderRadius: '14px',
+              background: 'rgba(24, 90, 189, 0.22)',
+              border: '1px solid rgba(24, 90, 189, 0.45)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
+            }}
+          >
+            <WordLogo size={36} />
+          </div>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span 
+                style={{
+                  fontSize: '0.7rem',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  color: '#60a5fa',
+                  background: 'rgba(37, 99, 235, 0.15)',
+                  padding: '0.15rem 0.5rem',
+                  borderRadius: '6px',
+                  border: '1px solid rgba(59, 130, 246, 0.3)'
+                }}
+              >
+                Material de Apoio
+              </span>
+              <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
+                Microsoft Word (.docx) • 19 KB
+              </span>
+            </div>
+            <h3 style={{ fontSize: '1.18rem', fontWeight: 800, color: '#f8fafc', margin: '0 0 0.2rem 0' }}>
+              Modelo de Currículo Editável
+            </h3>
+            <p style={{ fontSize: '0.84rem', color: '#94a3b8', margin: 0, lineHeight: 1.4 }}>
+              Arquivo oficial formatado para treino em aula de Word e confecção do seu currículo profissional.
+            </p>
+          </div>
+        </div>
+
+        <a
+          href={`${import.meta.env.BASE_URL}Curriculo_Editavel.docx`}
+          download="Curriculo_Editavel.docx"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.6rem',
+            background: 'linear-gradient(135deg, #185ABD 0%, #0d418a 100%)',
+            color: '#ffffff',
+            fontWeight: 700,
+            fontSize: '0.9rem',
+            padding: '0.75rem 1.4rem',
+            borderRadius: '12px',
+            textDecoration: 'none',
+            boxShadow: '0 4px 16px rgba(24, 90, 189, 0.4)',
+            transition: 'all 0.2s ease',
+            border: '1px solid rgba(96, 165, 250, 0.35)',
+            cursor: 'pointer'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 6px 22px rgba(24, 90, 189, 0.6)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 4px 16px rgba(24, 90, 189, 0.4)';
+          }}
+        >
+          <Download size={18} />
+          <span>Baixar Arquivo Word (.docx)</span>
+        </a>
+      </div>
+
       {/* Seção Resumida de Módulos Concluídos (Drawer Elegante) */}
       <div 
         style={{
@@ -348,18 +452,42 @@ export function Home({ onSelectActivity }: HomeProps) {
                     <div style={{ fontSize: '0.7rem', color: '#64748b' }}>{m.desc}</div>
                   </div>
                 </div>
-                <span 
-                  style={{
-                    fontSize: '0.68rem',
-                    fontWeight: 700,
-                    color: '#34d399',
-                    background: 'rgba(16, 185, 129, 0.1)',
-                    padding: '0.15rem 0.45rem',
-                    borderRadius: '6px'
-                  }}
-                >
-                  ✓ Concluído
-                </span>
+                {m.downloadUrl ? (
+                  <a 
+                    href={m.downloadUrl}
+                    download="Curriculo_Editavel.docx"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.35rem',
+                      fontSize: '0.7rem',
+                      fontWeight: 700,
+                      color: '#60a5fa',
+                      background: 'rgba(37, 99, 235, 0.15)',
+                      border: '1px solid rgba(59, 130, 246, 0.35)',
+                      padding: '0.2rem 0.55rem',
+                      borderRadius: '6px',
+                      textDecoration: 'none',
+                      transition: 'all 0.2s'
+                    }}
+                  >
+                    <Download size={12} />
+                    {m.downloadLabel || 'Baixar'}
+                  </a>
+                ) : (
+                  <span 
+                    style={{
+                      fontSize: '0.68rem',
+                      fontWeight: 700,
+                      color: '#34d399',
+                      background: 'rgba(16, 185, 129, 0.1)',
+                      padding: '0.15rem 0.45rem',
+                      borderRadius: '6px'
+                    }}
+                  >
+                    ✓ Concluído
+                  </span>
+                )}
               </div>
             ))}
           </div>
