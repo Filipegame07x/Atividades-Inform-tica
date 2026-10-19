@@ -143,6 +143,7 @@ alt="IEPOP Logo"
 
       {/* Grid das 5 Provas (Pinterest Clean Cards) */}
       <div 
+        className="home-activities-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
@@ -269,6 +270,7 @@ alt="IEPOP Logo"
 
       {/* Banner de Download do Modelo de Currículo Editável no Word */}
       <div 
+        className="resume-download-banner"
         style={{
           maxWidth: '1100px',
           margin: '0 auto 2.5rem auto',
@@ -285,7 +287,7 @@ alt="IEPOP Logo"
           textAlign: 'left'
         }}
       >
-        <div className="flex items-center gap-4" style={{ minWidth: '280px', flex: '1 1 auto' }}>
+        <div className="flex items-center gap-4 resume-download-content" style={{ minWidth: '280px', flex: '1 1 auto' }}>
           <div 
             style={{
               width: '56px',
@@ -366,6 +368,7 @@ alt="IEPOP Logo"
 
       {/* Seção Resumida de Módulos Concluídos (Drawer Elegante) */}
       <div 
+        className="archive-section"
         style={{
           maxWidth: '1100px',
           margin: '0 auto 2.5rem auto',
@@ -377,6 +380,7 @@ alt="IEPOP Logo"
       >
         <button
           onClick={() => setShowArchive(!showArchive)}
+          className="archive-toggle"
           style={{
             width: '100%',
             display: 'flex',
