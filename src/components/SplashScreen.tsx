@@ -55,8 +55,8 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           <div className="splash-logo-ring" />
           <div className="splash-logo-inner" style={{ padding: '0.25rem', overflow: 'hidden' }}>
             <img 
-              src="/iepop.png" 
-              alt="IEPOP Logo" 
+              src="/IEPOP.png"
+alt="IEPOP Logo"
               style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
             />
           </div>

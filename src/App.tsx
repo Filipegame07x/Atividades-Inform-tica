@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { BookOpen, Keyboard, Zap, Flame } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { BookOpen, Keyboard, Zap, Flame, Moon, Sun } from 'lucide-react';
 import { SplashScreen } from './components/SplashScreen';
 import { Home } from './components/Home';
 import { PasswordGate } from './components/PasswordGate';
@@ -17,6 +17,10 @@ type AppState = 'HOME' | 'PASSWORD_GATE' | 'ACTIVITY' | 'RESULT';
 type ActiveTab = 'ACTIVITIES' | 'PRACTICE' | 'SHORTCUTS' | 'SPEED_QUIZ';
 
 function App() {
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    const savedTheme = localStorage.getItem('atividades-theme');
+    return savedTheme === 'dark' ? 'dark' : 'light';
+  });
   const [showSplash, setShowSplash] = useState(true);
   const [appState, setAppState] = useState<AppState>('HOME');
   const [activeTab, setActiveTab] = useState<ActiveTab>('ACTIVITIES');
@@ -25,6 +29,11 @@ function App() {
   const [selectedPracticeText, setSelectedPracticeText] = useState<TypingText | null>(null);
 
   const selectedActivity = activities.find(a => a.id === selectedActivityId) || null;
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('atividades-theme', theme);
+  }, [theme]);
 
   const handleSelectActivity = (id: string) => {
     setSelectedActivityId(id);
@@ -51,7 +60,7 @@ function App() {
   }
 
   return (
-    <div className="container" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <div className="container" data-theme={theme} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <div style={{ flex: 1 }}>
         {selectedPracticeText ? (
           <PracticeTyping 
@@ -89,6 +98,16 @@ function App() {
                       <Flame size={16} color="#f59e0b" /> Speed Quiz
                     </button>
                   </div>
+                  <button
+                    type="button"
+                    className="theme-toggle"
+                    onClick={() => setTheme(current => current === 'light' ? 'dark' : 'light')}
+                    aria-label={`Ativar tema ${theme === 'light' ? 'escuro' : 'claro'}`}
+                    title={`Ativar tema ${theme === 'light' ? 'escuro' : 'claro'}`}
+                  >
+                    {theme === 'light' ? <Moon size={17} /> : <Sun size={17} />}
+                    <span>{theme === 'light' ? 'Escuro' : 'Claro'}</span>
+                  </button>
                 </div>
 
                 {activeTab === 'ACTIVITIES' ? (

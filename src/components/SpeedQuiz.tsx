@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { speedQuizQuestions } from '../data/speedQuiz';
 import type { SpeedQuizQuestion } from '../data/speedQuiz';
 import { 
@@ -42,15 +42,37 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
   const [globalTimeLeft, setGlobalTimeLeft] = useState(60); // for 60s Time Attack mode
   const [questionTimeLeft, setQuestionTimeLeft] = useState(QUESTION_TIMEOUT_SECONDS); // 20s per question
   
-  const globalTimerRef = useRef<any>(null);
-  const questionTimerRef = useRef<any>(null);
+  const globalTimerRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
+  const questionTimerRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
 
   const currentQuestion: SpeedQuizQuestion | undefined = shuffledQuestions[currentIndex];
+
+  const advanceQuestion = useCallback(() => {
+    setFeedback('NONE');
+    setLastExplanation('');
+    setQuestionTimeLeft(QUESTION_TIMEOUT_SECONDS);
+    if (gameType === 'PRACTICE' && currentIndex >= 14) {
+      setMode('SUMMARY');
+    } else if (currentIndex + 1 < shuffledQuestions.length) {
+      setCurrentIndex(prev => prev + 1);
+    } else {
+      setMode('SUMMARY');
+    }
+  }, [gameType, currentIndex, shuffledQuestions.length]);
+
+  const handleTimeout = useCallback(() => {
+    if (!currentQuestion) return;
+    setFeedback('TIMEOUT');
+    setLastExplanation('Tempo de 20 segundos esgotado! ' + currentQuestion.explanation);
+    setIncorrectCount(prev => prev + 1);
+    setCombo(0);
+    setTimeout(advanceQuestion, 1600);
+  }, [currentQuestion, advanceQuestion]);
 
   // 1. Global Game Timer (for Time Attack mode)
   useEffect(() => {
     if (mode === 'PLAYING' && gameType === 'TIME_ATTACK') {
-      setGlobalTimeLeft(60);
+
       globalTimerRef.current = setInterval(() => {
         setGlobalTimeLeft(prev => {
           if (prev <= 1) {
@@ -73,7 +95,7 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
   // 2. Per-Question 20-Second Countdown Timer
   useEffect(() => {
     if (mode === 'PLAYING' && feedback === 'NONE' && currentQuestion) {
-      setQuestionTimeLeft(QUESTION_TIMEOUT_SECONDS);
+
 
       questionTimerRef.current = setInterval(() => {
         setQuestionTimeLeft(prev => {
@@ -92,19 +114,8 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
     return () => {
       if (questionTimerRef.current) clearInterval(questionTimerRef.current);
     };
-  }, [mode, currentIndex, feedback]);
+  }, [mode, currentIndex, feedback, currentQuestion, handleTimeout]);
 
-  const handleTimeout = () => {
-    if (!currentQuestion) return;
-    setFeedback('TIMEOUT');
-    setLastExplanation(`⏰ Tempo de 20s esgotado! ${currentQuestion.explanation}`);
-    setIncorrectCount(prev => prev + 1);
-    setCombo(0);
-
-    setTimeout(() => {
-      advanceQuestion();
-    }, 1600);
-  };
 
   const handleStartGame = (selectedType: GameType) => {
     const shuffled = [...speedQuizQuestions].sort(() => Math.random() - 0.5);
@@ -117,6 +128,7 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
     setMaxCombo(0);
     setFeedback('NONE');
     setLastExplanation('');
+    setGlobalTimeLeft(60);
     setQuestionTimeLeft(QUESTION_TIMEOUT_SECONDS);
     setGameType(selectedType);
     setMode('PLAYING');
@@ -156,19 +168,7 @@ export function SpeedQuiz({ onBack }: SpeedQuizProps) {
     }
   };
 
-  const advanceQuestion = () => {
-    setFeedback('NONE');
-    setLastExplanation('');
-    setQuestionTimeLeft(QUESTION_TIMEOUT_SECONDS);
 
-    if (gameType === 'PRACTICE' && currentIndex >= 14) {
-      setMode('SUMMARY');
-    } else if (currentIndex + 1 < shuffledQuestions.length) {
-      setCurrentIndex(prev => prev + 1);
-    } else {
-      setMode('SUMMARY');
-    }
-  };
 
   const getRankBadge = (totalCorrect: number) => {
     if (totalCorrect >= 15) return { title: '🏆 Mestre da Informática', color: '#f59e0b', desc: 'Incrível! Sua velocidade de raciocínio tech é impressionante.' };

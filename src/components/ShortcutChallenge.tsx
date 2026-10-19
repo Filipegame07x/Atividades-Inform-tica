@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import type { KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { shortcutCategories } from '../data/shortcuts';
 import type { ShortcutQuestion } from '../data/shortcuts';
 import { RefreshCw, Zap, ArrowLeft, Trophy, Keyboard, Play, Heart, FileText, MonitorPlay, Globe, Laptop, Palette, Brain, ShieldAlert, Table, Layers, LayoutGrid } from 'lucide-react';
@@ -49,7 +50,8 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
   const [attemptsLeft, setAttemptsLeft] = useState(3);
   
   const [elapsedTime, setElapsedTime] = useState(0); // in seconds
-  const timerRef = useRef<any>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
+  const gameRootRef = useRef<HTMLDivElement>(null);
 
   // Active category data
   const activeCategory = shortcutCategories.find(c => c.id === selectedCategoryId);
@@ -58,14 +60,14 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
   // Start the timer when quiz starts
   useEffect(() => {
     if (gameState === 'PLAYING') {
-      setElapsedTime(0);
+
       timerRef.current = setInterval(() => {
         setElapsedTime(prev => prev + 1);
       }, 1000);
     } else {
       if (timerRef.current) {
         clearInterval(timerRef.current);
-        timerRef.current = null;
+        timerRef.current = undefined;
       }
     }
     return () => {
@@ -73,112 +75,75 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
     };
   }, [gameState]);
 
-  // Keyboard Event Handlers
-  useEffect(() => {
-    if (gameState !== 'PLAYING' || !currentQuestion) return;
-
-    const mapKey = (key: string): string => {
-      const lower = key.toLowerCase();
-      if (lower === 'control') return 'control';
-      if (lower === 'shift') return 'shift';
-      if (lower === 'alt') return 'alt';
-      if (lower === 'meta') return 'meta'; // Windows command key
-      if (lower === 'delete' || lower === 'del') return 'delete';
-      if (lower === 'escape' || lower === 'esc') return 'escape';
-      if (lower === ' ') return ' ';
-      return lower;
-    };
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (feedback !== 'NONE') return;
-      const key = mapKey(e.key);
-      
-      // Prevent browser default actions (Ctrl+S, Ctrl+P, F5, F11, etc.)
-      if (
-        e.ctrlKey || 
-        e.metaKey || 
-        ['f5', 'f11', 'tab', 'escape', 'delete', 'backspace'].includes(key)
-      ) {
-        e.preventDefault();
-      }
-
-      setPressedKeys(prev => {
-        const next = new Set(prev);
-        next.add(key);
-        return next;
-      });
-    };
-
-    const handleKeyUp = (e: KeyboardEvent) => {
-      if (feedback !== 'NONE') return;
-      const key = mapKey(e.key);
-      setPressedKeys(prev => {
-        const next = new Set(prev);
-        next.delete(key);
-        return next;
-      });
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('keyup', handleKeyUp);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('keyup', handleKeyUp);
-    };
-  }, [gameState, currentQuestionIndex, currentQuestion, feedback]);
-
-  // Check answers
-  useEffect(() => {
-    if (gameState !== 'PLAYING' || !currentQuestion || feedback !== 'NONE') return;
-
-    const targetKeys = currentQuestion.keys;
-    const pressedArray = Array.from(pressedKeys);
-
-    if (pressedArray.length > 0) {
-      const isExactMatch = 
-        targetKeys.length === pressedArray.length && 
-        targetKeys.every(k => pressedKeys.has(k));
-
-      if (isExactMatch) {
-        setFeedback('SUCCESS');
-        setCorrectCount(prev => prev + 1);
-        setTimeout(() => {
-          handleNextQuestion();
-        }, 1200);
-      } else {
-        const isWrongKeyCombination = pressedArray.length >= targetKeys.length && !targetKeys.every(k => pressedKeys.has(k));
-        
-        if (isWrongKeyCombination) {
-          setFeedback('ERROR');
-          setIncorrectCount(prev => prev + 1);
-          const newAttempts = attemptsLeft - 1;
-          setAttemptsLeft(newAttempts);
-
-          if (newAttempts <= 0) {
-            setTimeout(() => {
-              setFeedback('OUT_OF_ATTEMPTS');
-            }, 800);
-          } else {
-            setTimeout(() => {
-              setFeedback('NONE');
-              setPressedKeys(new Set());
-            }, 1000);
-          }
-        }
-      }
-    }
-  }, [pressedKeys, gameState, currentQuestion, feedback, attemptsLeft]);
+  const mapKey = (key: string): string => {
+    const lower = key.toLowerCase();
+    if (lower === 'control') return 'control';
+    if (lower === 'shift') return 'shift';
+    if (lower === 'alt') return 'alt';
+    if (lower === 'meta') return 'meta';
+    if (lower === 'delete' || lower === 'del') return 'delete';
+    if (lower === 'escape' || lower === 'esc') return 'escape';
+    if (lower === ' ') return ' ';
+    return lower;
+  };
 
   const handleNextQuestion = () => {
     setFeedback('NONE');
     setPressedKeys(new Set());
-
     if (activeCategory && currentQuestionIndex + 1 < activeCategory.questions.length) {
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
       setGameState('SUMMARY');
     }
+  };
+
+  const evaluatePressedKeys = (keys: Set<string>) => {
+    if (gameState !== 'PLAYING' || !currentQuestion || feedback !== 'NONE') return;
+    const targetKeys = currentQuestion.keys;
+    const pressedArray = Array.from(keys);
+    const isExactMatch = targetKeys.length === pressedArray.length &&
+      targetKeys.every(key => keys.has(key));
+    if (isExactMatch) {
+      setFeedback('SUCCESS');
+      setCorrectCount(prev => prev + 1);
+      setTimeout(handleNextQuestion, 1200);
+      return;
+    }
+    const isWrongCombination = pressedArray.length >= targetKeys.length &&
+      !targetKeys.every(key => keys.has(key));
+    if (!isWrongCombination) return;
+    setFeedback('ERROR');
+    setIncorrectCount(prev => prev + 1);
+    const newAttempts = attemptsLeft - 1;
+    setAttemptsLeft(newAttempts);
+    if (newAttempts <= 0) {
+      setTimeout(() => setFeedback('OUT_OF_ATTEMPTS'), 800);
+    } else {
+      setTimeout(() => {
+        setFeedback('NONE');
+        setPressedKeys(new Set());
+      }, 1000);
+    }
+  };
+
+  const handlePhysicalKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
+    if (gameState !== 'PLAYING' || !currentQuestion || feedback !== 'NONE') return;
+    const key = mapKey(event.key);
+    if (event.ctrlKey || event.metaKey ||
+      ['f5', 'f11', 'tab', 'escape', 'delete', 'backspace'].includes(key)) {
+      event.preventDefault();
+    }
+    if (pressedKeys.has(key)) return;
+    const nextKeys = new Set(pressedKeys);
+    nextKeys.add(key);
+    setPressedKeys(nextKeys);
+    evaluatePressedKeys(nextKeys);
+  };
+
+  const handlePhysicalKeyUp = (event: ReactKeyboardEvent<HTMLDivElement>) => {
+    const nextKeys = new Set(pressedKeys);
+    nextKeys.delete(mapKey(event.key));
+    setPressedKeys(nextKeys);
   };
 
   const handleSelectCategory = (id: string) => {
@@ -188,12 +153,14 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
 
   const handleStartChallenge = () => {
     setCurrentQuestionIndex(0);
+    setElapsedTime(0);
     setCorrectCount(0);
     setIncorrectCount(0);
     setAttemptsLeft(3);
     setFeedback('NONE');
     setPressedKeys(new Set());
     setGameState('PLAYING');
+    requestAnimationFrame(() => gameRootRef.current?.focus());
   };
 
   const formatTime = (secs: number) => {
@@ -204,16 +171,11 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
 
   const handleVirtualKeyClick = (virtualKey: string) => {
     if (gameState !== 'PLAYING' || feedback !== 'NONE') return;
-
-    setPressedKeys(prev => {
-      const next = new Set(prev);
-      if (next.has(virtualKey)) {
-        next.delete(virtualKey);
-      } else {
-        next.add(virtualKey);
-      }
-      return next;
-    });
+    const nextKeys = new Set(pressedKeys);
+    if (nextKeys.has(virtualKey)) nextKeys.delete(virtualKey);
+    else nextKeys.add(virtualKey);
+    setPressedKeys(nextKeys);
+    evaluatePressedKeys(nextKeys);
   };
 
   // Virtual Keyboard Layout
@@ -282,7 +244,7 @@ export function ShortcutChallenge({ onBack }: ShortcutChallengeProps) {
   };
 
   return (
-    <div className="shortcut-game-container animate-fade-in">
+    <div className="shortcut-game-container animate-fade-in" ref={gameRootRef} tabIndex={gameState === 'PLAYING' ? 0 : undefined} onKeyDown={handlePhysicalKeyDown} onKeyUp={handlePhysicalKeyUp}>
       
       {/* 1. CATEGORY SELECT STATE */}
       {gameState === 'SELECT' && (

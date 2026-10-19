@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import type { ActivityResult } from './Activity';
 import type { ActivityData } from '../data/activities';
 import { Download, ArrowLeft, Award } from 'lucide-react';
-import html2pdf from 'html2pdf.js';
 
 interface ResultProps {
   activity: ActivityData;
@@ -13,7 +12,7 @@ interface ResultProps {
 export function Result({ activity, result, onReset }: ResultProps) {
   const reportRef = useRef<HTMLDivElement>(null);
 
-  const handleDownloadPdf = () => {
+  const handleDownloadPdf = async () => {
     const element = reportRef.current;
     if (!element) return;
 
@@ -25,6 +24,7 @@ export function Result({ activity, result, onReset }: ResultProps) {
       jsPDF:        { unit: 'mm' as const, format: 'a4' as const, orientation: 'portrait' as const }
     };
 
+    const html2pdf = (await import('html2pdf.js')).default;
     html2pdf().set(opt).from(element).save();
   };
 

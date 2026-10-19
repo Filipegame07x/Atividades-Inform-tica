@@ -29,7 +29,7 @@ export function PracticeTyping({ typingText, onBack }: PracticeTypingProps) {
   // Timer States
   const [startTime, setStartTime] = useState<number | null>(null);
   const [elapsedTime, setElapsedTime] = useState(0);
-  const timerRef = useRef<any>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   
   // Ref for auto-focusing the hidden input
   const inputRef = useRef<HTMLTextAreaElement>(null);
