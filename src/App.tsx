@@ -104,17 +104,17 @@ function App() {
                     >
                       <FileText size={16} /> Responder currículo
                     </button>
+                    <button
+                      type="button"
+                      className="theme-toggle"
+                      onClick={() => setTheme(current => current === 'light' ? 'dark' : 'light')}
+                      aria-label={`Ativar tema ${theme === 'light' ? 'escuro' : 'claro'}`}
+                      title={`Ativar tema ${theme === 'light' ? 'escuro' : 'claro'}`}
+                    >
+                      {theme === 'light' ? <Moon size={17} /> : <Sun size={17} />}
+                      <span>{theme === 'light' ? 'Escuro' : 'Claro'}</span>
+                    </button>
                   </div>
-                  <button
-                    type="button"
-                    className="theme-toggle"
-                    onClick={() => setTheme(current => current === 'light' ? 'dark' : 'light')}
-                    aria-label={`Ativar tema ${theme === 'light' ? 'escuro' : 'claro'}`}
-                    title={`Ativar tema ${theme === 'light' ? 'escuro' : 'claro'}`}
-                  >
-                    {theme === 'light' ? <Moon size={17} /> : <Sun size={17} />}
-                    <span>{theme === 'light' ? 'Escuro' : 'Claro'}</span>
-                  </button>
                 </div>
 
                 {activeTab === 'ACTIVITIES' ? (
