@@ -112,7 +112,7 @@ export function Home({ onSelectActivity }: HomeProps) {
           }}
         >
           <img 
-            src="/IEPOP.png"
+            src="/iepop.png"
 alt="IEPOP Logo"
             style={{ maxHeight: '60px', objectFit: 'contain' }}
           />

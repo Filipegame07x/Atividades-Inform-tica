@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BookOpen, Keyboard, Zap, Flame, Moon, Sun } from 'lucide-react';
+import { BookOpen, Keyboard, Zap, Flame, Moon, Sun, FileText } from 'lucide-react';
 import { SplashScreen } from './components/SplashScreen';
 import { Home } from './components/Home';
 import { PasswordGate } from './components/PasswordGate';
@@ -12,9 +12,10 @@ import { PracticeTyping } from './components/PracticeTyping';
 import type { TypingText } from './data/typingTexts';
 import { ShortcutChallenge } from './components/ShortcutChallenge';
 import { SpeedQuiz } from './components/SpeedQuiz';
+import { StudentReflection } from './components/StudentReflection';
 
 type AppState = 'HOME' | 'PASSWORD_GATE' | 'ACTIVITY' | 'RESULT';
-type ActiveTab = 'ACTIVITIES' | 'PRACTICE' | 'SHORTCUTS' | 'SPEED_QUIZ';
+type ActiveTab = 'ACTIVITIES' | 'PRACTICE' | 'SHORTCUTS' | 'SPEED_QUIZ' | 'REFLECTION';
 
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
@@ -97,6 +98,12 @@ function App() {
                     >
                       <Flame size={16} color="#f59e0b" /> Speed Quiz
                     </button>
+                    <button
+                      className={`nav-tab-btn ${activeTab === 'REFLECTION' ? 'active' : ''}`}
+                      onClick={() => setActiveTab('REFLECTION')}
+                    >
+                      <FileText size={16} /> Responder currículo
+                    </button>
                   </div>
                   <button
                     type="button"
@@ -116,8 +123,10 @@ function App() {
                   <PracticeHome onSelectText={setSelectedPracticeText} />
                 ) : activeTab === 'SHORTCUTS' ? (
                   <ShortcutChallenge onBack={() => setActiveTab('ACTIVITIES')} />
-                ) : (
+                ) : activeTab === 'SPEED_QUIZ' ? (
                   <SpeedQuiz onBack={() => setActiveTab('ACTIVITIES')} />
+                ) : (
+                  <StudentReflection />
                 )}
               </>
             )}
